@@ -8,7 +8,7 @@ class DB
         var $user="root";
         var $pwd="";
         var $persist=false;
-        var $database="social_media";
+        var $database="iflex";
 
         var $conn1=NULL;
         var $result=false;

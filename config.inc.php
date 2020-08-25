@@ -24,7 +24,7 @@ if(preg_match('/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|c
 	if(substr($_SELF_DIR,-1)!="/")
 		$_SELF_DIR.="/";
 
-	$_SITE_PATH = $_HTTP.$_SERVER_NAME.$_PORT."/";
+	$_SITE_PATH = $_HTTP.$_SERVER_NAME.$_PORT."/iflex/";
 	$_PER_PAGE=12;
 	# Including common files
 	$_DIR_INC = $_DIR_PATH."include/";
