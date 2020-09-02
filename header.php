@@ -1,5 +1,5 @@
 <?php include("config.inc.php");
-include('chat/database_connection.php');
+//include('chat/database_connection.php');
 $dbu=new DB();
 $sqlu="select * from all_user where user_id =".$_SESSION['sess_webid'];
 $dbu->query($sqlu);
@@ -42,20 +42,20 @@ $link .= $_SERVER['PHP_SELF'];
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
-	<link rel="stylesheet" type="text/css" href="css/animate.css">
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="css/line-awesome.css">
-	<link rel="stylesheet" type="text/css" href="css/flatpickr.min.css"> 
-	<link rel="stylesheet" type="text/css" href="css/line-awesome-font-awesome.min.css">
-	<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-	<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="css/jquery.mCustomScrollbar.min.css">
-	<link rel="stylesheet" type="text/css" href="lib/slick/slick.css">
-	<link rel="stylesheet" type="text/css" href="lib/slick/slick-theme.css">
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<link rel="stylesheet" type="text/css" href="css/responsive.css">
-	<link rel="stylesheet" type="text/css" href="css/video-js.css">
-	<link href="images/logo.png" rel="icon" sizes="32x32" type="image/png" />
+	<link rel="stylesheet" type="text/css" href="<?=$_SITE_PATH?>css/animate.css">
+	<link rel="stylesheet" type="text/css" href="<?=$_SITE_PATH?>css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="<?=$_SITE_PATH?>css/line-awesome.css">
+	<link rel="stylesheet" type="text/css" href="<?=$_SITE_PATH?>css/flatpickr.min.css"> 
+	<link rel="stylesheet" type="text/css" href="<?=$_SITE_PATH?>css/line-awesome-font-awesome.min.css">
+	<link href="<?=$_SITE_PATH?>vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" type="text/css" href="<?=$_SITE_PATH?>css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="<?=$_SITE_PATH?>css/jquery.mCustomScrollbar.min.css">
+	<link rel="stylesheet" type="text/css" href="<?=$_SITE_PATH?>lib/slick/slick.css">
+	<link rel="stylesheet" type="text/css" href="<?=$_SITE_PATH?>lib/slick/slick-theme.css">
+	<link rel="stylesheet" type="text/css" href="<?=$_SITE_PATH?>css/style.css">
+	<link rel="stylesheet" type="text/css" href="<?=$_SITE_PATH?>css/responsive.css">
+	<link rel="stylesheet" type="text/css" href="<?=$_SITE_PATH?>css/video-js.css">
+	<link href="images/logo.png" rel="icon" sizes="32x32" type="<?=$_SITE_PATH?>image/png" />
 
 	<!--<script type="text/javascript" src="js/jquery-2.1.0.js"></script>-->
     <meta name="google-signin-scope" content="profile email">
@@ -69,11 +69,11 @@ ajax/libs/jquery/1.4.2/jquery.min.js"></script>
 	<script type="text/javascript" src="ttps://code.jquery.com/jquery-3.1.0.js"></script>
 	<script type="text/javascript" src="js/jquery.min.js"></script>-->
 	
-	<script type="text/javascript" src="js/jquery-2.1.0.js"></script>
+	<script type="text/javascript" src="<?=$_SITE_PATH?>js/jquery-2.1.0.js"></script>
 	<!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>-->
 	<script> //header('Access-Control-Allow-Origin', "*");
-	   		var BASEURL='//orangestate.ng/';
-			var social_AjaxURL='//orangestate.ng/';
+	   		var BASEURL='//iflex.ng/';
+			var social_AjaxURL='//iflex.ng/';
 			//var BASEURL='http://localhost/orange_state/';
 	</script>
 </head>
@@ -89,7 +89,7 @@ ajax/libs/jquery/1.4.2/jquery.min.js"></script>
 					</div><!--logo end-->
 					
 					<div class="search-bar">
-					<?php if($link !='http://orangestate.ng/marketplace-home.php'){?>
+					<?php if($link !='http://iflex.ng/marketplace-home.php'){?>
 						<form action="search.php" method="post" id="search_box" name="searchpage1">
 							<!--<input type="text" name="search" placeholder="Search..." onkeyup="showResult(this.value)">-->
 							<input type="text" id="search-box" class="search" name="searchpage" placeholder="Search for People" />

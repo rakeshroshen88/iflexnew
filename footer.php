@@ -925,26 +925,26 @@ var action='action';
 	});
 </script>
 
-<script type="text/javascript" src="js/popper.js"></script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
-<script type="text/javascript" src="js/flatpickr.min.js"></script>
-<script type="text/javascript" src="lib/slick/slick.min.js"></script>
-<script type="text/javascript" src="js/script.js"></script>
-<script type="text/javascript" src="js/jquery.mCustomScrollbar.js"></script>
-<script type="text/javascript" src="js/scrollbar.js"></script>
+<script type="text/javascript" src="<?=$_SITE_PATH?>js/popper.js"></script>
+<script type="text/javascript" src="<?=$_SITE_PATH?>js/bootstrap.min.js"></script>
+<script type="text/javascript" src="<?=$_SITE_PATH?>js/flatpickr.min.js"></script>
+<script type="text/javascript" src="<?=$_SITE_PATH?>lib/slick/slick.min.js"></script>
+<script type="text/javascript" src="<?=$_SITE_PATH?>js/script.js"></script>
+<script type="text/javascript" src="<?=$_SITE_PATH?>js/jquery.mCustomScrollbar.js"></script>
+<script type="text/javascript" src="<?=$_SITE_PATH?>js/scrollbar.js"></script>
 <!--//<script src='js/video.js'></script>////-->
 
 
 <!--//////////////-->
-<script src="js/ui-elements.js"></script>
-<script src="js/blockUI/jquery.blockUI.js"></script>
-<script src="js/sweetalert2@8.js"></script>
-<script src="js/media.js"></script>
-<script src="js/profile.js"></script>
+<script src="<?=$_SITE_PATH?>js/ui-elements.js"></script>
+<script src="<?=$_SITE_PATH?>js/blockUI/jquery.blockUI.js"></script>
+<script src="<?=$_SITE_PATH?>js/sweetalert2@8.js"></script>
+<script src="<?=$_SITE_PATH?>js/media.js"></script>
+<script src="<?=$_SITE_PATH?>js/profile.js"></script>
 
 <!----    ---->
 
-<script src="js/slick.js"></script>
+<script src="<?=$_SITE_PATH?>js/slick.js"></script>
 
 
 <script>
