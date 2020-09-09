@@ -7,7 +7,7 @@ include('chksession.php');
 <link rel="stylesheet" href="css/food-style.css" >
 
 <body >
-<div class="karya">
+
 
 	<section>
 		<div class="res-page-title">
@@ -1253,29 +1253,7 @@ include('chksession.php');
 
 </div>
 
-<script>
 
- $(".karya div").slice(20).hide();
-
- var mincount = 10;
- var maxcount = 20;
-
-
- $(window).scroll(function () {
-     if ($(window).scrollTop() + $(window).height() >= $(document).height() - 50) {
-         $(".karya div").slice(mincount, maxcount).slideDown(900);
-
-         mincount = mincount + 10;
-         maxcount = maxcount + 10
-
-     }
- });
-
-// Initially load some items.
-loadMore();
-
-
-</script>
 
 </body>
 
