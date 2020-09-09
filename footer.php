@@ -66,34 +66,7 @@
 
 <div class="chatfeature-leftbar">
 	<div class="open-chat-bttm">
-		<h3 ><i class="fa fa-commenting-o" aria-hidden="true"></i> Chat (<?php 
-$db4=new DB();
-$l=array();
-$sql4="SELECT * from followers where user_id=".$_SESSION['sess_webid'];
-$db4->query($sql4);
-if($db4->numRows()>0)
-{
-while($row4=$db4->fetchArray()){
-	$l[]=$row4['follow'];
-}
-}
-$allfriend=implode(',',$l);
-
-/* 	$query = "
-	SELECT * FROM login_details
-	WHERE status = 'Online' group by user_id
-	"; */
-	
-	 $query = "
-SELECT * FROM login WHERE user_id != '".$_SESSION['user_id']."' and f_userid IN (SELECT f_userid FROM login_details
-	WHERE f_userid  IN($allfriend) and status='Online')";
-
-	$statement = $connect->prepare($query);
-	$statement->execute();
-	 $count = $statement->rowCount();
-	 echo $count;
-//echo $c=fetch_is_statusonline($_SESSION['user_id'], $connect);
-	?>) </h3>
+		<h3 ><i class="fa fa-commenting-o" aria-hidden="true"></i> Chat (0) </h3>
 	</div>
 	<div id="user_details" ></div>
 </div>
