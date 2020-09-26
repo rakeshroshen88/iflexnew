@@ -672,15 +672,15 @@ color: #fff;}
 }
 
 
-.scrollpane {  overflow: auto;}
-.loading { color: red; }
+#loadMore { font-size: 40px;
+    color:green;
+    cursor:pointer;
+}
 
 
 
 
-
-
-/*-------------------------------------   retaurent-detail-css-starts-here  -----------------------------------------------*/
+/*----------------------------------------------------------   retaurent-detail-css-starts-here  -------------------------------------------------------------------------*/
 
 .res-page-title{
     padding: 70px 0px;
@@ -1116,6 +1116,14 @@ margin-bottom: 14px;}
 
 
 /*------------  right sidebar -------------------*/
+
+.restaurant-detailed-earn-pts .img-fluid.float-left {
+    height: 60px;    margin-right: 3px;
+}
+.black-t{color: #000;}
+.earn-pts {
+    color: #ff5e00!important;
+}
 .side-block-order {
     margin: 30px 0px;
     background-color: #F5F5F5;
@@ -1130,13 +1138,13 @@ margin-bottom: 14px;}
 }
 .side-block-order h5.text-center {font-size: 21px;}
 .side-block-order-content {
-    padding: 12px 15px;
+    padding: 20px 15px;
 }
 .side-block-order-content .order-item-list li {
     margin-bottom: 14px;
 }
 .cart-product-name {
-    max-width: 140px;
+    max-width: 140px; padding-left: 8px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -1173,11 +1181,13 @@ ul.order-item-total li.right-total {line-height: 24px; margin-left: 180px; text-
 /* .order-item-total hr{ border: 2px solid #ccc; padding-top: 6px;} */
 
 .cfo-checkoutarea {
-    margin-bottom: 5px;
+    /* margin-bottom: 5px; */ margin: 26px 0px 10px 0px;
 }
 .custom-checkout {
-    background: #ff5e00;
-    border: 1px solid #ff5e00;
+    background: #ff5e00; border-radius: 6px !important;
+    /* border: 1px solid #ff5e00; */
+}
+a.custom-checkout { font-size: 14px; font-weight: 700;
 }
 
 .order-online-now .btn-primary, .order-online-now .btn-primary:hover {
@@ -1249,8 +1259,353 @@ ul.order-item-total li.right-total {line-height: 24px; margin-left: 180px; text-
 
 
 
+/*----------------------------------------------------------   restaurent-food-checkout-css-starts -------------------------------------------------------------------------*/
 
 
+.add-block{margin-top: 30px;}
+.add-block h4{font-size: 30px;}	
+.icon-size{font-size: 30px;}
+/* h6.text-black{font-weight: 700; font-size: 22px;} */
+.media h6{font-weight: 700; font-size: 22px;}
+.text-black {
+    color: #000;
+}
+.add-btn{margin-top: 18px;}
+.addresses-item a.btn.btn-sm {
+    min-width: 157px;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 13px;
+}
+
+.osahan-payment .nav-link.active {
+    background: #f3f7f8;
+    color: #282c3f!important;
+}
+.osahan-payment .nav-link {
+    padding: 18px 20px;
+    border: none;
+    font-weight: 600;
+    color: #535665;
+    box-shadow: none!important;
+    border-radius: 6px 0 0 6px!important;
+}
+.osahan-payment .nav-link.active i {
+    background: #282c3f!important;
+}
+.osahan-payment .nav-link i {
+    width: 28px;
+    height: 28px;
+    background: #535665;
+    display: inline-block;
+    text-align: center;
+    line-height: 29px;
+    font-size: 15px;
+    border-radius: 50px;
+    margin: 0 7px 0 0;
+    color: #fff;
+}
+.osahan-card i {
+    font-size: 30px;
+    vertical-align: middle;
+    color: #6c757d;
+    margin: 0px 4px;
+}
+.osahan-payment .tab-content {
+    background: #f3f7f8;
+    padding: 20px;
+}
+h6.ordr-payment-mthd {
+    font-weight: 600;
+    font-size: 20px;
+}
+.add-block form{margin: 15px 0px;}
+.osahan-payment label {
+    font-size: 14px;
+    margin: 0 0 3px;
+    font-weight: 600;
+}
+.add-block form .form-control{font-size: 14px;}
+a.link-clr{color:#ff5e00; }
+.select2-container {
+    box-sizing: border-box;
+    display: inline-block;
+    margin: 0;
+    position: relative;
+    vertical-align: middle;
+}
+.select2, .select2 span {
+    width: 100%!important;
+}
+.select2-container--default .select2-selection--single {
+    background-color: #fff;
+    border: 1px solid #ced4da;
+    border-radius: 3px;
+}
+.select2-container .select2-selection--single {
+    box-sizing: border-box;
+    cursor: pointer;
+    display: block;
+    height: 28px;
+    user-select: none;
+    -webkit-user-select: none;
+}
+i.credit{
+	width: 32px;
+    height: 32px;
+    background: #535665;
+    display: inline-block;
+    text-align: center;
+    line-height: 32px;
+    font-size: 20px;
+    border-radius: 50px;
+    margin: 0 7px 0 0;
+    color: #fff;
+}
+
+
+/*---------- left-sidebar-css-starts -------------------*/
+
+.ordr-head {margin-top: 14px;}
+.rest-name{font-size: 21px;margin-left: 15px;}
+.side-block-order p{font-size: 20px;
+    padding: 15px 0px 0px 15px;}
+.fa-badge-percent:before{content:"\f646";}
+.apply-clr {
+    background: #ff5e00;
+    border-color: #ff5e00;
+    padding: 0px 22px !important;
+}
+.apply-clr:active {
+    background: #d95000;
+    border: 1px solid #d95000;
+}
+h5.rest-name span {
+    font-size: 12px;
+    color: #686868;
+    font-weight: 400;
+}
+.summary{margin-top: 60px;
+    font-size: 24px;
+    font-weight: 600;}
+.total-amt{float: left;}
+.form-control:focus{ /*background: #ff5e00;*/ box-shadow: 0 0 0 0.6px #ff5e00;
+}
+ul.order-item-total li.left-side-total {
+    float: left;
+    width: 160px;
+    font-weight: 600;
+    line-height: 24px;
+    font-size: 17px;
+    overflow: hidden;
+    clear: left;
+    text-align: left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+ul.order-item-total li.right-side-total {
+    line-height: 24px;
+    margin-left: 210px;
+    text-align: right !important;
+    font-size: 17px;
+}
+.checkout-btn {
+    background: #ff5e00;margin-top: 20px;
+    border-radius: 6px !important;
+    /* border: 1px solid #ff5e00; */
+}
+a.checkout-btn { font-size: 14px; font-weight: 700;
+}
+
+
+/*----------------------------------------------------------  food-Order-checkoutPG-css-starts -------------------------------------------------------------------------*/
+
+/* .bill-slip{margin-top: 30px;} */
+
+.bill-slip h2>span{ color: #ff5e00;}
+.bill-slip h2{font-size: 40px; font-weight: 600; text-align: center;margin-top: 20px; }
+.bill-slip h6{text-align: center;font-size: 20px;  padding: 10px 0px;}
+.bill-slip i{background: #1ec400!important;
+    border-radius: 50%;
+    color: #ffff;}
+.bill-slip p{text-align: center; font-size: 16px;}
+.delivery-img{width: 100%;
+    background: #fff;
+    height: 200px;justify-content: center;
+    display: flex;}
+.delivery-img img{text-align: center;}
+
+.bill-summary{margin-top: 20px;}
+p.add{font-size: 17px;}
+
+.ordr-summ {margin-top: 30px;}
+.item-summry {
+    border-radius: 4px;
+    padding: 2px;
+}
+.item-summry p{font-size: 22px;
+    font-weight: 600;
+    padding: 6px 12px;
+}
+
+.item-ordr {padding-left: 10px;
+    margin: 10px 10px;}
+.amt-det{width: 180px; font-weight: 600;}
+
+
+/*----------------------------------------------------------   food-Order-css-starts -------------------------------------------------------------------------*/
+
+
+
+.main_cart {
+    display: inline-block;
+    width: 100%;
+    vertical-align: top;
+    padding-bottom: 50px;
+background: url(../images/food/ordr-bg.jpg);
+    background-repeat: repeat; 
+     background-position: center top; 
+	
+}
+.main_Ourmenu {
+    display: inline-block;
+    width: 100%;
+    vertical-align: top;
+    padding-top: 50px;
+    padding-bottom: 25px;
+}
+.main_cart .main_Ourmenu h2.title {
+    margin-bottom: 25px;
+}
+.main_Ourmenu h2.title {
+    font-size: 36px;
+    line-height: 36px;
+    color: #000000;
+    font-weight: 700;
+    font-family: 'Roboto Slab', serif;
+    text-align: center;
+    margin-bottom: 60px;
+}
+.cart_list {
+    float: left;
+    width: 100%;
+}
+.cart_list ul.inner_cartlist li {
+    float: left;
+    width: 100%;
+    position: relative;
+    padding: 20px 0;     border-bottom: 2px dashed #000;
+}
+.cart_list li.header {
+    padding-bottom: 20px;
+    background: #e7e7e7;     border-bottom: 2px dashed #000;
+}
+.cart_list li.header .main_head {
+    float: left;
+    width: 100%;
+}
+.cart_list li.header .main_head > div {
+    min-height: inherit !important;
+}
+.cart_list li .edit {
+    float: left;
+    /* width: 6.22%; */
+}
+.cart_list li .pro_name {
+    float: left;
+    /* width: 54.52%; */
+    padding-left: 6px;
+}
+.cart_list li.header h4 {
+  font-size: 22px;
+    line-height: 16px;
+    color: #000000;
+    text-transform: capitalize;
+    font-weight: 600;
+}
+.cart_list li .pro_qty {
+    /* width: 12.53%; */
+    float: left;
+    text-align: center;
+    min-height: 74px;
+    position: relative;
+}
+.cart_list li .pro_price {
+    /* width: 13.15%; */
+    float: left;
+    text-align: center;
+    min-height: 74px;
+    position: relative;
+}
+
+.edit_div {
+    display: inline-block;
+    width: 100%;
+    vertical-align: top;
+    transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    margin-top: 50%;
+}
+.edit_div a {
+    display: block;
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 18px;
+    line-height: 18px;
+    color: #adadad;
+}
+.edit_div a:last-child {
+    margin-bottom: 0;
+}
+.products {
+    display: inline-block;
+    width: 100%;
+    vertical-align: top;
+    text-align: left;
+}
+.products .pro_img {
+    display: inline-block;
+    width: 144px; height: 80px;
+    vertical-align: top;
+    position: relative;
+}
+.products .pro_img .absoImg {
+    border-radius: 0px;
+}
+.absoImg {
+    position: relative;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    max-width: inherit;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 6px 6px 0px 0px;
+}
+.products .pro_descr {
+    width: auto;
+    padding-left: 20px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.pro_title a{color: #ff5e00;font-weight: 600;
+    font-size: 20px;line-height: 28px;}
+
+p.pro_dtls{font-size: 16px;
+    line-height: 26px;
+    color: #666666;}
+
+.number-input>div{font-weight:600; font-size: 18px;}
+
+.pro_price>h4{font-weight:600; font-size: 18px;}
+
+.ordr-mode{background: #fff !important;}
 
 
 

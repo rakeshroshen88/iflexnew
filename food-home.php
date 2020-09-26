@@ -6,12 +6,11 @@ include('chksession.php');
 <!-- Custom styles for this template -->
 <link rel="stylesheet" href="css/food-style.css" >
 <script type="text/javascript" src="js/jquery-2.1.0.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script><script src="jQuery.loadScroll.js"></script>
 
 
 
 <body>
-
-
 
 
 	<section class="food-head">
@@ -293,10 +292,14 @@ include('chksession.php');
 	</div>
 	</section>
 	
+
 	
 	<section>
 	<div class="page-section  top-restaurents  nopadding cs-nomargin">
 		<div class="container"> 
+		
+		
+		
             <div class="row">
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					<div class="element-title align-left">
@@ -604,40 +607,6 @@ include('chksession.php');
                                     </li>
                                   </ul>								
 								</div>
-								<!--<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-								  <ul>
-                                    <li>
-                                        <div class="card">
-                                             <div class="C_img"> <img src="/iflex/images/food/popular_img7.jpg" class="absoImg" alt=""> </div>
-                                               <div class="C_desc">
-                                                 <h3 class="title">Red Sauce Pasta</h3>
-                                                 <p class="desc">Red tomato sauce with mix veggies.</p>
-                                                   <div class="price_block">
-                                                    <div class="price">$ 8.00</div>
-                                                     <a href="#" class="card_btn">Add to cart</a>
-                                                   </div>
-                                               </div>
-                                        </div>
-                                    </li>
-                                  </ul>								
-								</div>
-								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-								  <ul>
-                                    <li>
-                                        <div class="card">
-                                             <div class="C_img"> <img src="/iflex/images/food/popular_img8.jpg" class="absoImg" alt=""> </div>
-                                               <div class="C_desc">
-                                                 <h3 class="title">Schezwan Sandwich</h3>
-                                                 <p class="desc">Spicy vegetables and schezwan sauce</p>
-                                                   <div class="price_block">
-                                                    <div class="price">$ 3.00</div>
-                                                     <a href="#" class="card_btn">Add to cart</a>
-                                                   </div>
-                                               </div>
-                                        </div>
-                                    </li>
-                                  </ul>								
-								</div>-->
 							  </div>
 							</div>
 		
@@ -673,10 +642,10 @@ include('chksession.php');
 
 
 <script>
-$(window).scroll(function() {
-    if($(window).scrollTop() == $(document).height() - $(window).height()) {
-new_element.hide().appendTo('.your_div').fadeIn(); $(window).scrollTop($(window).scrollTop()-1);
+window.addEventListener('scroll', function() {
+  document.getElementById('showScroll').innerHTML = window.pageYOffset + 'px';
 });
+
 </script>
 
 

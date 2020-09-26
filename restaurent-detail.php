@@ -880,6 +880,19 @@ include('chksession.php');
 				
 				<div class="col-md-3 col-xs-12">
 					<div class="spacer-1 medium hidden-lg hidden-md"></div>
+					
+					<div class="side-block-order border-radius-4">
+						<div class="shadow-sm mb-4 p-4 clearfix restaurant-detailed-earn-pts">
+							<img class="img-fluid float-left" src="/iflex/images/food/earn-score-icon.png">
+							<h6 class="pt-0 black-t mb-1 font-weight-bold">OFFER</h6>
+							<p class="mb-0">40% off on orders above $99 | Use coupon <span class="earn-pts font-weight-bold"> IFLEX40</span></p>
+							<div class="icon-overlap">
+							<i class="icofont-sale-discount"></i>
+							</div>
+						</div>
+					</div>
+					
+					
 					<div class="side-block-order border-radius-4">
 						<h5 class="text-center"><i class="fa fa-shopping-basket"></i> Your Orders</h5>
 						<div class="side-block-order-content">
@@ -934,7 +947,7 @@ include('chksession.php');
 										</ul>
 										<!-- Order Item Total Ends -->
 										<div class="cfo-checkoutarea">
-											<button type="submit" id="a" name="a" class="btn btn-primary btn-block custom-checkout">Proceed to Checkout</button>
+											<a href="food-checkout.php" class="btn btn-primary btn-block custom-checkout"> Proceed to Checkout </a>
 										</div>
 									</div>
 					</div>
