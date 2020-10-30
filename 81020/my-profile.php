@@ -1,13 +1,15 @@
 <?php include('header.php'); 
 include('chksession.php');
 						$dbn=new DB();
-						$db1=new DB();
+						$db5=new DB();
 						$sqln="select * from user_profile where user_id =".$_SESSION['sess_webid'];
 						$dbn->query($sqln);
 						$profilerow=$dbn->fetchArray();
 						?>
 
-<style>#container
+<style>
+
+#container
 {    margin: 0;
     padding: 0;
     width: 100%;
@@ -60,7 +62,59 @@ color:#FFFFFF;
 .image
 {
 width:25px; float:left; margin-right:6px
-}</style>
+}
+.header-top-navigation ul li {
+    display: inline-block;
+    margin-right: 0px !important;
+    position: relative;
+}
+.header-top-navigation ul li:hover a, .header-top-navigation ul li.active a {
+    color: #ff5e00;
+}
+p.about-author {     
+	padding: 10px 15px 0px 15px;
+    float: left;
+}
+.profile-menu-area {
+    margin-bottom: 20px;
+}
+.profile-picture-box {
+    position: absolute;
+    -webkit-transform: translateY(calc(-50% - 10px));
+    -ms-transform: translateY(calc(-50% - 10px));
+    transform: translateY(calc(-50% - 10px));
+   
+}
+.profile-edit-panel{
+	justify-content: center;
+    display: flex;
+}
+.profile-picture {
+    position: relative;
+}
+.profile-picture:before {
+	top: -8px;
+    left: 62px;
+    right: -7px;
+    bottom: -5px;
+    content: '';
+    position: absolute;
+    pointer-events: none;
+    border: 10px solid #fc5608;
+    border-radius: 100px;
+}
+.edit-btn {
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+    padding: 11px 28px;
+    display: inline-block;
+    border-radius: 50px;
+    text-transform: capitalize;
+    background-color: #ff5f02; border-color: transparent;
+}
+</style>
 
     <section class="cover-sec">
 	<div class="cover-sec1">
@@ -76,18 +130,18 @@ width:25px; float:left; margin-right:6px
 		</label>
     </section>
 	
-			<!-- profile pic -menu item section starts -->
+	<!-- profile pic -menu item section starts -->
 	<div class="profile-menu-area bg-white">
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
                             <div class="profile-picture-box">
                                 <figure class="profile-picture">   
-									<div class="user-pro-img">
+										 <div class="user-pro-img">
                                         <?php if($profilerow['image_id']=='' and empty($profilerow['image_id'])){ ?>
                                             <img src="images/resources/user.png" id="rmvid" alt="" >
                                             <?php }else{?>
-                                                <img src="upload/<?=$profilerow['image_id']?>" id="rmvid" alt="" >
+                                                <img src="upload/<?=$profilerow['image_id']?>" id="rmvid" alt="" height="190" width="190">
                                                 <?php }?>
 												<!-- <input type="file" id="file1">-->
 												
@@ -95,36 +149,50 @@ width:25px; float:left; margin-right:6px
                                                         <input type="file" id="file1">
                                                         <label for="file1"><i class="fas fa-camera"></i></label>
                                                     </div>
-									</div>						
+										</div>							
                                 </figure>
                             </div>
                         </div>
-                        <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
 							
                             <div class="profile-menu-wrapper main-ws-sec profile-lisgn">
 							
                                 <div class="main-menu-inner header-top-navigation user-tab-sec rewivew tab-feed st2 settingjb">
                                     
                                         <ul class="row main-menu">
-											<li data-tab="feed-dd" class="col-lg-2 col-md-2 col-sm-2 col-12 active">
-                                                <a href="#" title="">
-                                                   <!-- <img src="images/ic1.png" alt="">-->
-                                                    <span>Company</span>
-                                                </a>
-                                            </li>
+										
+                                            <li class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12 active" data-tab="feed-dd" ><a href="#" title=""><span>Timeline</span></a></li>
+                                            <li class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12" data-tab="info-dd"><a href="#" title=""><span>About</span></a></li>
+                                            <li class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12" data-tab="saved-jobs"><a href="#" title=""><span>Friends</span></a>
+												<!--<div class="pull-left"><?php 
+										
+												 $num1=$db->getSingleResult("SELECT count(f_id) from followers where user_id=".$_SESSION['sess_webid']." or follow=".$_SESSION['sess_webid']."");
+												if(empty($num1)){ echo "0";}else{ echo $num1; }
+												?></div>-->
+											</li>
+                                            
+											<li class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12" data-tab="portfolio-dd"><a href="#" title=""><span>Photo</span></a></li>
+													
+                                            <li class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12" data-tab="frq"><a href="#" title=""><span>Friend Request  </span></a></li>
+                                            <!-- <li class="d-inline-block d-md-none"><a href="profile.html">edit profile</a></li> -->
                                         </ul>
                                     
                                 </div>
                             </div>
                         </div>
+						
+						
+						
+                        <!--<div class="col-lg-3 col-md-3">
+                            <div class="profile-edit-panel">
+                                <button class="edit-btn">edit profile</button>
+                            </div>
+                        </div>-->
                     </div>
                 </div>
     </div>
 	
 	<!-- profile pic-menu item section ends-->
-	
-	
-	
 	
 	
 	
@@ -137,41 +205,34 @@ width:25px; float:left; margin-right:6px
                     <div class="row">
                         <div class="col-lg-3">
                             <div class="main-left-sidebar">
-                                                                
-                                    <!--user-pro-img end-->
-                                    <!--<div class="user_pro_status">
-                                        <ul class="flw-status">
-                                             <li>
-                                                <span>Friends</span>
-                                                <b><?php 
-												
-												 $num1=$db->getSingleResult("SELECT count(f_id) from followers where user_id=".$_SESSION['sess_webid']." or follow=".$_SESSION['sess_webid']."");
-												if(empty($num1)){ echo "0";}else{ echo $num1; }
-												?></b>
-                                            </li>
-                                         </ul>
-                                    </div>-->
-                                    <!--user_pro_status end-->						   
-								<div class="suggestions full-width">
-									<div class="sd-title user-tab-sec rewivew">
+                                
+							   
+							<div class="suggestions full-width">
+								<div class="sd-title user-tab-sec rewivew">
                                        <h3><?=$_SESSION['sess_name']?></h3>
 									   
-									</div>
-                                							
-									<div class="star-descp">
+                                </div>
+                                
+								<div class="star-descp">
                                         <span><?=$profilerow['current_company']?>
 													</span>
-                                        <ul>
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star-half-o"></i></li>
-                                        </ul>
-                                        <a href="javascript:void(0);" title="">Status</a>
-                                    </div>                                                        
+                                      
 								</div>
-								
+                                    <!--<p class="about-author">I Don’t know how? But i believe that it is possible one day if i stay with my dream all time</p>
+									
+                                    <div class="suggestions-list">
+										<ul class="social_links MyList">
+                                            <li><a href="#"><i class="fa fa-briefcase" aria-hidden="true"></i>Graphic Designer</a></li>
+                                            <li><a href="#"><i class="fa fa-home" aria-hidden="true"></i>New Delhi, India</a></li>
+                                            <li><a href="#"><i class="fa fa-thumbs-up" aria-hidden="true"></i>Travel, Swimming</a></li>
+										</ul>
+									</div>-->
+                               
+                            </div>
+							   
+							   
+							   
+							   
 							     <div class="suggestions full-width">
                                     <div class="sd-title">
                                         <h3>Explore </h3>
@@ -180,13 +241,17 @@ width:25px; float:left; margin-right:6px
                                    
 									 <div class="suggestions-list">
 									   <ul class="social_links MyList">
+
                                         <li ><a href="dashboard.php" title=""><i class="fa fa-home" aria-hidden="true"></i>News Feed</a></li>                                 
 										<li><a href="company-page.php" title=""><i class="fa fa-file" aria-hidden="true"></i>Create Pages</a></li>
 										<li ><a href="company-list.php" title=""><i class="fa fa-file-text-o" aria-hidden="true"></i>View Pages</a></li>
                                         <li ><a href="notification.php" title=""><i class="fas fa-bell" aria-hidden="true"></i>Notification</a></li>
                                         <li ><a href="notification.php" title=""><i class="fas fa-users" aria-hidden="true"></i>Friends</a></li>
                                         <li ><a href="company-list.php" title=""><i class="fas fa-smile" aria-hidden="true"></i>Messages</a></li>
-                                        <li ><a href="setting.php" title="" class="animated fadeIn active" ><i class="fa fa-cogs" aria-hidden="true"></i>Setting</a></li>
+                                        <li ><a href="message.php" title="" class="animated fadeIn active" ><i class="fa fa-cogs" aria-hidden="true"></i>Setting</a></li>
+                                       
+                                       <!-- <li data-tab="info-dd"><a href="javascript:void(0);" title=""><i class="fa fa-user" aria-hidden="true"></i></i>About</a></li>-->
+
                                     </ul>
 									  </div>
                                 </div>
@@ -237,10 +302,14 @@ width:25px; float:left; margin-right:6px
 										<?php }}else{ echo "&nbsp; Data Not Availablle";} ?>
 											
 											
-											
+											<?php 
+											 
+										    $fcnt=$db->query("SELECT count(f_id) from followers where user_id=".$_SESSION['sess_webid']);
+											if($fcnt>5){ ?>
 											<div class="view-more">
-												<a href="my-profile.php" title="">View More</a>
+												<a href="my-profile.php" title="" >View More</a>
 											</div>
+											<?php } ?>
 										</div><!--suggestions-list end-->
 									</div><!--suggestions end-->
 									
@@ -266,46 +335,81 @@ width:25px; float:left; margin-right:6px
                         </div>
                         <div class="col-lg-6">
                             <div class="main-ws-sec profile-lisgn">
-                                <!--<div class="user-tab-sec rewivew">
-                                    <h3><?=$_SESSION['sess_name']?></h3>
+                                <div class="user-tab-sec rewivew">
+                                    <!--<h3><?=$_SESSION['sess_name']?></h3>
                                     <div class="star-descp">
                                         <span><?=$profilerow['current_company']?>
 													</span>
-                                        <ul>
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star-half-o"></i></li>
+                                      
+                                    </div>-->
+                                    <!--star-descp end-->
+									
+									
+                            <!--<div class="profile-menu-wrapper">
+                                <div class="main-menu-inner header-top-navigation">
+                                    <nav>
+                                        <ul class="main-menu">
+                                            <li class="active"><a href="#">timeline</a></li>
+                                            <li><a href="about.html">about</a></li>
+                                            <li><a href="photos.html">photos</a></li>
+                                            <li><a href="friends.html">friends</a></li>
+                                            <li><a href="about.html">more</a></li>
                                         </ul>
-                                        <a href="javascript:void(0);" title="">Status</a>
-                                    </div>
-                                    
-                                    <div class="tab-feed st2 settingjb">
+                                    </nav>
+                                </div>
+                            </div>-->
+                       
+									
+									
+									
+                                    <!--<div class="tab-feed st2 settingjb">
                                         <ul>
                                             <li data-tab="feed-dd" class="active">
                                                 <a href="#" title="">
                                                     <img src="images/ic1.png" alt="">
-                                                    <span>Company</span>
+                                                    <span>Feed</span>
                                                 </a>
                                             </li>
-                                           
+                                            <li data-tab="info-dd">
+                                                <a href="#" title="">
+                                                    <img src="images/ic2.png" alt="">
+                                                    <span>About </span>
+                                                </a>
+                                            </li>
+                                            <li data-tab="saved-jobs">
+                                                <a href="#" title="">
+                                                    <img src="images/ic4.png" alt="">
+                                                    <span>Friends</span>
+                                                </a>
+                                            </li>
+                                            
+                                            <li data-tab="portfolio-dd">
+                                                <a href="#" title="">
+                                                    <img src="images/ic3.png" alt="">
+                                                    <span>Photo</span>
+                                                </a>
+                                            </li>
 											
+											<li data-tab="frq">
+                                                <a href="#" title="">
+                                                    <img src="images/ic3.png" alt="">
+                                                    <span>Friend Request</span>
+                                                </a>
+                                            </li>
 
                                         </ul>
-                                    </div>
-                                </div>-->
+                                    </div>-->
+                                    <!-- tab-feed end-->
+                                </div>
                                 <!--user-tab-sec end-->
-								
-								
                                 <div class="product-feed-tab followinglisting" id="saved-jobs">
                                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                                         <li class="nav-item">
-                                            <a class="nav-link active  " id="mange-tab" data-toggle="tab" href="#mange" role="tab" aria-controls="home" aria-selected="true">All Friends</a>
+                                            <a class="nav-link active  " id="mange-tab" data-toggle="tab" href="#mange" role="tab" aria-controls="home" aria-selected="true">Friends</a>
                                         </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" id="saved-tab" data-toggle="tab" href="#saved" role="tab" aria-controls="profile" aria-selected="false">Following</a>
-                                        </li>
+                                        <!--<li class="nav-item">
+                                            <a class="nav-link" id="saved-tab" data-toggle="tab" href="#saved" role="tab" aria-controls="profile" aria-selected="false">Friends</a>
+                                        </li>-->
                                         <li class="nav-item">
                                             <a class="nav-link" id="contact-tab" data-toggle="tab" href="#applied" role="tab" aria-controls="applied" aria-selected="false">College</a>
                                         </li>
@@ -318,20 +422,50 @@ width:25px; float:left; margin-right:6px
                                             <div class="row">
                                                 <?php ////////follower All Friends//////////?>
                                                     <?php 
-										$dbuf=new DB();
-										  $sql="SELECT * from followers where follow=".$_SESSION['sess_webid']." and user_id=".$_SESSION['sess_webid'];
+										  $dbuf=new DB();
+										  $db4=new DB();
+										$l=array();
+									 $sql4="SELECT * from followers where user_id=".$_SESSION['sess_webid']."";
+										$db4->query($sql4);
+										if($db4->numRows()>0)
+										{
+										while($row4=$db4->fetchArray()){
+											$l[]=$row4['follow'];
+										}
+										}
+										$allfriend=implode(',',$l);
+										$sql5="SELECT * from followers where follow=".$_SESSION['sess_webid']."";
+										$db4->query($sql5);
+										if($db4->numRows()>0)
+										{
+										while($row4=$db4->fetchArray()){
+											$l1[]=$row4['user_id'];
+										}
+										}
+										$allfriend1=implode(',',$l1);
+										if(empty($allfriend)){$allfriend=0;}
+										if(empty($allfriend1)){$allfriend1=0;}
+										  //echo $sql="SELECT * from followers where follow=".$_SESSION['sess_webid']." or user_id=".$_SESSION['sess_webid'];
+										 $sql="SELECT * from user_profile where user_id IN($allfriend) or user_id IN($allfriend1)";
 										
 										 //$sql="SELECT * from all_user where user_id NOT IN ( select follow from followers) ";
 										$db->query($sql);
 										if($db->numRows()>0)
 										{
 										 while($frow=$db->fetchArray()){
-										//$usernamef=$dbuf->getSingleResult('select first_name from '.$_TBL_USER." where user_id=".$frow['user_id']);
+											 
+										$usernamef=$dbuf->getSingleResult('select first_name from '.$_TBL_USER." where user_id=".$frow['user_id']);
 
-										$woorking=$dbuf->getSingleResult('select current_company from user_profile where user_id='.$frow['user_id']);
-										$userfpath=$dbuf->getSingleResult('select image_id from user_profile where user_id='.$frow['user_id']);
-										$currentcity=$dbuf->getSingleResult("select current_city from user_profile where user_id=".$frow['user_id']);
+										$woorking=$frow['current_company'];
+										$college=$frow['college'];
+										$userfpath=$frow['image_id'];
+										$currentcity=$frow['current_city'];
 										?>
+										<?php $cnt=$db5->getSingleResult("SELECT count(f_id) from followers where user_id = '".$frow['user_id']."' or follow=".$frow['user_id']);
+							
+							$f_id=$db5->getSingleResult("SELECT f_id from followers where user_id = '".$frow['user_id']."' or follow=".$frow['user_id']);
+									
+									?>
                                                         <div class="col-md-6">
                                                             <div class="post-bar">
                                                                 <div class="post_topbar applied-post">
@@ -342,7 +476,7 @@ width:25px; float:left; margin-right:6px
                                                                              <a href="view-profile.php?uid=<?php echo base64_encode($frow['user_id']);?>">    <img src="images/resources/user.png" alt="" height="40" width="40"></a>
                                                                                 <?php }?>
                                                                                     <div class="usy-name">
- <a href="view-profile.php?uid=<?php echo base64_encode($frow['user_id']);?>">                                                                                         <h3><?=$frow['first_name']?></h3>
+ <a href="view-profile.php?uid=<?php echo base64_encode($frow['user_id']);?>">                                                                                         <h3><?=$usernamef?></h3>
         </a>                                                                                <div class="epi-sec epi2">
                                                                                             <ul class="descp descptab bklink">
                                                                                                 <?php if(!empty($woorking)){ ?> 
@@ -357,7 +491,7 @@ width:25px; float:left; margin-right:6px
                                                                     <div class="job_descp noborder">
 
                                                                         <div class="devepbtn appliedinfo noreply">
-                                                    <a class="clrbtn follownew" id="sendreequest<?=$frow['user_id']?>" fid="<?=$frow['user_id']?>" href="javascript:void(0);" >follow</a>
+                                                    <a class="clrbtn follownew1" id="follownew1<?=$f_id?>" fid="<?=$f_id?>" href="javascript:void(0);" >Unfriend </a>
 
                                                                         </div>
                                                                     </div>
@@ -369,25 +503,25 @@ width:25px; float:left; margin-right:6px
                                                         <?php }}else{ echo "<div class='portfolio-gallery-sec'>Result Not Found</div>"; }?>
                                             </div>
                                         </div>
-                                        <div class="tab-pane fade" id="saved" role="tabpanel" aria-labelledby="saved-tab">
+                                       
+									  <!-- <div class="tab-pane fade" id="saved" role="tabpanel" aria-labelledby="saved-tab">
                                             <div class="row">
                                                 <?php ////////follower All Friends//////////?>
                                                     <?php 
 										$dbuf=new DB();
-										//$sql="SELECT * from all_user where user_id IN ( select follow from followers) ";
-										$sql="SELECT * from followers where user_id=".$_SESSION['sess_webid'];
-										$db->query($sql);
-										 //$sql="SELECT * from followers where user_id IN(SELECT follow from user_profile where work='".$profilerow['work']."')";
+										$sql="SELECT * from user_profile where user_id IN($allfriend) or user_id IN($allfriend1)";
 										$db->query($sql);
 										if($db->numRows()>0)
 										{
 										 while($frow=$db->fetchArray()){
+										$usernamef=$dbuf->getSingleResult('select first_name from '.$_TBL_USER." where user_id=".$frow['user_id']);
+
+										$woorking=$frow['current_company'];
+										$college=$frow['college'];
+										$userfpath=$frow['image_id'];
+										$currentcity=$frow['current_city'];
 										
-										$usernamef=$dbuf->getSingleResult('select first_name from '.$_TBL_USER." where user_id=".$frow['follow']);
-										$woorking=$dbuf->getSingleResult('select current_company from user_profile where user_id='.$frow['follow']);
-										$userfpath=$dbuf->getSingleResult('select image_id from user_profile where user_id='.$frow['follow']);
-										$currentcity=$dbuf->getSingleResult("select current_city from user_profile where user_id=".$frow['follow']);
-										//if($woorking==$profilerow['work']){
+										
 										?>
                                                         <div class="col-md-6" id="hide<?=$frow['f_id']?>">
                                                             <div class="post-bar">
@@ -414,7 +548,7 @@ width:25px; float:left; margin-right:6px
                                                                     <div class="job_descp noborder">
 
                                                                         <div class="devepbtn appliedinfo noreply">
-                                                                            <a class="clrbtn follownew1"  id="follownew1<?=$frow['f_id']?>" fid="<?=$frow['f_id']?>" href="javascript:void(0);"> Unfollow</a>
+                                                                            <a class="clrbtn follownew1"  id="follownew1<?=$frow['f_id']?>" fid="<?=$frow['f_id']?>" href="javascript:void(0);"> Unfriend </a>
 
                                                                         </div>
                                                                     </div>
@@ -428,36 +562,41 @@ width:25px; float:left; margin-right:6px
                                             </div>
 
                                         </div>
-                                        <div class="tab-pane fade" id="applied" role="tabpanel" aria-labelledby="applied-tab">
+                                        
+										-->
+										<div class="tab-pane fade" id="applied" role="tabpanel" aria-labelledby="applied-tab">
                                             <div class="row">
                                                 <?php ////////follower All Friends//////////?>
                                                     <?php 
 										$dbuf=new DB();
+										
 										//$sql="SELECT * from followers where user_id=".$_SESSION['sess_webid'];
-										$sql="SELECT * from followers where follow IN(SELECT user_id from user_profile where college='".$profilerow['college']."')";
+										//$sql="SELECT * from followers where follow IN(SELECT user_id from user_profile where college='".$profilerow['college']."' and user_id !='".$_SESSION['sess_webid']."')";
+										 $sql="SELECT * FROM user_profile where zip_code='".$profilerow['college']."' and user_id IN($allfriend) or user_id IN($allfriend1)";
 										$db->query($sql);
 										if($db->numRows()>0)
 										{
 										 while($frow=$db->fetchArray()){
-										$usernamef=$dbuf->getSingleResult('select first_name from '.$_TBL_USER." where user_id=".$frow['follow']);
+										$usernamef=$dbuf->getSingleResult('select first_name from '.$_TBL_USER." where user_id=".$frow['user_id']);
 
-										$woorking=$dbuf->getSingleResult('select current_company from user_profile where user_id='.$frow['follow']);
-										$college=$dbuf->getSingleResult('select college from user_profile where user_id='.$frow['follow']);
-										$userfpath=$dbuf->getSingleResult('select image_id from user_profile where user_id='.$frow['follow']);
-										$currentcity=$dbuf->getSingleResult("select current_city from user_profile where user_id=".$frow['follow']);
+										$woorking=$frow['current_company'];
+										$college=$frow['college'];
+										$userfpath=$frow['image_id'];
+										$currentcity=$frow['current_city'];
 										
 										?>
+										
                                                         <div class="col-md-6" id="hide<?=$frow['f_id']?>">
                                                             <div class="post-bar">
                                                                 <div class="post_topbar applied-post">
                                                                     <div class="usy-dt">
                                                                         <?php if(!empty($userfpath)){?>
-                                                                            <a href="view-profile.php?uid=<?php echo base64_encode($frow['follow']);?>">  <img src="upload/<?=$userfpath?>" alt="" height="50" width="50"></a>
+                                                                            <a href="view-profile.php?uid=<?php echo base64_encode($frow['user_id']);?>">  <img src="upload/<?=$userfpath?>" alt="" height="50" width="50"></a>
                                                                             <?php }else{ ?>
-                                                                              <a href="view-profile.php?uid=<?php echo base64_encode($frow['follow']);?>">    <img src="images/resources/user.png" alt="" height="40" width="40"></a>
+                                                                              <a href="view-profile.php?uid=<?php echo base64_encode($frow['user_id']);?>">    <img src="images/resources/user.png" alt="" height="50" width="50"></a>
                                                                                 <?php }?>
                                                                                     <div class="usy-name">
-  <a href="view-profile.php?uid=<?php echo base64_encode($frow['follow']);?>">                                                                                        <h3><?=$usernamef?></h3>
+  <a href="view-profile.php?uid=<?php echo base64_encode($frow['user_id']);?>">                                                                                        <h3><?=$usernamef?></h3>
     </a>                                                                             <div class="epi-sec epi2">
                                                                                             <ul class="descp descptab bklink">
                                                                                                 <?php if(!empty($woorking)){ ?> 
@@ -470,9 +609,12 @@ width:25px; float:left; margin-right:6px
                                                                                     </div>
                                                                     </div>
                                                                     <div class="job_descp noborder">
-
+<?php $cnt=$db5->getSingleResult("SELECT count(f_id) from followers where user_id = '".$frow['user_id']."' or follow=".$frow['user_id']);
+$f_id=$db5->getSingleResult("SELECT f_id from followers where user_id = '".$frow['user_id']."' or follow=".$frow['user_id']);
+									
+									?>
                                                                         <div class="devepbtn appliedinfo noreply">
-                                                                            <a class="clrbtn follownew1"  id="follownew<?=$frow['f_id']?>"   fid="<?=$frow['f_id']?>" href="javascript:void(0);"> Unfollow</a>
+                                                                            <a class="clrbtn follownew1"  id="follownew<?=$f_id?>"   fid="<?=$f_id?>" href="javascript:void(0);"> Unfriend </a>
 
                                                                         </div>
                                                                     </div>
@@ -492,26 +634,32 @@ width:25px; float:left; margin-right:6px
                                                     <?php 
 										$dbuf=new DB();
 										//$sql="SELECT * from followers where user_id=".$_SESSION['sess_webid'];
-										 $sql="SELECT * from followers where follow IN(SELECT user_id from user_profile where current_city='".$profilerow['current_city']."')";
+										$sql="SELECT * from user_profile where current_city='".$profilerow['current_city']."'  and user_id NOT IN($allfriend) or user_id IN($allfriend1)";
+										
 										$db->query($sql);
 										if($db->numRows()>0)
 										{
 										 while($frow=$db->fetchArray()){
-										$usernamef=$dbuf->getSingleResult('select first_name from '.$_TBL_USER." where user_id=".$frow['follow']);
+										 $cnt=$db5->getSingleResult("SELECT count(f_id) from followers where user_id = '".$frow['user_id']."' or follow=".$frow['user_id']);
+$f_id=$db5->getSingleResult("SELECT f_id from followers where user_id = '".$frow['user_id']."' or follow=".$frow['user_id']);
+									
+								
+										$usernamef=$dbuf->getSingleResult('select first_name from '.$_TBL_USER." where user_id=".$frow['user_id']);
 
-										$woorking=$dbuf->getSingleResult('select current_company from user_profile where user_id='.$frow['follow']);
-										$userfpath=$dbuf->getSingleResult('select image_id from user_profile where user_id='.$frow['follow']);
-										$currentcity=$dbuf->getSingleResult("select current_city from user_profile where user_id=".$frow['follow']);
-//if($currentcity==$profilerow['current_city']){
+										$woorking=$frow['current_company'];
+										$college=$frow['college'];
+										$userfpath=$frow['image_id'];
+										$currentcity=$frow['current_city'];
+										
 										?>
                                                         <div class="col-md-6" id="hide<?=$frow['f_id']?>">
                                                             <div class="post-bar">
                                                                 <div class="post_topbar applied-post">
                                                                     <div class="usy-dt">
                                                                         <?php if(!empty($userfpath)){?>
-                                                                           <a href="view-profile.php?uid=<?php echo base64_encode($frow['follow']);?>">   <img src="upload/<?=$userfpath?>" alt="" height="50" width="50"></a>
+                                                                           <a href="view-profile.php?uid=<?php echo base64_encode($frow['user_id']);?>">   <img src="upload/<?=$userfpath?>" alt="" height="50" width="50"></a>
                                                                             <?php }else{ ?>
-                                                                             <a href="view-profile.php?uid=<?php echo base64_encode($frow['follow']);?>">     <img src="images/resources/user.png" alt=""></a>
+                                                                             <a href="view-profile.php?uid=<?php echo base64_encode($frow['user_id']);?>">     <img src="images/resources/user.png" alt="" height="40" width="40"></a>
                                                                                 <?php }?>
                                                                                     <div class="usy-name">
                                                                                         <h3><?=$usernamef?></h3>
@@ -529,7 +677,12 @@ width:25px; float:left; margin-right:6px
                                                                     <div class="job_descp noborder">
 
                                                                         <div class="devepbtn appliedinfo noreply">
-                                                                            <a class="clrbtn follownew1"  id="<?=$frow['f_id']?>" fid="<?=$frow['f_id']?>" href="javascript:void(0);"> Unfollow</a>
+ 	<?php if($cnt>0){	?>																
+<a class="clrbtn follownew1"  id="<?=$f_id?>" fid="<?=$f_id?>" href="javascript:void(0);"> Unfriend </a>
+	<?php }else{?>
+<a class="clrbtn sendreequest"  id="sendreequest<?=$frow1['uder_id']?>"   fid="<?=$frow1['uder_id']?>" href="javascript:void(0);">Add as a Friend</a>
+	
+	<?php } ?>
 
                                                                         </div>
                                                                     </div>
@@ -546,383 +699,710 @@ width:25px; float:left; margin-right:6px
                                     </div>
                                 </div>
 								
-	<?php //post section// 
-	
-	$makearr=array();
-$makearr=getValuesArr( 'countries', "countries_id","countries_name","", "" );
-  
-?>
-	
+	<?php //post section// ?>
+	<link href="lib/css/emoji.css" rel="stylesheet">
 									<!-- new post-st end-->
-									
+									<style type="text/css">
+										.newpost1{}
+										.newpost1{}
+										.newpost1 .post-st textarea{ width: 100%;     border: none; }
+										.newpost1 .post-st{      width: 87%; }
+									</style>
 
 	<?php //End post section// ?>
 	
  <div class="product-feed-tab current " id="feed-dd">
-<div class="sign_in_sec" id="tab-2" style="display:block">
-									<div class="signup-tab">
-									<h4 style="color:#FF0000;" id="company_error"></h4>
-										<i class="fa fa-long-arrow-down"></i>
-										<!--<h2>johndoe@example.com</h2>-->
-										<ul>
-											
-											<li data-tab="tab-4" class="current"><a href="#" title=""> Create Company</a></li>
-										</ul>
-									</div>
-									<div id="success"></div>
-									 
-									<div class="dff-tab" id="tab-4" style="display:block">
-										<form name="companyform" id="companyform" action="" method="post">
-											<div class="row">
-												<div class="col-lg-12 no-pdd">
-													<div class="sn-field">
-														<input type="text" name="company-name" id="company-name" placeholder="Company Name">
-														<i class="la la-building"></i>
-													</div>
-													<span id="error_com" class="text-danger"></span>
-												</div>
-												<script>
+<form  method="post" id="uploadForm" enctype="multipart/form-data">
+									<div class="post-topbar newpost1">
+										<h3>Create Post</h3>
+										<div class="clreatsot">
+										<div class="user-picy">
+										<?php if(empty($userspath)){?>
+											<img src="images/resources/user.png" alt="" width="50" height="50">
+										<?php }else{ ?>
+										<img src="upload/<?=$userspath?>" alt="" width="50" height="50" style="border-radius: 50%;">
+										<?php }?>
+										</div>
+										
+										<div class="post-st">
+											 <textarea cols="5" rows="4" placeholder="Write Somethin..." name="postid" id="postid"></textarea>
+										</div>
+										</div>
+										<div class="post-img-list">
+											<div id="image_preview"></div>
+										</div>
+										
+										<div class="Feelingpst" id="Feelingpst" style="display:none;">
+											<ul>
+												<li class="select-fee-select">
+													<select name="selectfeel" id="selectfeel" class="selectfeel" >
+													<option value="">Select Feeling</option>
+													
+																														<?php $db1=new DB();
 
-function showUser(str)
+								 $sql1="SELECT * FROM $_TBL_FEELINGC where status='yes'";
+
+								 $db1->query($sql1)or die($db1->error());
+
+								 while($row1=$db1->fetchArray()){
+
+								 $catid=$row1['id'];
+
+								?>
+
+								 <option value="<?=$catid?>"><?php echo $row1['catname'];?></option>
+
+								 <?php } ?>
+														
+														<!--<option value="Celebriting">Celebriting</option>
+														<option value="Watching">Watching</option>
+														<option value="Eating">Eating</option>
+														<option value="Drinking">Drinking</option>
+														<option value="Traveling">Traveling to</option>
+														<option value="Drinking">Attending</option>-->
+													</select>
+												</li>
+												<div  id="feelingtxtHint"></div>
+												<li class="feeling-input">
+												 
+												<p class="lead emoji-picker-container">
+											  <input type="text" class="form-control emg" placeholder="what are you feeling..." data-emojiable="true" name="feeling">
+											</p>		
+												</li>
+																			</ul>
+										</div>
+	<input type="hidden" name="tagfriends" id="tagfriends" value="" placeholder="Search Friends" />
+	
+	<div class="locationdiv"style="display:none">
+	<div class="loctg">
+		at
+	</div>
+	<div class="location-input">
+<input type="text" name="livelocationinput" id="livelocationinput" class="form-control livelocationinput" placeholder="where are you..?" value=""  />
+</div>
+</div>
+<div class="map_canvas1"></div>
+<div id="container" style="display:none">
+<div id="contentbox" contenteditable="true">
+</div>
+<div id='display'>
+</div>
+<div id="msgbox">
+</div>
+</div>
+										
+										<div class="postoptions">
+											<ul>
+												<li>
+														<label>
+															<img src="images/gallery.png">Photo/ Video	
+															<input type="file" id="upload_file" name="upload_file[]" onchange="preview_image();" multiple>
+														</label>
+														<input type="hidden" name="imgid" id="imgid" value=""/>
+													</li>
+
+													<li>
+														<a id="" class="tagshow">
+															<img src="images/users.png">Tag Friends	
+															 
+														</a>
+													</li>
+
+													<li>
+														<a  class="feeling">
+															<img src="images/emo.png">Feeling/Activity	
+															 
+														</a>
+													</li>
+
+													<li>
+														<a  class="livelocation">
+															 <img src="images/postloaction.png" alt="new location"> Location
+															 
+														</a>
+													</li>
+
+													<li class="postbtnli">
+														<button type="button" id="uploadpost" value="Post-Status" class="active postbtn">Post Status</button>
+													</li>
+
+
+
+													<!--<li>
+														<a>
+															<img src="images/record.png">Live Video	
+															 
+														</a>
+													</li>-->
+
+											</ul>
+ 
+										</div>
+										 
+
+									</div> 
+</form>
+									<!--new post-st end-->
+
+
+
+<div class="posts-section app">
+	<div class="app-timeline" id="postshow">
+</div>
+</div>
+									
+<div class="posts-section app">
+	<div class="app-timeline"id="faq-result">
+									
+<?php
+
+$db4=new DB();
+$l=array();
+$sql4="SELECT * from followers where user_id=".$_SESSION['sess_webid'];
+$db4->query($sql4);
+if($db4->numRows()>0)
 {
-	
-if (str=="0")
-  {
-  document.getElementById("txtHint").innerHTML="";
-  
-  return;
-  }else { 
-  
-if (window.XMLHttpRequest)
-  {// code for IE7+, Firefox, Chrome, Opera, Safari
-  xmlhttp=new XMLHttpRequest();
-  }
-else
-  {// code for IE6, IE5
-  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  }
-  
-  
-  
-xmlhttp.onreadystatechange=function()
-  {
-  if (xmlhttp.readyState==4 && xmlhttp.status==200)
-    {
+while($row4=$db4->fetchArray()){
+	$l[]=$row4['follow'];
+}
+}
+$allfriend=implode(',',$l);
+if(!empty($allfriend)){
+$allfriends=$allfriend;
+}else{
+$allfriends=0;	
+}
+
+
+$sql5="SELECT * from followers where follow=".$_SESSION['sess_webid']."";
+										$db4->query($sql5);
+										if($db4->numRows()>0)
+										{
+										while($row4=$db4->fetchArray()){
+											$l1[]=$row4['user_id'];
+										}
+										}
+										$allfriend1=implode(',',$l1);
+										
+										if(empty($allfriend1)){$allfriend1=0;}
+$db22=new DB();
+$db1=new DB();
+$dblike=new DB();
+$dbr=new DB();
+$dbc=new DB();
+$dbu=new DB();
+$dbp=new DB();
+$mainuserimage=$db1->getSingleResult('select image_id from user_profile where user_id='.$_SESSION['sess_webid']);
+
+$sqlp="SELECT * from user_post where FIND_IN_SET(".$_SESSION['sess_webid'].",tagfriends) or user_id='".$_SESSION['sess_webid']."' or user_id IN($allfriends) or user_id IN($allfriend1) and post_hide='0' order by post_id desc limit 0,5";
+$dbp->query($sqlp);
+if($dbp->numRows()>0)
+{
+while($row=$dbp->fetchArray()){
+
+//$rpimage=$db1->getSingleResult('select image_id from user_profile where user_id='.$rowc['user_id']);	
+$sqluser="SELECT * from user_profile where user_id=".$row['user_id'];
+$dbu->query($sqluser);
+if($dbu->numRows()>0)
+{
+$userrow=$dbu->fetchArray();
+}
+$lcount=$dblike->getSingleResult('select count(like_id) from post_like where do_like = 1 and post_id='.$row['post_id']);
+$ccount=$dblike->getSingleResult('select count(c_id) from comment where post_id='.$row['post_id']);
+ 
+?>
+
+<div class="app-timeline-item">
+	        <div class="user">
+	        	<?php if(empty($userrow['image_id'])){?>
+					<img src="images/resources/user.png" alt=""  /> 
+					<?php }else{?>
+					<img src="upload/<?=$userrow['image_id']?>" alt="" /> 
+					<?php }?> 
+
+	        </div>
+	        <div class="content">
+	            <div class="title">
+	            		<?=$userrow['first_name']?> 
+															
+															<?php if(!empty($row['tagfriends'])){
+																?>
+																<span class="withfrnd">- with </span> 
+														<?php 	//$a=array();
+																	 $tagf=$row['tagfriends'];
+																	$sql2='select first_name,user_id from all_user where user_id IN ('.$tagf.')';
+																	$db2->query($sql2)or die($db12->error());
+																while($row1=$db2->fetchArray()){
+																 $a=$row1['first_name'].' ';?>
+																 
+																<a href="view-profile.php?uid=<?=base64_encode($row1['user_id'])?>" class="tagsrfnds11"><?=$row1['first_name']?></a>
+																<?php }
+																}
+															
+															//$b=implode(',',$a);
+															//$c=explode(',',$a);
+															//print_r($b);
+															//print_r($c);
+																?>
+
+																<?php if(!empty($userrow['current_company']) or !empty($row['livelocation']) or !empty($userrow['current_city'])){?> 
+
+																	<span class="headlocation">
+																	at 
+																	<span class="lcoaionname">
+																	<?php if(!empty($userrow['current_company'])){?>
+																		 <?=$userrow['current_company']?> 
+																				<?php } if(!empty($row['livelocation'])){?>
+																		<?=$row['livelocation']?>
+																				<?php }elseif(!empty($userrow['current_city'])){?>
+																		<?=$userrow['current_city']?>	
+																			<?php }else{ ?><li></li>
+																		<?php }?>
+																		</span>
+
+
+																		</span>
+
+
+																<?php } ?>
+
+							<div class="ed-opts"><span id="editpost1<?=$row['post_id']?>"></span>
+								<a  href="javascript:void(0);" title="" class="ed-opts-open"><i class="la la-ellipsis-v"></i></a>
+									<ul class="ed-options">
+													<?php if($_SESSION['sess_webid']==$row['user_id']){?>
+														<li><a href="javascript:void(0);" title="" data-toggle="modal" data-target="#myModal<?=$row['post_id']?>" class="editpost" id="editpost<?=$row['post_id']?>" editpostid="<?=$row['post_id']?>">Edit Post</a></li>
+													<?php } ?>
+														<li><a href="javascript:void(0);"  id="posthide" class="posthide" title="" hidepost="<?=$row['post_id']?>" >Hide</a></li>
+													<?php if($_SESSION['sess_webid']==$row['user_id']){?>
+														<li><a href="javascript:void(0);" class="deletepost" id="deletepost" title="" delpost="<?=$row['post_id']?>" >Delete</a></li>
+														<?php } ?>
+									</ul>
+							</div>
+
+						 </div>
+
+	            <?php /////////////
 		
-    document.getElementById("txtHint").innerHTML=xmlhttp.responseText;
-	
-	
-    }
-  }
-  
-xmlhttp.open("GET","ajstate.php?q="+str,true);
-xmlhttp.send();
-}
-}
+				$feelingimgid=$row['feelingimgid'];
+				$feelingimgidpath=$db22->getSingleResult('select imgid from '.$_TBL_FEELINGS." where subcatname='".$feelingimgid."'");
+				?>
 
+				<div class="job_descp">
+				
+				<?php if (!empty($row['post_title']) or !empty($feelingimgid))
+					{ ?><h3 class="font-weight-500"><?php }  if (!empty($row['post_title']))
+					{
+					    echo $row['post_title'];
+					}
+					if (!empty($feelingimgid))
+					{ ?>: <img src="allimg/<?=$feelingimgidpath ?>"width="20"> <?=$feelingimgid ?> <span class="bold"> <?=$row['postemos'] ?> </span> <?php
+					} ?>
+					<?php if (!empty($row['post_title']) or !empty($feelingimgid))
+					{?>
+					</h3><?php } ?> <p><?=$row['post_details'] ?> </p>
 
-</script>														  
-
-												<div class="col-lg-12 no-pdd">
-													<div class="sn-field">
-													<select class="custom-select d-block w-100" id="country1" name="country1" onchange="return showUser(this.value);" >
-                        <option value='0'>Select Country</option>
-		<?php $db1=new DB();
-		$sql1="SELECT * FROM countries";
-		$db1->query($sql1)or die($db11->error());
-		while($row1=$db1->fetchArray()){
-		 $tt=$row1['countries_id'];
-		?>				
-                     <option value="<?=$row1['countries_id']?>" <?php if($row1['countries_id']==$row['stateid']){echo " selected";}?>><?=$row1['countries_name']?></option>
-		<?php }?>	
-                    </select>
+					<?php 
+					if (!empty($row['allpath']))
+					    {
+					        $path = explode(',', $row['allpath']);
+					        $count = count($path);
+					        for ($i = 0;$i <= $count;$i++)
+					        { 
+						    $ext = pathinfo($path[$i], PATHINFO_EXTENSION);
+							if ($ext == 'mp4' or $ext == 'webm')
+							{ ?><video class="video-js"controls data-setup="{}"id="my-video<?=$row['post_id'] ?>"poster="images/oceans.png"preload="auto"><source src="<?=$path[$i]?>"type="video/mp4"width="100%"><source src="<?=$path[$i]?>"type="video/webm"width="100%"><p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="https://videojs.com/html5-video-support/"target="_blank">supports HTML5 video</a></p></video><?php
+								}else{
+							?>
+								<img src="<?=$path[$i] ?>"width="100%" style="max-width: 100%;">
+						
+						<?php }
+					        }
+					    }
 					
-									<i class="la la-globe"></i>
-													</div>
-													<span id="error_con" class="text-danger"></span>
-												</div>
+					/* else
+					{
+					    $url = '';
+					    $path = '';
+					    if (!empty($row['allpath']))
+					    {
+					        $path = explode(',', $row['allpath']);
+					        $count = count($path);
+					        for ($i = 0;$i <= $count;$i++)
+					        { ?><img src="<?=$path[$i] ?>"width="100%"><?php
+					        }
+					    }
+					}  */?></div>
+
+
+ 
+	            <p class="sharelinks">
+
+	            	<!---- like code started -->
+
+	            	<?php 
+														
+											$lucount=$db1->getSingleResult('select count(like_id) from post_like where do_like = 1 and post_id='.$row['post_id'].' and user_id='.$_SESSION['sess_webid'] );
+											if($lucount>0){
+												?>
+														<a href="javascript:void(0)" class="like2 text-muted  i_liked" id="like<?=$row['post_id']?>" like1="<?=$row['post_id']?>"><i class="fas fa-heart"></i> Liked</a>
+														<span id="lcount<?=$row['post_id']?>" class="margin-right-10 i_liked"><?=$lcount?></span>
+											<?php }else{?>	
+											<a href="javascript:void(0)" class="like2 text-muted " id="like<?=$row['post_id']?>" like1="<?=$row['post_id']?>"><i class="fas fa-heart"></i> Like</a>
+											<span id="lcount<?=$row['post_id']?>" class="margin-right-10"><?=$lcount?></span>
 											
+											<?php }?>
+											 
+					<!---- like code ended -->
+					<a href="#" class="text-muted mr-1"><span class="fa fa-thumbs-down"></span> Dislike</a>
 
 
-												<div class="col-lg-12 no-pdd">
-													<div class="sn-field">
-							                 
-               <div  id="txtHint"></div>
-												
-														
+	                <a href="javascript:void(0)" class="text-muted margin-right-10 showcmtBtn"><span class="fa fa-comment"></span> Comments <?=$ccount?></a>
+	                <a href="#" class="text-muted margin-right-10"><span class="fa fa-share-alt"></span> Share</a>
+	                <a href="#" class="text-muted"><span class="fa fa-bullhorn"></span> Report</a>
+
+	                <span class="pull-right text-muted"> <i class="fa fa-clock-o"></i> <?php echo timeago($row['post_date']);?></span>
+	            </p>
+
+	            <div class="comments mainCommentList"   style="display:;">
+				
+	                <div class="total"><?=$ccount?> Comments for this post</div>
+
+	                <?php $comallcount=$ccount;
+							 $comrowperpage = 3;
+
+						 $sqlc="SELECT * from comment where post_id=".$row['post_id']." limit 0,$comrowperpage";
+						$dbc->query($sqlc);
+						if($dbc->numRows()>0)
+						{
+						while($rowc=$dbc->fetchArray()){
+						$username=$db1->getSingleResult('select first_name from '.$_TBL_USER." where user_id=".$rowc['user_id']);
+						 'select image_id from user_profile where user_id='.$rowc['user_id'];
+						$pimage=$db1->getSingleResult('select image_id from user_profile where user_id='.$rowc['user_id']);	
+
+							?>
+				                <div class="comment" id="myList<?=$row['post_id']?>"  >
+<input type="hidden" id="comrow<?=$row['post_id']?>" value="3">
+ <input type="hidden" id="comall<?=$row['post_id']?>" value="<?php echo $comallcount; ?>">
+ <input type="hidden" id="comid" value="<?=$rowc['c_id']?>">
+  <input type="hidden" id="postid1" value="<?=$row['post_id']?>">
+				                    <div class="contact contact-rounded contact-lg">
+				                    	<div class="comnetimg">
+				                    		<?php if(!empty($pimage)){ ?>
+				                    			<a href="view-profile.php?uid=<?php echo base64_encode($rowc['user_id']);?>">
+				                    				<img src="upload/<?=$pimage?>" alt="" >
+				                    				</a>
+				                    			<?php }else{ ?>
+												<a href="view-profile.php?uid=<?php echo base64_encode($rowc['user_id']);?>"><img src="images/resources/user.png" alt=""></a>
+												<?php }?>
+
+
+					                    </div>
+				                        <div class="contact-container">
+				                            <a href="view-profile.php?uid=<?php echo base64_encode($rowc['user_id']);?>"><?=$username?></a>
+				                            
+				                            <div class="replybody-mg">
+					                            <?php if(!empty($rowc['mp3'])){ ?>
+														<img src="emoji/<?=$rowc['cimage']?>" height="50" width="50"/><?php }elseif(!empty($rowc['cimage'])){ ?>
+														<img src="upload/<?=$rowc['cimage']?>" height="50" width="50"/>
+														<?php }?>
+					                            <span><?=$rowc['comment']?></span>
+					                        </div>
+				                            <div class="replycommnetbt">
+								           		<a  href="javascript:void(0)" id="replyiddiv" cid="<?=$rowc['c_id']?>" >Reply</a>
+												<span class="coment-time"><?php echo timeago($rowc['cdate']);?> </span> 
+												<a  href="javascript:void(0)" id="deletecomment" class="deletecomment" cid="<?=$rowc['c_id']?>" ><i class="delet-icon fa fa-trash-o"></i></a>
+												<a  href="javascript:void(0)" id="editcomment" class="editcomment" cid="<?=$rowc['c_id']?>" ><i class="edit-icon fa fa-pencil"></i></a>
+								           	</div>
+				                        </div>
+				                    </div>
+
+
+				                    <?php ///////Show Reply////////
+
+$rcomallcount=$db1->getSingleResult("SELECT count(*) from reply where c_id=".$rowc['c_id']);
+											 $sqlr="SELECT * from reply where c_id=".$rowc['c_id'];
+											$dbr->query($sqlr);
+											if($dbr->numRows()>0)
+											{
+											while($rowr=$dbr->fetchArray()){
+											$date=explode('-',$rowr['rdate']);
+
+
+											$st=mktime(0,0,0,$date[1],$date[2],$date[0]);	
+											$username1=$db1->getSingleResult('select first_name from '.$_TBL_USER." where user_id=".$rowr['user_id']);
+											$rpimage=$db1->getSingleResult('select image_id from user_profile where user_id='.$rowr['user_id']);		
+												?>
+<input type="hidden" id="rcomrow<?=$rowc['c_id']?>" value="6">
+ <input type="hidden" id="rcomall<?=$rowc['c_id']?>" value="<?php echo $rcomallcount; ?>">
+				                    <div class="comment">
+						                    <div class="contact contact-rounded contact-lg">
+						                    	<div class="comnetimg">
+						                    		<?php if(!empty($rpimage)){ ?>
+																	<a href="view-profile.php?uid=<?php echo base64_encode($rowr['user_id']);?>"><img src="upload/<?=$rpimage?>" alt=""></a> 
+																	<?php }else{?>
+																	<a href="view-profile.php?uid=<?php echo base64_encode($rowr['user_id']);?>"><img src="images/resources/user.png" alt=""  ></a>
+																	<?php }?>
+
+
+						                    	</div>
+						                        <div class="contact-container">
+						                            <a href="#"> <?=$username1?></a>
+						                            <span class="coment-time"><?php echo timeago($rowr['rdate']);?> </span> 
+						                            <?php if(!empty($rowr['rimage'])){ ?></br>
+																	<img src="upload/<?=$rowr['rimage']?>" height="50" width="50"/></br><?php }?>
+																	<span class="commword"><?=$rowr['r_comment']?>
+																		</span>																	
+
+						                        </div>
+						                    </div>
+						            </div>
+									
+									
+
+									
+									
+						           <?php }} ///////////////?>
+									<span id="replydisplay1<?=$rowc['c_id']?>"></span>
+							<!--		
+<?php if($rcomallcount>6){ ?>					
+<button type="button" class="btn loadmorereply" id="rloadMore<?=$rowc['c_id']?>" cid="<?=$rowc['c_id']?>">View More reply</button>
+				<?php } ?>-->
+						           <div id="replydisplay<?=$rowc['c_id']?>" style="display:none;">
+													<div class="post-comment">
+													<div class="cm_img">
+														<?php if(!empty($mainuserimage)){ ?>
+														<img src="upload/<?=$mainuserimage?>"/>
+														<?php }else{?>
+														<img src="images/resources/user.png" alt="" height="40" width="40">
+														<?php } ?>
 													</div>
-													<span id="error_con" class="text-danger"></span>
-												</div>
-																						
-												<div class="col-lg-12 no-pdd">
-													<div class="sn-field">
-														<!--<select>
-															<option>Category</option>
-															<option>Category 1</option>
-															<option>Category 2</option>
-															<option>Category 3</option>
-															<option>Category 4</option>
-														</select>-->
-														<select name="category" id="category" class="form-control" >
-  <option value="">Select</option>
-  <?php 
-		
-		$sql="SELECT * FROM com_category WHERE menuname='company'";
-		$db->query($sql)or die($db->error());
-		while($row1=$db->fetchArray()){	?>
-  <option value="<?=$row1['catname']?>"><?=$row1['catname']?></option>
-		<?php } ?>
-   
-  
-</select>
-														
-														<i class="la la-dropbox"></i>
-														<span><i class="fa fa-ellipsis-h"></i></span>
+													<div class="comment_box">
+													<form id="replyForm" method="post">
+													<input type="hidden" name="pid" id="pid<?=$rowc['c_id']?>" value="<?=$rowc['post_id']?>">
+													<input type="hidden" name="uid" id="uid<?=$rowc['c_id']?>" value="<?=$rowc['user_id']?>" >
+													<input type="hidden" name="cid" id="cid<?=$rowc['c_id']?>" value="<?=$rowc['c_id']?>" >
+													<input type="hidden" name="rimage" id="rimage<?=$rowc['c_id']?>" value="" >
+													<label class="cemeraicon" for="rimageupload<?=$rowc['c_id']?>"><i class="fa fa-camera" aria-hidden="true"></i></label>
+													<input type="file" id="rimageupload<?=$rowc['c_id']?>" name="rimageupload" class="rimageupload" cid="<?=$rowc['c_id']?>" >
+													<p class="lead emoji-picker-container">
+													<input type="text"  rid="<?=$rowc['c_id']?>"  placeholder="Reply on comment" name="rpostcomment" class="rp" id="rpostcomment<?=$rowc['c_id']?>" data-emojiable="true">
+													</p>
+													<button type="button" name="replyid" id="replyid<?=$rowc['c_id']?>" class="replyid" rid="<?=$rowc['c_id']?>">
+														<i class="fa fa-send"></i>
+													</button>
+														</form>
 													</div>
 												</div>
-												
-												
-												<div class="col-lg-12 no-pdd">
-													<div class="checky-sec st2">
-														<div class="fgt-sec">
-															<input type="checkbox" name="cc" id="c3" style="border: 1px solid #ff6200;">
-															<label for="c3">
-																<span style="border: 1px solid #ff5e00;"></span>
-															</label>
-															<small style="color:#ff6200;">Yes, I understand and agree to the workwise Terms & Conditions.</small>
-														</div><!--fgt-sec end-->
-														<span id="error_c3" class="text-danger"></span>
-													</div>
-												</div>
-												<div class="col-lg-12 no-pdd">
-													<button type="button" id="companysubmit" value="submit">Get Started</button>
-												</div>
-											</div>
-										</form>
 									</div>
-								</div>		
-							
-							
 
-							</div><!--main-ws-sec end-->
+				                    
+
+				                    <!--
+
+						           	
+					                <div class="replycommnet" id="replydisplay<?=$rowc['c_id']?>" style="display:none;">
+				                            	<div class="form">
+				                            		<form id="replyForm" method="post">
+				                            			<input type="hidden" name="pid" id="pid<?=$rowc['c_id']?>" value="<?=$rowc['post_id']?>">
+														<input type="hidden" name="uid" id="uid<?=$rowc['c_id']?>" value="<?=$rowc['user_id']?>" >
+														<input type="hidden" name="cid" id="cid<?=$rowc['c_id']?>" value="<?=$rowc['c_id']?>" >
+														<input type="hidden" name="rimage" id="rimage<?=$rowc['c_id']?>" value="" >
+														<label class="cemeraicon" for="rimageupload"><i class="fa fa-camera" aria-hidden="true"></i></label>
+														<input type="file" id="rimageupload" name="rimageupload" >
+
+														<p class="lead emoji-picker-container">
+														<input type="text"  rid="<?=$rowc['c_id']?>"  placeholder="Reply on comment" name="rpostcomment" class="rp" id="rpostcomment<?=$rowc['c_id']?>" data-emojiable="true">
+														</p>
+														<button type="button" name="replyid" id="replyid<?=$rowc['c_id']?>" class="replyid" rid="<?=$rowc['c_id']?>">Send</button>
+
+
+
+									                    <div class="form-group">
+									                        <div class="input-group">
+									                            <input type="text" class="form-control" placeholder="Your comment..." />
+									                            <div class="input-group-btn">
+									                                <button class="btn btn-default">Post Comment</button>
+									                            </div>
+									                        </div>
+									                    </div>
+									                </form>
+									                </div> 
+
+				                            </div> -->
+
+
+					                 
+
+
+
+				                </div>
+				       <?php } ?> 
+					  <!-- <ul id="myList">
+    <li>One</li>
+    <li>Two</li>
+    <li>Three</li>
+    <li>Four</li>
+    <li>Five</li>
+    <li>Six</li>
+    <li>Seven</li>
+    <li>Eight</li>
+    <li>Nine</li>
+    <li>Ten</li>
+    <li>Eleven</li>
+    <li>Twelve</li>
+    <li>Thirteen</li>
+    <li>Fourteen</li>
+    <li>Fifteen</li>
+    <li>Sixteen</li>
+    <li>Seventeen</li>
+    <li>Eighteen</li>
+    <li>Nineteen</li>
+    <li>Twenty one</li>
+    <li>Twenty two</li>
+    <li>Twenty three</li>
+    <li>Twenty four</li>
+    <li>Twenty five</li>
+</ul>
+-->
+<span id="commentdisplay<?=$row['post_id']?>" style="display:;"></span>
+<span id="norecord<?=$row['post_id']?>" pid="<?=$row['post_id']?>"></span>
+<button type="button" class="btn loadmore" id="loadMore<?=$row['post_id']?>" pid="<?=$row['post_id']?>">View More Comment</button>
+
+
+<div></div>
+					   <?} //////////////?>
+
+					
+				<!-- form start ended-->	
+					<div class="form newpostcomments">
+	                    <div class="form-group">
+	                       
+	                        	<form id="" method="post">
+													<input type="hidden" name="pid" id="pid<?=$row['post_id']?>" value="<?=$row['post_id']?>">
+													<input type="hidden" name="uid" id="uid<?=$row['post_id']?>" value="<?=$_SESSION['sess_webid']?>" >
+													
+													<input type="hidden" name="cimage" id="cimage<?=$row['post_id']?>" value="" cid="" >
+													<!--<label class="cemeraicon"	 for="cimageupload"><i class="fa fa-camera" aria-hidden="true"></i></label>
+													<input type="file" id="cimageupload<?=$row['post_id']?>" class="cimageupload" name="cimageupload" cid="<?=$row['post_id']?>">-->
+
+													<a href="javascript:void(0);" name="send_chatemoji1"  class="send_chatemoji1" id="comment1<?=$row['post_id']?>" uid="<?=$row['post_id']?>" cid="<?=$row['post_id']?>">
+													
+													<i class="emoji-picker-icon emoji-picker fa fa-smile-o" style="margin-right: 44px; margin-top: 2px;"></i> </a>
+										
+													<div class="input-group">
+
+														<p class="lead emoji-picker-container">
+														<input type="text" cid="<?=$row['post_id']?>" placeholder="Your comment..." class="cp form-control" id="postcomment<?=$row['post_id']?>" name="postcomment<?=$row['post_id']?>" data-emojiable="true">
+													<div class="add-img" id="OpenImgUpload">
+                                                       <input type="file" id="cimageupload<?=$row['post_id']?>" class="cimageupload" cid="<?=$row['post_id']?>">
+                                                        <label for="cimageupload<?=$row['post_id']?>"><i class="fa fa-camera"></i></label>
+                                                    </div>
+														</p>
+														
+
+													<div class="input-group-btn cmnt-icon">
+														<button type="button" id="commentid<?=$row['post_id']?>" class="commentid btn btn-default" cid="<?=$row['post_id']?>">
+														<i class="fa fa-send"></i></button>
+													</div>
+													</div>
+
+														</form> 
+
+	                            
+	                        
+	                    </div>
+	                </div>
+
+
+	            <!-- form start ended-->
+
+
+	               <!-- <div class="form">
+	                    <div class="form-group">
+	                        <div class="input-group">
+	                            <input type="text" class="form-control" placeholder="Your comment..." />
+	                            <div class="input-group-btn">
+	                                <button class="btn btn-default">Post Comment</button>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>-->
+	            </div>
+	        </div>
+	    </div>
+	
+
+	<!--- new itme for post ended --->
+
+
+<?php } }
+ ?>
+										
+								
+										
+
+		 <div id="load_data" class="post"></div>
+		<div id="load_data_message"></div>
+</div>
+
+							
+									
+									</div>
+						
+								
+								
+								
+								
+								
+								</div><!--main-ws-sec end-->
 	                              <!--main-ws-sec end-->
 
                             </div>
                             <!--product-feed-tab end-->
 
-                            <div class="product-feed-tab followinglisting" id="my-bids">
-                                <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                    <li class="nav-item">
-                                        <a class="nav-link active  " id="mange-tab" data-toggle="tab" href="#mange" role="tab" aria-controls="home" aria-selected="true">All Friends</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" id="saved-tab" data-toggle="tab" href="#saved" role="tab" aria-controls="profile" aria-selected="false">Work</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#applied" role="tab" aria-controls="applied" aria-selected="false">College</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link  " id="cadidates-tab" data-toggle="tab" href="#cadidates" role="tab" aria-controls="contact" aria-selected="false">Current City</a>
-                                    </li>
-                                </ul>
-                                <div class="tab-content" id="myTabContent">
-                                    <div class="tab-pane fade" id="mange" role="tabpanel" aria-labelledby="mange-tab">
-                                        <div class="row">
-                                            <?php ////////follower All Friends//////////?>
-                                                <?php 
-										$dbuf=new DB();
-										   $sql="SELECT * from followers where follow=".$_SESSION['sess_webid']." GROUP BY user_id";
-										$db->query($sql);
-										if($db->numRows()>0)
-										{
-										 while($frow=$db->fetchArray()){
-										$usernamef=$dbuf->getSingleResult('select first_name from '.$_TBL_USER." where user_id=".$frow['user_id']);
-
-										$woorking=$dbuf->getSingleResult('select current_company from user_profile where user_id='.$frow['user_id']);
-										$userfpath=$dbuf->getSingleResult('select image_id from user_profile where user_id='.$frow['user_id']);
-										$currentcity=$dbuf->getSingleResult("select current_city from user_profile where user_id=".$frow['user_id']);
-										
-										?>
-                                                    <div class="col-md-6">
-                                                        <div class="post-bar">
-                                                            <div class="post_topbar applied-post">
-                                                                <div class="usy-dt">
-                                                                    <?php if(!empty($userfpath)){?>
-                                                                     <a href="view-profile.php?uid=<?php echo base64_encode($frow['user_id']);?>">    <img src="upload/<?=$userfpath?>" alt="" height="50" width="50"></a>
-                                                                        <?php }else{ ?>
-                                                                          <a href="view-profile.php?uid=<?php echo base64_encode($frow['user_id']);?>">   <img src="images/resources/user.png" alt="" height="40" width="40"></a>
-                                                                            <?php }?>
-                                                                                <div class="usy-name">
-<a href="view-profile.php?uid=<?php echo base64_encode($frow['user_id']);?>">                                                                                     <h3><?=$usernamef?></h3></a>
-                                                                                    <div class="epi-sec epi2">
-                                                                                        <ul class="descp descptab bklink">
-                                                                                            <?php if(!empty($woorking)){ ?> 
-		  <li><img src="images/icon8.png" alt=""><span><?=$woorking?></span></li>
-		  <?php }?>  
-		  <?php if(!empty($currentcity)){ ?>                                                                             <li><img src="images/icon9.png" alt=""><span><?=$currentcity?></span></li>
-		   <?php }?>
-                                                                                        </ul>
-                                                                                    </div>
-                                                                                </div>
-                                                                </div>
-                                                <div class="job_descp noborder">
-
-                                               <div class="devepbtn appliedinfo noreply">
-                                                <a class="clrbtn sendreequest" id="sendreequest<?=$frow['f_id']?>" fid="<?=$frow['follow']?>" href="javascript:void(0);"> Follow</a>
-
-                                                </div>
-                                                
-												</div>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-											
-                                                    <?php } }else{ echo "<div class='portfolio-gallery-sec'>Result Not Found</div>";}?>
-                                        </div>
-
-                                    </div>
-                                    <div class="tab-pane fade" id="saved" role="tabpanel" aria-labelledby="saved-tab">
-                                        <div class="row">
-                                            <?php ////////follower All Friends//////////?>
-                                                <?php 
-										$dbuf=new DB();
-									      $sql="SELECT * from followers where follow IN(SELECT user_id from user_profile where work='".$profilerow['work']."' )";
-										$db->query($sql);
-										if($db->numRows()>0)
-										{
-										 while($frow=$db->fetchArray()){
-										$usernamef=$dbuf->getSingleResult('select first_name from '.$_TBL_USER." where user_id=".$frow['user_id']);
-
-										$woorking=$dbuf->getSingleResult('select current_company from user_profile where user_id='.$frow['user_id']);
-										$userfpath=$dbuf->getSingleResult('select image_id from user_profile where user_id='.$frow['user_id']);
-										
-										$currentcity=$dbuf->getSingleResult("select current_city from user_profile where user_id=".$frow['user_id']);
-										?>
-                                                    <div class="col-md-6">
-                                                        <div class="post-bar">
-                                                            <div class="post_topbar applied-post">
-                                                                <div class="usy-dt">
-                                                                    <?php if(!empty($userfpath)){?>
-                                                                       <a href="view-profile.php?uid=<?php echo base64_encode($frow['user_id']);?>">  <img src="upload/<?=$userfpath?>" alt="" height="50" width="50"></a>
-                                                                        <?php }else{ ?>
-                                                                          <a href="view-profile.php?uid=<?php echo base64_encode($frow['user_id']);?>">   <img src="images/resources/user.png" alt="" height="40" width="40"></a>
-                                                                            <?php }?>
-                                                                                <div class="usy-name">
-  <a href="view-profile.php?uid=<?php echo base64_encode($frow['user_id']);?>">                                                                                   <h3><?=$usernamef?></h3>
-    </a>                                                                                <div class="epi-sec epi2">
-                                                                                        <ul class="descp descptab bklink">
-                                                                                           <?php if(!empty($woorking)){ ?> 
-		  <li><img src="images/icon8.png" alt=""><span><?=$woorking?></span></li>
-		  <?php }?>  
-		  <?php if(!empty($currentcity)){ ?>                                                                             <li><img src="images/icon9.png" alt=""><span><?=$currentcity?></span></li>
-		   <?php }?>
-                                                                                        </ul>
-                                                                                    </div>
-                                                                                </div>
-                                                                </div>
-                                                                <div class="job_descp noborder">
-
-                                                                    <div class="devepbtn appliedinfo noreply">
-                                                                        <a class="clrbtn sendreequest"  id="sendreequest<?=$frow['f_id']?>" fid="<?=$frow['follow']?>" href="javascript:void(0);"> Follow</a>
-
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-
-                                                    <?php }}else{ echo "<div class='portfolio-gallery-sec'>Result Not Found</div>"; }?>
-                                        </div>
-
-                                    </div>
-                                    <div class="tab-pane fade" id="applied" role="tabpanel" aria-labelledby="applied-tab">
-
-                                        <div class="row">
-                                            <?php ////////follower All Friends//////////?>
-                                                <?php 
-										$dbuf=new DB();
-										  $sql="SELECT * from followers where follow IN(SELECT user_id from user_profile where college='".$profilerow['college']."')";
-										$db->query($sql);
-										if($db->numRows()>0)
-										{
-										 while($frow=$db->fetchArray()){
-										$usernamef=$dbuf->getSingleResult('select first_name from '.$_TBL_USER." where user_id=".$frow['user_id']);
-
-										$woorking=$dbuf->getSingleResult('select current_company from user_profile where user_id='.$frow['user_id']);
-										$userfpath=$dbuf->getSingleResult('select image_id from user_profile where user_id='.$frow['user_id']);
-										$currentcity=$dbuf->getSingleResult("select current_city from user_profile where user_id=".$frow['user_id']);
-										?>
-                                                    <div class="col-md-6">
-                                                        <div class="post-bar">
-                                                            <div class="post_topbar applied-post">
-                                                                <div class="usy-dt">
-                                                                    <?php if(!empty($userfpath)){?>
-                                                                       <a href="view-profile.php?uid=<?php echo base64_encode($frow['user_id']);?>">  <img src="upload/<?=$userfpath?>" alt="" height="50" width="50"></a>
-                                                                        <?php }else{ ?>
-                                                                           <a href="view-profile.php?uid=<?php echo base64_encode($frow['user_id']);?>">  <img src="images/resources/user.png" alt="" height="40" width="40"></a>
-                                                                            <?php }?>
-                                                                                <div class="usy-name">
-    <a href="view-profile.php?uid=<?php echo base64_encode($frow['user_id']);?>">                                                                                 <h3><?=$usernamef?></h3>
-          </a>                                                                          <div class="epi-sec epi2">
-                                                                                        <ul class="descp descptab bklink">
-                                                                                           <?php if(!empty($woorking)){ ?> 
-		  <li><img src="images/icon8.png" alt=""><span><?=$woorking?></span></li>
-		  <?php }?>  
-		  <?php if(!empty($currentcity)){ ?>                                                                             <li><img src="images/icon9.png" alt=""><span><?=$currentcity?></span></li>
-		   <?php }?>
-                                                                                        </ul>
-                                                                                    </div>
-                                                                                </div>
-                                                                </div>
-                                                                <div class="job_descp noborder">
-
-                                                                    <div class="devepbtn appliedinfo noreply">
-                                                                        <a class="clrbtn sendreequest" id="sendreequest<?=$frow['f_id']?>"  fid="<?=$frow['follow']?>" href="javascript:void(0);"> Follow</a>
-
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-
-                                                    <?php }}else{ echo "<div class='portfolio-gallery-sec'>Result Not Found</div>";}?>
-                                        </div>
-
-                                    </div>
-                                    <div class="tab-pane fade show active" id="cadidates" role="tabpanel" aria-labelledby="cadidates-tab">
-                                        <?php ///////////current city/////////////?>
-                                            <div class="row">
+                          
+ <div class="product-feed-tab" id="frq">
+                                <div class="portfolio-gallery-sec">
+                                    <h3>All Friends Request</h3>
+                                   <!-- <div class="portfolio-btn">
+                                        <a href="#" title=""><i class="fas fa-plus-square"></i> Add Picture</a>
+                                    </div>-->
+                                    <div class="gallery_pf">
+									
+									 
+									 <div class="row">
                                                 <?php ////////follower All Friends//////////?>
                                                     <?php 
 										$dbuf=new DB();
-										 $sql="SELECT * from followers where follow IN(SELECT user_id from user_profile where current_city='".$profilerow['current_city']."')";
+										 $sql="SELECT * from all_user where user_id IN ( select user_id  from friendrequest where request_fid =".$_SESSION['sess_webid']." and status='1')";
+										//$sql="SELECT * from followers where user_id=".$uid;
+										$db->query($sql);
+										
 										$db->query($sql);
 										if($db->numRows()>0)
 										{
 										 while($frow=$db->fetchArray()){
-										$usernamef=$dbuf->getSingleResult('select first_name from '.$_TBL_USER." where user_id=".$frow['user_id']);
-
+									
 										$woorking=$dbuf->getSingleResult('select current_company from user_profile where user_id='.$frow['user_id']);
 										$userfpath=$dbuf->getSingleResult('select image_id from user_profile where user_id='.$frow['user_id']);
 										$currentcity=$dbuf->getSingleResult("select current_city from user_profile where user_id=".$frow['user_id']);
+										$uid1=$frow['user_id'];
+										//if($woorking==$profilerow['work']){
 										?>
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-6" id="hide<?=$frow['user_id']?>">
                                                             <div class="post-bar">
                                                                 <div class="post_topbar applied-post">
                                                                     <div class="usy-dt">
                                                                         <?php if(!empty($userfpath)){?>
-                                                                           <a href="view-profile.php?uid=<?php echo base64_encode($frow['user_id']);?>">  <img src="upload/<?=$userfpath?>" alt="" height="50" width="50"></a>
+                                                                            <img src="upload/<?=$userfpath?>" alt="" height="50" width="50">
                                                                             <?php }else{ ?>
-                                                                             <a href="view-profile.php?uid=<?php echo base64_encode($frow['user_id']);?>">    <img src="images/resources/user.png" alt=""></a>
+                                                                                <img src="images/resources/user.png" alt="" height="40" width="40">
                                                                                 <?php }?>
                                                                                     <div class="usy-name">
-   <a href="view-profile.php?uid=<?php echo base64_encode($frow['user_id']);?>">                                                                                      <h3><?=$usernamef?></h3>
-       </a>                                                                                 <div class="epi-sec epi2">
+                                                                                        <h3><?=$frow['first_name']?></h3>
+                                                                                        <div class="epi-sec epi2">
                                                                                             <ul class="descp descptab bklink">
-                                                                                                <?php if(!empty($woorking)){ ?> 
+                                                                                               <?php if(!empty($woorking)){ ?> 
 		  <li><img src="images/icon8.png" alt=""><span><?=$woorking?></span></li>
 		  <?php }?>  
 		  <?php if(!empty($currentcity)){ ?>                                                                             <li><img src="images/icon9.png" alt=""><span><?=$currentcity?></span></li>
@@ -934,7 +1414,11 @@ xmlhttp.send();
                                                                     <div class="job_descp noborder">
 
                                                                         <div class="devepbtn appliedinfo noreply">
-                                                                            <a class="clrbtn sendreequest"  id="sendreequest<?=$frow['f_id']?>" fid="<?=$frow['follow']?>" href="javascript:void(0);"> Follow</a>
+																		
+																		<a class="clrbtn freqfollownew"  id="freqfollownew<?=$_SESSION['sess_webid']?>" fid="<?=$_SESSION['sess_webid']?>" href="javascript:void(0);"> Accept</a>
+										  
+										   <a class="clrbtn delfreqfollownew"  id="delfreqfollownew<?=$_SESSION['sess_webid']?>" fid="<?=$_SESSION['sess_webid']?>" href="javascript:void(0);"> Reject</a>
+                                                                        <!--    <a class="clrbtn sendreequest"  id="sendreequest<?=$frow['user_id']?>" fid="<?=$frow['user_id']?>" href="javascript:void(0);"> Send Friend Request</a>-->
 
                                                                         </div>
                                                                     </div>
@@ -942,12 +1426,81 @@ xmlhttp.send();
                                                             </div>
 
                                                         </div>
-
-                                                        <?php }}else{echo "<div class='portfolio-gallery-sec'>Result Not Found</div>"; }?>
+														<?php }?>
+<?php } //else{ echo "<div class='portfolio-gallery-sec'>Result Not Found</div>";}?>
+                                                        
                                             </div>
 
-                                    </div>
+
+<div class="row">
+                                                <?php ////////follower All Friends//////////?>
+                                                    <?php 
+										$dbuf1=new DB();
+										$dbufn=new DB();
+										 //echo $sqln="SELECT * from all_user where user_id IN ( select request_fid from friendrequest where user_id =".$_SESSION['sess_webid'].")";
+										//$sql="SELECT * from followers where user_id=".$uid;
+										 $sqln="SELECT * from friendrequest where user_id =".$_SESSION['sess_webid'];
+										$dbufn->query($sqln);
+										if($dbufn->numRows()>0)
+										{
+										 while($frow=$dbufn->fetchArray()){
+									$uid1=$frow['request_fid'];
+										$woorking=$dbuf1->getSingleResult('select current_company from user_profile where user_id='.$frow['request_fid']);
+										$userfpath=$dbuf1->getSingleResult('select image_id from user_profile where user_id='.$frow['request_fid']);
+										$currentcity=$dbuf1->getSingleResult("select current_city from user_profile where user_id=".$frow['request_fid']);
+										
+										$first_name=$dbuf1->getSingleResult("select first_name from user_profile where user_id=".$frow['request_fid']);
+										
+										//if($woorking==$profilerow['work']){
+										?>
+                                                        <div class="col-md-6" id="hide<?=$frow['user_id']?>">
+                                                            <div class="post-bar">
+                                                                <div class="post_topbar applied-post">
+                                                                    <div class="usy-dt">
+                                                                        <?php if(!empty($userfpath)){?>
+                                                                            <img src="upload/<?=$userfpath?>" alt="" height="50" width="50">
+                                                                            <?php }else{ ?>
+                                                                                <img src="images/resources/user.png" alt="" height="40" width="40">
+                                                                                <?php }?>
+                                                                                    <div class="usy-name">
+                                                                                        <h3><?=$first_name?></h3>
+                                                                                        <div class="epi-sec epi2">
+                                                                                            <ul class="descp descptab bklink">
+                                                                                               <?php if(!empty($woorking)){ ?> 
+		  <li><img src="images/icon8.png" alt=""><span><?=$woorking?></span></li>
+		  <?php }?>  
+		  <?php if(!empty($currentcity)){ ?>                                                                             <li><img src="images/icon9.png" alt=""><span><?=$currentcity?></span></li>
+		   <?php }?>
+                                                                                            </ul>
+                                                                                        </div>
+                                                                                    </div>
+                                                                    </div>
+                                                                    <div class="job_descp noborder">
+
+                                                                        <div class="devepbtn appliedinfo noreply">
+																		
+																		<a class="clrbtn "  id="<?=$uid1?>" fid="<?=$uid1?>" href="javascript:void(0);"> Request sent</a>
+										  
+										   <a class="clrbtn delfreqfollownew"  id="delfreqfollownew<?=$uid1?>" fid="<?=$uid1?>" href="javascript:void(0);"> Delete</a>
+                                                                        <!--    <a class="clrbtn sendreequest"  id="sendreequest<?=$frow['user_id']?>" fid="<?=$frow['user_id']?>" href="javascript:void(0);"> Send Friend Request</a>-->
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+														<?php }?>
+<?php }else{ echo "<div class='portfolio-gallery-sec'>Result Not Found</div>";}?>
+                                                        
+                                            </div>
+
+									 
+									 
+                                      </div>
+                                    <!--gallery_pf end-->
                                 </div>
+                                <!--portfolio-gallery-sec end-->
                             </div>
                             <!--product-feed-tab end-->
 
@@ -1126,155 +1679,13 @@ xmlhttp.send();
                                 <!--portfolio-gallery-sec end-->
                             </div>
                             <!--product-feed-tab end-->
-							
-							 <div class="product-feed-tab" id="frq">
-                                <div class="portfolio-gallery-sec">
-                                    <h3>All Friends Request</h3>
-                                   <!-- <div class="portfolio-btn">
-                                        <a href="#" title=""><i class="fas fa-plus-square"></i> Add Picture</a>
-                                    </div>-->
-                                    <div class="gallery_pf">
- 
-									 <div class="row">
-                                                <?php ////////follower All Friends//////////?>
-                                                    <?php 
-										$dbuf=new DB();
-										 $sql="SELECT * from all_user where user_id IN ( select user_id  from friendrequest where request_fid =".$_SESSION['sess_webid']." and status='1')";
-										//$sql="SELECT * from followers where user_id=".$uid;
-										$db->query($sql);
-										
-										$db->query($sql);
-										if($db->numRows()>0)
-										{
-										 while($frow=$db->fetchArray()){
-									
-										$woorking=$dbuf->getSingleResult('select current_company from user_profile where user_id='.$frow['user_id']);
-										$userfpath=$dbuf->getSingleResult('select image_id from user_profile where user_id='.$frow['user_id']);
-										$currentcity=$dbuf->getSingleResult("select current_city from user_profile where user_id=".$frow['user_id']);
-										$uid1=$frow['user_id'];
-										//if($woorking==$profilerow['work']){
-										?>
-                                                        <div class="col-md-6" id="hide<?=$frow['user_id']?>">
-                                                            <div class="post-bar">
-                                                                <div class="post_topbar applied-post">
-                                                                    <div class="usy-dt">
-                                                                        <?php if(!empty($userfpath)){?>
-                                                                            <img src="upload/<?=$userfpath?>" alt="" height="50" width="50">
-                                                                            <?php }else{ ?>
-                                                                                <img src="images/resources/user.png" alt="" height="40" width="40">
-                                                                                <?php }?>
-                                                                                    <div class="usy-name">
-                                                                                        <h3><?=$frow['first_name']?></h3>
-                                                                                        <div class="epi-sec epi2">
-                                                                                            <ul class="descp descptab bklink">
-                                                                                               <?php if(!empty($woorking)){ ?> 
-		  <li><img src="images/icon8.png" alt=""><span><?=$woorking?></span></li>
-		  <?php }?>  
-		  <?php if(!empty($currentcity)){ ?>                                                                             <li><img src="images/icon9.png" alt=""><span><?=$currentcity?></span></li>
-		   <?php }?>
-                                                                                            </ul>
-                                                                                        </div>
-                                                                                    </div>
-                                                                    </div>
-                                                                    <div class="job_descp noborder">
-
-                                                                        <div class="devepbtn appliedinfo noreply">
-																		
-																		<a class="clrbtn freqfollownew"  id="freqfollownew<?=$uid1?>" fid="<?=$uid1?>" href="javascript:void(0);"> Accept</a>
-										  
-										   <a class="clrbtn delfreqfollownew"  id="delfreqfollownew<?=$uid1?>" fid="<?=$uid1?>" href="javascript:void(0);"> Reject</a>
-                                                                        <!--    <a class="clrbtn sendreequest"  id="sendreequest<?=$frow['user_id']?>" fid="<?=$frow['user_id']?>" href="javascript:void(0);"> Send Friend Request</a>-->
-
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                        </div>
-														<?php }?>
-<?php } //else{ echo "<div class='portfolio-gallery-sec'>Result Not Found</div>";}?>
-                                                        
-                                            </div>
-
-
-<div class="row">
-                                                <?php ////////follower All Friends//////////?>
-                                                    <?php 
-										$dbuf1=new DB();
-										$dbufn=new DB();
-										 //echo $sqln="SELECT * from all_user where user_id IN ( select request_fid from friendrequest where user_id =".$_SESSION['sess_webid'].")";
-										//$sql="SELECT * from followers where user_id=".$uid;
-										 $sqln="SELECT * from friendrequest where user_id =".$_SESSION['sess_webid'];
-										$dbufn->query($sqln);
-										if($dbufn->numRows()>0)
-										{
-										 while($frow=$dbufn->fetchArray()){
-									$uid1=$frow['request_fid'];
-										$woorking=$dbuf1->getSingleResult('select current_company from user_profile where user_id='.$frow['request_fid']);
-										$userfpath=$dbuf1->getSingleResult('select image_id from user_profile where user_id='.$frow['request_fid']);
-										$currentcity=$dbuf1->getSingleResult("select current_city from user_profile where user_id=".$frow['request_fid']);
-										
-										$first_name=$dbuf1->getSingleResult("select first_name from user_profile where user_id=".$frow['request_fid']);
-										
-										//if($woorking==$profilerow['work']){
-										?>
-                                                        <div class="col-md-6" id="hide<?=$frow['user_id']?>">
-                                                            <div class="post-bar">
-                                                                <div class="post_topbar applied-post">
-                                                                    <div class="usy-dt">
-                                                                        <?php if(!empty($userfpath)){?>
-                                                                            <img src="upload/<?=$userfpath?>" alt="" height="50" width="50">
-                                                                            <?php }else{ ?>
-                                                                                <img src="images/resources/user.png" alt="" height="40" width="40">
-                                                                                <?php }?>
-                                                                                    <div class="usy-name">
-                                                                                        <h3><?=$first_name?></h3>
-                                                                                        <div class="epi-sec epi2">
-                                                                                            <ul class="descp descptab bklink">
-                                                                                               <?php if(!empty($woorking)){ ?> 
-		  <li><img src="images/icon8.png" alt=""><span><?=$woorking?></span></li>
-		  <?php }?>  
-		  <?php if(!empty($currentcity)){ ?>                                                                             <li><img src="images/icon9.png" alt=""><span><?=$currentcity?></span></li>
-		   <?php }?>
-                                                                                            </ul>
-                                                                                        </div>
-                                                                                    </div>
-                                                                    </div>
-                                                                    <div class="job_descp noborder">
-
-                                                                        <div class="devepbtn appliedinfo noreply">
-																		
-																		<a class="clrbtn "  id="<?=$uid1?>" fid="<?=$uid1?>" href="javascript:void(0);"> Request sent</a>
-										  
-										   <a class="clrbtn delfreqfollownew"  id="delfreqfollownew<?=$uid1?>" fid="<?=$uid1?>" href="javascript:void(0);"> Delete</a>
-                                                                        <!--    <a class="clrbtn sendreequest"  id="sendreequest<?=$frow['user_id']?>" fid="<?=$frow['user_id']?>" href="javascript:void(0);"> Send Friend Request</a>-->
-
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                        </div>
-														<?php }?>
-<?php }else{ echo "<div class='portfolio-gallery-sec'>Result Not Found</div>";}?>
-                                                        
-                                            </div>
-
-																		 
-
-									 </div>
-                                    <!--gallery_pf end-->
-                                </div>
-                                <!--portfolio-gallery-sec end-->
-                            </div>
-                            <!--product-feed-tab end-->
 
                         </div>
 						
 						
 						<?php //////////Right Section////////////?>
 						<div class="col-lg-3">
-						<div>
+						<div >
 						
 						<div class="right-sidebar">
 									<div class="widget widget-about addwizards full-width">
@@ -1600,7 +2011,9 @@ xmlhttp.send();
 .wishlistcartemoji1 li a img{    width: 30px !important;  height: 30px !important;}
 #close1{float: right; margin:10px;}
 </style>
- <ul class="wishlistcartemoji1" id="wishlistcartemoji1" style="display:none;"  >
+
+
+ <ul  class="wishlistcartemoji1" id="wishlistcartemoji1" style="display:none;"  >
 <div id="close"><a href="javascript:void(0)">X</a></div>
 <?php 
   $sql1="SELECT * FROM emoji order by id desc";
@@ -1618,5 +2031,64 @@ if($ext=='mp3'){
 
  } } echo $b; ?>
  </ul>
+ 
+ </div>
 
-    <?php include('footer.php') ?>
+<script src="//maps.googleapis.com/maps/api/js?key=AIzaSyBXH7JgXIWzi8QpwjwiwOKk3jDo6k3cEaM&sensor=false&libraries=places&ver=0.4b" async defer></script>
+	<script type='text/javascript' src='js/jquery.geocomplete.js?ver=0.4b'></script>
+ <input type="hidden" name="uid" value="<?=$_SESSION['sess_webid']?>" id="uid" >
+<?php include('footer.php') ?>
+<script src="js/profileloadmore.js"></script>
+<script src="lib/js/config.js"></script>
+    <script src="lib/js/util.js"></script>
+    <script src="lib/js/jquery.emojiarea.js"></script>
+    <script src="lib/js/emoji-picker.js"></script>
+	<script>
+	
+	$( 'input[type=button]' ).on('click', function(){
+            var cursorPos = $('#text').prop('selectionStart');
+            var v = $('#text').val();
+            var textBefore = v.substring(0,  cursorPos );
+            var textAfter  = v.substring( cursorPos, v.length );
+            $('#text').val( textBefore+ $(this).val() +textAfter );
+        });
+		
+      $(function() {
+        // Initializes and creates emoji set from sprite sheet
+        window.emojiPicker = new EmojiPicker({
+          emojiable_selector: '[data-emojiable=true]',
+          assetsPath: 'lib/img/',
+          popupButtonClasses: 'fa fa-smile-o'
+        });
+        // Finds all elements with `emojiable_selector` and converts them to rich emoji input fields
+        // You may want to delay this step if you have dynamically created input fields that appear later in the loading process
+        // It can be called as many times as necessary; previously converted input fields will not be converted again
+        window.emojiPicker.discover();
+      });
+	  
+	  
+	  /////////////////////////////////////
+jQuery(document).ready(function ($) {
+
+jQuery("#livelocationinput").attr("autocomplete","location17");
+
+jQuery("#livelocationinput").geocomplete({
+map: ".map_canvas1",
+details: "form",
+types: ["geocode", "establishment"],
+}).bind("geocode:result", function(event, result){
+//jQuery("#state").val(result.address_components[2].long_name);
+//console.log(result);
+
+});
+
+
+
+});
+
+$(".ed-opts .ed-opts-open").click(function(){ 
+		$(".ed-options").removeClass("open");
+		$(this).parent().children(".ed-options").toggleClass("open");
+		//$(".content a").not(this).hide("slow");
+	});
+    </script> 

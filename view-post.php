@@ -538,9 +538,12 @@ if($dbu->numRows()>0)
 {
 $userrow=$dbu->fetchArray();
 }
-$lcount=$dblike->getSingleResult('select count(like_id) from post_like where post_id='.$row['post_id']);
+$lcount=$dblike->getSingleResult('select count(like_id) from post_dislike where post_id='.$row['post_id']);
 $ccount=$dblike->getSingleResult('select count(c_id) from comment where post_id='.$row['post_id']);
 ?>
+
+
+
 									<div class="post-bar">
 											<div class="post_topbar">
 												<div class="usy-dt">
@@ -675,7 +678,7 @@ $ccount=$dblike->getSingleResult('select count(c_id) from comment where post_id=
 													<li>
 														 <?php 
 														
-														 $lucount=$db1->getSingleResult('select count(like_id) from post_like where post_id='.$row['post_id'].' and user_id='.$_SESSION['sess_webid'] );
+														 $lucount=$db1->getSingleResult('select count(like_id) from post_dislike where post_id='.$row['post_id'].' and user_id='.$_SESSION['sess_webid'] );
 											if($lucount>0){
 												?>
 														<a href="javascript:void(0)" class="like2" id="like<?=$row['post_id']?>" like1="<?=$row['post_id']?>"><i class="fas fa-heart"></i> Liked</a>

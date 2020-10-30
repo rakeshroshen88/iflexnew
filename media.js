@@ -2414,7 +2414,7 @@ jQuery(".selectfeel").on('change', function() {
 
 
  	jQuery(document).on("click", ".send_chatemoji1", function(e){
-		alert('ds');
+		
 	var cid = jQuery(this).attr('cid');
 	$(".wishlistcartemoji1[cid='" + cid + "']").css("display", "block");
 	//$(".wishlistcartemoji1").css("display", "block");
@@ -3020,7 +3020,7 @@ var str=$(this).val();
 			type: 'POST',
 			data: dataString,
             success: function(response){
-				alert(response);
+				
                 if(response != 0){
                    $('#showcity').html(response);
                 }else{

@@ -254,7 +254,8 @@ if(isset($_REQUEST['send']) and $_REQUEST['send']=='save' )
 									$headers .= "Content-type: text/html; charset=iso-8859-1\r\n";
 									$headers .= "From:$from\r\n";
 									@mail($to, $subject, $message, $headers);
-
+echo"<script>alert('Thank you for contacting us ! ')</script>";		
+    echo'<script>window.location="index.php";</script>';
 					//echo"<script>alert('Your Password has been successfully Sent to Your E-mail! ')</script>";
 						$errMsg='Your Password has been successfully Sent to Your E-mail! ';
 }

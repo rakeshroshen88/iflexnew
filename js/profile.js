@@ -2,7 +2,7 @@
 jQuery(document).on("click", "#overviewsave", function(e){  
 		
 		var overview = jQuery('#overview').val();		
-		var social_AjaxURL1=social_AjaxURL+'ajax_user_update.php';
+		var social_AjaxURL1='ajax_user_update.php';
 		var dataString ='overview='+overview ;
 		
 			e.preventDefault();
@@ -785,7 +785,7 @@ jQuery(document).on("click", ".gallerydel", function(e){
  
 		
 		var delidg = jQuery(this).attr('delidg');		
-		var social_AjaxURL=social_AjaxURL+'ajax_user_update.php';
+		var social_AjaxURL='ajax_user_update.php';
 		var dataString ='delidg=' + delidg ;
 			e.preventDefault();
 		Swal.fire({
@@ -1701,4 +1701,111 @@ jQuery(document).on("click", "#changepassword", function(e){
 	}
 			 });
 		
-	
+	 jQuery(document).on("click", ".addtocartfood", function(e){
+
+
+		var fid = jQuery(this).attr('fid');
+		var rid = jQuery(this).attr('rid');			
+		var task = 'task';//$("#task"+id).val();
+		var quantity = $("#quantity"+fid).val();
+		/* var radioValuesize = $("input[name='inlineRadioOptions']:checked").val();
+		   var radioValuecolor = $("#input_array_name").val();
+		if(radioValuesize==''){
+			radioValuesize=1;
+		}
+		if(radioValuecolor==''){
+			radioValuecolor=1;
+		} */
+		//var img=jQuery("#profileimg").val();
+
+
+
+		var social_AjaxURL1='add_to_cart_food.php';
+		var dataString ='fid=' + fid + '&task=' + task + '&quantity='+quantity;
+		/* + '&psize='+radioValuesize + '&color='+radioValuecolor; */
+
+			//e.preventDefault();
+
+					$.ajax({
+            	    url: social_AjaxURL1,
+            	    async: true,
+            	    cache: false,
+            	    //data: {catid: catids},
+					type: 'POST',
+					 data: dataString,
+					 //data: profileuploadtn,
+
+            	    success: function (data) {
+            		  /* var data1 = jQuery.parseJSON(data); */
+
+
+            		   alert(data);
+
+                       if(data>0){
+						  
+						
+							Swal.fire({
+						  position: 'top-end',
+						  type: 'success',
+						  title: data,
+						  showConfirmButton: false,
+						  timer: 1000
+
+						});
+					   }
+
+					   if(data1.status==false){
+						  Swal.fire({
+						  type: 'error',
+						  title: 'Oops...',
+						   title: data1.message,
+						  showConfirmButton: false,
+						  timer: 1000
+
+						});
+
+					   }
+
+            		   /* else {
+							Swal.fire({
+  type: 'error',
+  title: 'Oops...',
+  text: data,
+  showConfirmButton: false,
+  timer: 1500
+
+});
+            		   //	$('#p_error').html('Please fill Mandatory Fields !');
+            			  //  alert("Error While this deleting a record");
+
+            		    }*/
+            	    },
+            	    error : function(XMLHttpRequest, textStatus, errorThrown) {
+            		    alert(textStatus);
+            	    }
+            	});
+				});
+ jQuery(document).on("click", ".viewfood", function(e){
+	 
+	 var fid = jQuery(this).attr('fid');
+     var rid = jQuery(this).attr('rid');
+	 var social_AjaxURL1='food_popup.php';
+	 	var dataString ='fid=' + fid + '&rid=' + rid;
+		$.ajax({
+            	    url: social_AjaxURL1,
+            	    async: true,
+            	    cache: false,
+            	    //data: {catid: catids},
+					type: 'POST',
+					 data: dataString,
+					 //data: profileuploadtn,
+
+            	    success: function (data) {
+						
+            		 $('#foodid').html(data); 
+            	    },
+            	    error : function(XMLHttpRequest, textStatus, errorThrown) {
+            		    alert(textStatus);
+            	    }
+            	});
+});	 

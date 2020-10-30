@@ -57,16 +57,16 @@ while($mrow=$db->fetchArray()){
 		
     </section>
 
-    <main>
-        <div class="main-section">
-            <div class="container">
-                <div class="main-section-data">
-                    <div class="row">
-                        <div class="col-lg-3">
-                            <div class="main-left-sidebar">
-                                <div class="user_profile">
-                                    <div class="user-pro-img">
-                                        <?php if($profilerow['image_id']=='' and empty($profilerow['image_id'])){ ?>
+    
+								
+					<div class="profile-menu-area bg-white">
+						<div class="container">
+							<div class="row align-items-center">	
+								<div class="col-lg-3 col-md-3">
+									<div class="profile-picture-box">
+									  <figure class="view-profile-picture"> 
+										<div class="user-pro-img">
+											<?php if($profilerow['image_id']=='' and empty($profilerow['image_id'])){ ?>
                                             <img src="images/resources/user.png" id="rmvid" alt="" height="190" width="190">
                                             <?php }else{?>
                                                 <img src="upload/<?=$profilerow['image_id']?>" id="rmvid" alt="" height="190" width="190">
@@ -74,20 +74,76 @@ while($mrow=$db->fetchArray()){
 												<!-- <input type="file" id="file1">-->
 												
                                                   
-                                    </div>
+										</div>
+									  </figure>
+									</div>
+								</div>
+								
+								<div class="col-lg-7 col-md-7">
+							
+									<div class="profile-menu-wrapper main-ws-sec profile-lisgn">
+							
+										<div class="main-menu-inner header-top-navigation user-tab-sec rewivew tab-feed st2 settingjb">
+                                    
+                                        <ul class="main-menu">
+										
+                                            <li data-tab="feed-dd" class="active"><a href="#" title=""><span>Timeline</span></a></li>
+                                            <li data-tab="info-dd"><a href="#" title=""><span>About</span></a></li>
+                                            <li  data-tab="saved-jobs"><a href="#" title=""><span>Friends</span></a></li>
+                                            <li data-tab="my-bids"><a href="#" title=""><span>Follower</span></a> </li> 
+											
+											<li  data-tab="portfolio-dd"><a href="#" title=""><span>Photo</span></a></li>
+													
+                                        </ul>
+                                    
+                                </div>
+                            </div>
+                        </div>
+								
+								<div class="col-lg-2 col-md-2">
+								
+								</div>
+							</div>
+						</div>
+					</div>
+								
+								
+	<main>
+        <div class="main-section">
+            <div class="container">
+                <div class="main-section-data">
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <div class="main-left-sidebar">
+
+							
+                                <div class="suggestions full-width">
                                     <!--user-pro-img end-->
-                                    <div class="user_pro_status">
-                                        <ul class="flw-status">
+                                    <div class="sd-title user-tab-sec rewivew">
+										<h3><?=$profilerow['first_name']?></h3>
+									</div>
+											<div class="star-descp">
+												<span><?=$profilerow['current_company']?>
+													</span>
+                                    
+											</div>
+                                    <!--star-descp end-->
+                                    
+									
+								
+                                        <!--<ul class="flw-status">
                                             <li>
                                                 <span>Friends</span>
-                                                <b><?php 
+                                                <b>
+												<?php 
 												
 												 $num1=$db->getSingleResult("SELECT count(f_id) from followers where user_id=".$_SESSION['sess_webid']." or follow=".$_SESSION['sess_webid']."");
 												if(empty($num1)){ echo "0";}else{ echo $num1; }
 												?></b>
                                             </li>
 											
-                                        </ul>
+                                        </ul>-->
+										
 										<?php 
 									
 										$cntf=$db->getSingleResult("SELECT f_id from followers where (user_id=".$uid." and follow =".$_SESSION['sess_webid'].") or (user_id=".$_SESSION['sess_webid']." and follow =".$uid.")");
@@ -108,7 +164,7 @@ while($mrow=$db->fetchArray()){
 										<?php //}?>
 										
 									
-                                    </div>
+                                    
 									 <div class="user_pro_status">
                                         <ul class="flw-status">
 										<li>
@@ -124,8 +180,12 @@ while($mrow=$db->fetchArray()){
                                     </ul>
 									<?php } ?>-->
                                 </div>
+							
+								
+								
+								
                                 <!--user_profile end-->
-                                <div class="suggestions full-width">
+                                 <div class="suggestions full-width">
                                     <div class="sd-title">
                                         <h3>Explore </h3>
                                         <i class="la la-ellipsis-v"></i>
@@ -134,11 +194,13 @@ while($mrow=$db->fetchArray()){
 									 <div class="suggestions-list">
 									   <ul class="social_links MyList">
 
-                                        <li data-tab="feed-dd"><a href="dashboard.php" title=""><i class="fa fa-home" aria-hidden="true"></i>Home</a></li>
-                                      
-                                        <li data-tab="review"><a href="company-list.php" title=""><i class="fa fa-building" aria-hidden="true"></i>View Pages</a></li>
-										<li><a href="company-page.php" title=""><i class="fa fa-building" aria-hidden="true"></i>create Pages</a></li>
-                                        <li ><a href="profile-account-setting.php" title="" class="animated fadeIn active" ><i class="fa fa-cogs" aria-hidden="true"></i>Setting</a></li>
+                                        <li ><a href="dashboard.php" title=""><i class="fa fa-home" aria-hidden="true"></i>News Feed</a></li>                                 
+										<li><a href="company-page.php" title=""><i class="fa fa-file" aria-hidden="true"></i>Create Pages</a></li>
+										<li ><a href="company-list.php" title=""><i class="fa fa-file-text-o" aria-hidden="true"></i>View Pages</a></li>
+                                        <li ><a href="notification.php" title=""><i class="fas fa-bell" aria-hidden="true"></i>Notification</a></li>
+                                        <li ><a href="notification.php" title=""><i class="fas fa-users" aria-hidden="true"></i>Friends</a></li>
+                                        <li ><a href="company-list.php" title=""><i class="fas fa-smile" aria-hidden="true"></i>Messages</a></li>
+                                        <li ><a href="message.php" title="" class="animated fadeIn active" ><i class="fa fa-cogs" aria-hidden="true"></i>Setting</a></li>
                                        
                                        <!-- <li data-tab="info-dd"><a href="javascript:void(0);" title=""><i class="fa fa-user" aria-hidden="true"></i></i>About</a></li>-->
 
@@ -166,53 +228,13 @@ while($mrow=$db->fetchArray()){
                             </div>
                             <!--main-left-sidebar end-->
                         </div>
+						
+						
+						
+						
                         <div class="col-lg-6">
                             <div class="main-ws-sec profile-lisgn">
-                                <div class="user-tab-sec rewivew">
-                                    <h3><?=$profilerow['first_name']?></h3>
-                                    <div class="star-descp">
-                                        <span><?=$profilerow['current_company']?>
-													</span>
-                                    
-                                    </div>
-                                    <!--star-descp end-->
-                                    <div class="tab-feed st2 settingjb">
-                                        <ul>
-                                            <li data-tab="feed-dd" class="active">
-                                                <a href="#" title="">
-                                                    <img src="images/ic1.png" alt="">
-                                                    <span>Feed</span>
-                                                </a>
-                                            </li>
-                                            <li data-tab="info-dd">
-                                                <a href="#" title="">
-                                                    <img src="images/ic2.png" alt="">
-                                                    <span>About </span>
-                                                </a>
-                                            </li>
-                                            <li data-tab="saved-jobs">
-                                                <a href="#" title="">
-                                                    <img src="images/ic4.png" alt="">
-                                                    <span>Following</span>
-                                                </a>
-                                            </li>
-                                            <li data-tab="my-bids">
-                                                <a href="#" title="">
-                                                    <img src="images/ic5.png" alt="">
-                                                    <span>follower</span>
-                                                </a>
-                                            </li>
-                                            <li data-tab="portfolio-dd">
-                                                <a href="#" title="">
-                                                    <img src="images/ic3.png" alt="">
-                                                    <span>Photo</span>
-                                                </a>
-                                            </li>
-
-                                        </ul>
-                                    </div>
-                                    <!-- tab-feed end-->
-                                </div>
+                                
                                 <!--user-tab-sec end-->
                                 <div class="product-feed-tab followinglisting" id="saved-jobs">
                                     <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -632,6 +654,8 @@ $ccount=$db1->getSingleResult('select count(c_id) from comment where post_id='.$
 											<?php }?>
 											 
 					<!---- like code ended -->
+					<a href="#" class="text-muted mr-1"><span class="fa fa-thumbs-down"></span> Dislike</a>
+
 
 	                <a href="javascript:void(0)" class="text-muted margin-right-10 showcmtBtn"><span class="fa fa-comment"></span> Comments <?=$ccount?></a>
 	                <a href="#" class="text-muted margin-right-10"><span class="fa fa-share-alt"></span> Share</a>
@@ -662,7 +686,7 @@ $ccount=$db1->getSingleResult('select count(c_id) from comment where post_id='.$
  <input type="hidden" id="comall<?=$row['post_id']?>" value="<?php echo $comallcount; ?>">
  <input type="hidden" id="comid" value="<?=$rowc['c_id']?>">
   <input type="hidden" id="postid1" value="<?=$row['post_id']?>">
-				                    <div class="contact contact-rounded contact-lg">
+				                    <div class="contact contact-rounded contact-lg" id="commdel<?=$rowc['c_id']?>">
 				                    	<div class="comnetimg">
 				                    		<?php if(!empty($pimage)){ ?>
 				                    			<a href="view-profile.php?uid=<?php echo base64_encode($rowc['user_id']);?>">
@@ -676,7 +700,6 @@ $ccount=$db1->getSingleResult('select count(c_id) from comment where post_id='.$
 					                    </div>
 				                        <div class="contact-container">
 				                            <a href="view-profile.php?uid=<?php echo base64_encode($rowc['user_id']);?>"><?=$username?></a>
-				                            <span class="coment-time"><?php echo timeago($rowc['cdate']);?> </span> 
 				                            <div class="replybody-mg">
 					                            <?php if(!empty($rowc['mp3'])){ ?>
 														<img src="emoji/<?=$rowc['cimage']?>" height="50" width="50"/><?php }elseif(!empty($rowc['cimage'])){ ?>
@@ -686,6 +709,10 @@ $ccount=$db1->getSingleResult('select count(c_id) from comment where post_id='.$
 					                        </div>
 				                            <div class="replycommnetbt">
 								           		<a  href="javascript:void(0)" id="replyiddiv" cid="<?=$rowc['c_id']?>" >Reply</a>
+												<span class="coment-time"><?php echo timeago($rowc['cdate']);?> </span> 
+
+												<a  href="javascript:void(0)" id="deletecomment" class="deletecomment" cid="<?=$rowc['c_id']?>" ><i class="delet-icon fa fa-trash-o"></i></a>
+												<a  href="javascript:void(0)" id="editcomment" class="editcomment" cid="<?=$rowc['c_id']?>" ><i class="edit-icon fa fa-pencil"></i></a>
 								           	</div>
 				                        </div>
 				                    </div>
@@ -761,8 +788,10 @@ $rcomallcount=$db1->getSingleResult("SELECT count(*) from reply where c_id=".$ro
 													<p class="lead emoji-picker-container">
 													<input type="text"  rid="<?=$rowc['c_id']?>"  placeholder="Reply on comment" name="rpostcomment" class="rp" id="rpostcomment<?=$rowc['c_id']?>" data-emojiable="true">
 													</p>
-													<button type="button" name="replyid" id="replyid<?=$rowc['c_id']?>" class="replyid" rid="<?=$rowc['c_id']?>">Send</button>
-														</form>
+													<button type="button" name="replyid" id="replyid<?=$rowc['c_id']?>" class="replyid" rid="<?=$rowc['c_id']?>">
+													<i class="fa fa-send"></i>
+													</button>
+													</form>
 													</div>
 												</div>
 									</div>
@@ -854,19 +883,28 @@ $rcomallcount=$db1->getSingleResult("SELECT count(*) from reply where c_id=".$ro
 													<input type="hidden" name="uid" id="uid<?=$row['post_id']?>" value="<?=$_SESSION['sess_webid']?>" >
 													
 													<input type="hidden" name="cimage" id="cimage<?=$row['post_id']?>" value="" cid="" >
-													<label class="cemeraicon"	 for="cimageupload"><i class="fa fa-camera" aria-hidden="true"></i></label>
-													<input type="file" id="cimageupload<?=$row['post_id']?>" class="cimageupload" name="cimageupload" cid="<?=$row['post_id']?>">
+													<!--<label class="cemeraicon"	 for="cimageupload"><i class="fa fa-camera" aria-hidden="true"></i>
+													</label>
+													<input type="file" id="cimageupload<?=$row['post_id']?>" class="cimageupload" name="cimageupload" cid="<?=$row['post_id']?>">-->
 
-													<a href="javascript:void(0);" name="send_chatemoji1"  class="send_chatemoji1" id="comment1<?=$row['post_id']?>" uid="<?=$row['post_id']?>" cid="<?=$row['post_id']?>"><i class="emoji-picker-icon emoji-picker fa fa-smile-o"></i> </a>
+													<a href="javascript:void(0);" name="send_chatemoji1"  class="send_chatemoji1" id="comment1<?=$row['post_id']?>" uid="<?=$row['post_id']?>" cid="<?=$row['post_id']?>">
+													<i class="emoji-picker-icon emoji-picker fa fa-smile-o"></i> </a>
 
 													<div class="input-group">
 
 														<p class="lead emoji-picker-container">
-														<input type="text" cid="<?=$row['post_id']?>" placeholder="Your comment..." class="cp form-control" id="postcomment<?=$row['post_id']?>" name="postcomment<?=$row['post_id']?>" data-emojiable="true"></p>
+														<input type="text" cid="<?=$row['post_id']?>" placeholder="Your comment..." class="cp form-control" id="postcomment<?=$row['post_id']?>" name="postcomment<?=$row['post_id']?>" data-emojiable="true">
 														
-
-													<div class="input-group-btn">
-														<button type="button" id="commentid<?=$row['post_id']?>" class="commentid btn btn-default" cid="<?=$row['post_id']?>">Post Comment</button>
+														<div class="add-img" id="OpenImgUpload">
+                                                       <input type="file" id="cimageupload<?=$row['post_id']?>" class="cimageupload" cid="<?=$row['post_id']?>">
+                                                        <label for="cimageupload<?=$row['post_id']?>"><i class="fa fa-camera"></i></label>
+                                                    </div>
+														</p>																												
+														
+													<div class="input-group-btn cmnt-icon">
+														<button type="button" id="commentid<?=$row['post_id']?>" class="commentid btn btn-default" cid="<?=$row['post_id']?>">
+														<i class="fa fa-send"></i></button>
+														
 													</div>
 													</div>
 
@@ -1310,10 +1348,10 @@ $rcomallcount=$db1->getSingleResult("SELECT count(*) from reply where c_id=".$ro
 
 					  	<?php //////////Right Section////////////?>
 						<div class="col-lg-3">
-						<div style="margin-top: 185px;">
+						
 						
 						<div class="right-sidebar">
-									<div class="widget widget-about addwizards">
+									<div class="widget widget-about addwizards full-width">
 										<div class="sd-title">
 											<h3>Adverts</h3>
 											 
@@ -1330,8 +1368,7 @@ $rcomallcount=$db1->getSingleResult("SELECT count(*) from reply where c_id=".$ro
 									</div>
 								 <?php } ?>
 
-						</div>
-
+ 
 										<!--<div class="adds-box">
 											<img src="img/newads.jpg" alt="ads">
 										</div>-->
@@ -1344,10 +1381,11 @@ $rcomallcount=$db1->getSingleResult("SELECT count(*) from reply where c_id=".$ro
 						</div>
 						</div>
 						<?php //////////////////////?>
-                </div>
-            </div>
+					
+					</div>
+				</div>
             <!-- main-section-data end-->
-        </div>
+			</div>
         </div>
     </main>
 	
@@ -1634,9 +1672,41 @@ if($ext=='mp3'){
  <input type="hidden" name="uid" value="<?=$uid?>" id="uid" >
 <script src="js/profileloadmore.js"></script>
     <?php include('footer.php') ?>
-	 <script> $(".ed-opts .ed-opts-open").click(function(){ 
+	<script src="js/loadmore.js"></script>
+	<script src="lib/js/config.js"></script>
+    <script src="lib/js/util.js"></script>
+    <script src="lib/js/jquery.emojiarea.js"></script>
+    <script src="lib/js/emoji-picker.js"></script>
+	<script>
+	
+	$( 'input[type=button]' ).on('click', function(){
+            var cursorPos = $('#text').prop('selectionStart');
+            var v = $('#text').val();
+			
+            var textBefore = v.substring(0,  cursorPos );
+            var textAfter  = v.substring( cursorPos, v.length );
+            $('#text').val( textBefore+ $(this).val() +textAfter );
+			//$('#text').val( textAfter+ $(this).val() +textBefore );
+        });
+		
+      $(function() {
+        // Initializes and creates emoji set from sprite sheet
+        window.emojiPicker = new EmojiPicker({
+          emojiable_selector: '[data-emojiable=true]',
+          assetsPath: 'lib/img/',
+          popupButtonClasses: 'fa fa-smile-o'
+        });
+        // Finds all elements with `emojiable_selector` and converts them to rich emoji input fields
+        // You may want to delay this step if you have dynamically created input fields that appear later in the loading process
+        // It can be called as many times as necessary; previously converted input fields will not be converted again
+        window.emojiPicker.discover();
+      });
+	
+	$(".ed-opts .ed-opts-open").click(function(){ 
 		$(".ed-options").removeClass("open");
 		$(this).parent().children(".ed-options").toggleClass("open");
 		//$(".content a").not(this).hide("slow");
 	});
     </script> 
+	
+	

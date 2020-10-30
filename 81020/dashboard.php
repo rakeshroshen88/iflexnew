@@ -471,7 +471,6 @@ if($dbu->numRows()>0)
 $userrow=$dbu->fetchArray();
 }
 $lcount=$dblike->getSingleResult('select count(like_id) from post_like where do_like = 1 and post_id='.$row['post_id']);
-$dislcount=$dblike->getSingleResult('select count(id) from post_dislike where dis_like = 1 and post_id='.$row['post_id']);
 $ccount=$dblike->getSingleResult('select count(c_id) from comment where post_id='.$row['post_id']);
  
 ?>
@@ -616,22 +615,9 @@ $ccount=$dblike->getSingleResult('select count(c_id) from comment where post_id=
 											
 											<?php }?>
 											 
-					<!---- like code ended 
+					<!---- like code ended -->
 					
-					<a href="#" class="text-muted mr-1"><span class="fa fa-thumbs-down"></span> Dislike</a>-->
-					<?php $dislucount=$db1->getSingleResult('select count(id) from post_dislike where dis_like = 1 and post_id='.$row['post_id'].' and user_id='.$_SESSION['sess_webid'] );
-											if($dislucount>0){
-												?>
-														<a href="javascript:void(0)" class="dislike2 text-muted  i_liked" id="dislike<?=$row['post_id']?>" dislike1="<?=$row['post_id']?>"><span class="fa fa-thumbs-down"></span> Dislike</a>
-														<span id="lcount<?=$row['post_id']?>" class="margin-right-10 i_liked"><?=$dislcount?></span>
-											<?php }else{?>	
-											<a href="javascript:void(0)" class="dislike2 text-muted " id="dislike<?=$row['post_id']?>" dislike1="<?=$row['post_id']?>"><span class="fa fa-thumbs-down"></span> Dislike</a>
-											<span id="dislcount<?=$row['post_id']?>" class="margin-right-10"><?=$dislcount?></span>
-											
-											<?php }?>
-					
-					
-					
+					<a href="#" class="text-muted mr-1"><span class="fa fa-thumbs-down"></span> Dislike</a>
 			
 	                <a href="javascript:void(0)" class="text-muted margin-right-10 showcmtBtn"><span class="fa fa-comment"></span> Comments <?=$ccount?></a>
 	                <a href="#" class="text-muted margin-right-10"><span class="fa fa-share-alt"></span> Share</a>

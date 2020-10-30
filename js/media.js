@@ -16,7 +16,7 @@ $(document).ready(function(){
             }
         });
 
-	//var BASEURL='http://orangestate.ng/';
+	//var BASEURL='http://iflex.ng/';
 		$flag=1;
     	$("#myName").focusout(function(){
 
@@ -121,8 +121,8 @@ $(document).ready(function(){
 
         	}
         	});
-			
-			
+
+
 			/* $("#CaptchaInput").focusout(function(){
     		if($(this).val()==''){
         		$(this).css("border-color", "#FF0000");
@@ -315,7 +315,7 @@ return string.split(' ').join('');
 jQuery(document).on("click", "#submit ", function(e){
 /////////////////////////////////Register document////////////////////////////////////
 
-		
+
 		var social_AjaxURL1=social_AjaxURL+'ajax_signup.php';
 
 			e.preventDefault();
@@ -345,27 +345,30 @@ jQuery(document).on("click", "#submit ", function(e){
 					//var location = $("#location1").val();
 					var state = $("#state").val();
 					var countrycode = $("#countrycode").val();
-					var country = $("input[name=country]").val();
+					var country = $("#country").val();
+					//var country = $("input[name=country]").val();
 					var dataString = 'name1='+ name + '&email1='+ email + '&password1='+ password + '&lastname='+ lastname + '&phoneno='+ phone + '&country='+ country + '&countrycode='+ countrycode + '&state='+ state;
 
 					$.ajax({
             	    url: social_AjaxURL1,
+					dataType: 'json',
             	    async: true,
             	    cache: false,
             	    //data: {catid: catids},
 					 data: dataString,
             	    type: 'POST',
             	    success: function (response) {
+						//alert(response);
 						el.unblock();
 
-						  var data1 = jQuery.parseJSON(response);
+						 // var data1 = jQuery.parseJSON(response);
+						//alert(data1);
 
- 
 						 if(response != ''){
                        //if(data1.status==true){
                            // $('#success').html('Added');
-                             window.location = "http://orangestate.ng/veryfyotp.php";
-                             window.location.href = "http://orangestate.ng/veryfyotp.php";
+                             window.location = "http://iflex.ng/veryfyotp.php";
+                             window.location.href = "http://iflex.ng/veryfyotp.php";
                          // window.location.href= MEDIA_URL+'veryfyotp.php';
             		    }else{
             		         $('#success').html(data1.message);
@@ -378,11 +381,11 @@ jQuery(document).on("click", "#submit ", function(e){
 
 
             	    },
-            	    error : function(XMLHttpRequest, textStatus, errorThrown) {
+            	    /* error : function(XMLHttpRequest, textStatus, errorThrown) {
             	         //alert("Error While this addiing a record");
             				el.unblock();
 
-            	    }
+            	    } */
             	});
 
 
@@ -431,7 +434,7 @@ jQuery(document).on("click", "#submit ", function(e){
         		$('#companysubmit').attr('disabled',false);
         		$("#error_com").text("");
 			}
-			
+
 			 $('input[type="checkbox"]').click(function(){
             if($(this).prop("checked") == true){
 
@@ -448,8 +451,8 @@ jQuery(document).on("click", "#submit ", function(e){
 			}
         });
 
-	
-		var social_AjaxURL1='//orangestate.ng/ajax_page_creation.php';
+
+		var social_AjaxURL1='//iflex.ng/ajax_page_creation.php';
 
 			e.preventDefault();
 
@@ -458,7 +461,7 @@ jQuery(document).on("click", "#submit ", function(e){
 				overlayCSS: {
 					backgroundColor: '#fff'
 				},
-				message: '<img src="//orangestate.ng/images/loading.gif" /> Just a moment...',
+				message: '<img src="//iflex.ng/images/loading.gif" /> Just a moment...',
 				css: {
 					border: 'none',
 					color: '#333',
@@ -479,7 +482,7 @@ jQuery(document).on("click", "#submit ", function(e){
 					 data: dataString,
             	    type: 'POST',
             	    success: function (data) {
-            		
+
                        if(data != 0){
 
 						   swal.fire({
@@ -490,11 +493,11 @@ jQuery(document).on("click", "#submit ", function(e){
 						  timer: 1000
 
 						});
-						$('#company_error').html(data);
+						//$('#company_error').html(data);
 						setTimeout(function(){
-							window.location = "//orangestate.ng/company-profile.php";
+							window.location = "http://iflex.ng/company-profile.php";
 						   }, 5000);
-						
+
             			 //window.location.reload(true);
             		    }
             		    else {
@@ -557,7 +560,7 @@ jQuery(document).on("click", "#profilesubmit ", function(e){
 
 		var img=jQuery("#profileimg").val();
 
-		
+
 
 		var social_AjaxURL1=social_AjaxURL+'ajax_user_profile.php';
 		var selected = new Array();
@@ -630,7 +633,15 @@ $("input:checkbox[name=area]:checked").each(function(){
      processData: false,
      success: function (response) {
 		 //alert(response);
-		jQuery('#imgid').val(response);
+		/* jQuery('#imgid').val(response); */
+		var img=$("#imgid").val();
+
+if(img==''){
+jQuery("#imgid").val(response);
+}else{
+jQuery("#imgid").val(img+','+response);
+}
+		
        /* for(var index = 0; index < response.length; index++) {
          var src = response[index];
 		alert(src);
@@ -642,6 +653,11 @@ $("input:checkbox[name=area]:checked").each(function(){
    });
 
 });
+
+
+
+
+
 ///////////post submit/////////////////
 jQuery(document).on("click", "#uploadpost ", function(e){
 
@@ -701,6 +717,8 @@ jQuery(document).on("click", "#uploadpost ", function(e){
 	});
 
 
+
+
 	});
 
 
@@ -726,10 +744,11 @@ jQuery(document).on("click", ".like2", function(e){
             	    success: function (data) {
 						 var data1 = jQuery.parseJSON(data);
 						$("#like2").html('');
-						$("#like"+l_id).html('<i class="fas fa-heart"></i>'+data1.message);
+						$(".like2").addClass("i_liked");
+						$("#like"+l_id).html('<i class="fas fa-heart"></i> '+data1.message);
 						$("#lcount"+l_id).html('');
 						$("#lcount"+l_id).html(data1.countid);
-						//$(".like2").addClass("likes");
+
 
 						   //window.location.href= MEDIA_URL+'index.php';
             			 //window.location.reload(true);
@@ -847,8 +866,16 @@ jQuery(document).on("click", "#follow", function(e){
 ///////////post comment/////////////////
 jQuery(document).on("click", ".commentid ", function(e){
 		var c_id = jQuery(this).attr('cid');
-		//alert(c_id);
-		var postcomment=jQuery("#postcomment"+c_id).val();
+		console.log(c_id);
+
+		/* var postcomment=jQuery("#postcomment"+c_id).next().html(); */
+		// var postcomment=jQuery("#postcomment"+c_id).next().text();
+		var postcomment = jQuery("#postcomment"+c_id).val();
+
+		if(postcomment==''){
+			postcomment='';
+		}
+		
 		var pid=jQuery("#pid"+c_id).val();
 		var uid=jQuery("#uid"+c_id).val();
 		var cimage=jQuery("#cimage"+c_id).val();
@@ -869,8 +896,9 @@ jQuery(document).on("click", ".commentid ", function(e){
             	    success: function (data) {
 
             		   //data=data.replace(/\s+/g,"");
-					  // $('.comment-listing').html(data);
-						$('#commentdisplay'+c_id).html(data);
+					   $('#commentdisplay'+c_id).append(data);
+						//$('#commentdisplay'+c_id).html(data);
+						jQuery("#postcomment"+c_id).next().html('');
                        if(data != 0){
 
             		    }
@@ -892,7 +920,13 @@ jQuery(document).on("click", ".replyid ", function(e){
 
 		var social_AjaxURL1=social_AjaxURL+'ajax_reply.php';
 		var c_id = jQuery(this).attr('rid');
+		console.log(c_id);
+		//var postcomment=jQuery("#rpostcomment"+c_id).next().html();
 		var postcomment=jQuery("#rpostcomment"+c_id).val();
+		if(postcomment==''){
+			postcomment='';
+		}
+		console.log(postcomment);
 		var pid=jQuery("#pid"+c_id).val();
 		var cid=jQuery("#cid"+c_id).val();
 		var uid=jQuery("#uid"+c_id).val();
@@ -912,7 +946,9 @@ jQuery(document).on("click", ".replyid ", function(e){
             	    success: function (data) {
 
                        if(data != 0){
-						  $('#replydisplay'+c_id).html(data);
+						  //$('#replydisplay'+c_id).html(data);
+						  $('#replydisplay1'+c_id).append(data);
+						  jQuery("#rpostcomment"+c_id).next().html('');
 
             		    }
             		    else {
@@ -929,6 +965,8 @@ jQuery(document).on("click", ".replyid ", function(e){
 
 
 	});
+
+
 jQuery(document).on("click", ".com", function(e){
 	var cid = jQuery(this).attr('cid');
 	$("#commentdisplay"+cid).css("display", "block");
@@ -944,12 +982,13 @@ jQuery(document).on("click", "#replyiddiv", function(e){
 	jQuery('#replydisplay'+cid).focus();
 
 }	);
-//////////////////comment Image//////////////////////
-jQuery("#cimageupload").on('change', function() {
+//////////////////comment Image/////cimageupload/////////////////
+jQuery(".cimageupload").on('change', function() {
+	var cid = jQuery(this).attr('cid');
 
 var social_AjaxURL1=social_AjaxURL+'commentimageupload.php';
         var fd = new FormData();
-        var files = $('#cimageupload')[0].files[0];
+        var files = $('#cimageupload'+cid)[0].files[0];
 
         fd.append('file',files);
 
@@ -967,7 +1006,7 @@ var social_AjaxURL1=social_AjaxURL+'commentimageupload.php';
                     //jQuery(".left-uploaded-img").html('<img src="'+MEDIA_URL + response +'" />');
 
                    // jQuery("#imgid").val(data.result.attach_id);
-                 jQuery('#cimage').val(data);
+                 jQuery('#cimage'+cid).val(data);
                 }else{
                     jQuery('#file').focus();
                     //alert('file not uploaded');
@@ -978,11 +1017,11 @@ var social_AjaxURL1=social_AjaxURL+'commentimageupload.php';
 
 	///////////////////////reply Image////////////////////////
 
-	jQuery("#rimageupload").on('change', function() {
-
+	jQuery(".rimageupload").on('change', function() {
+var rid = jQuery(this).attr('cid');
 var social_AjaxURL1=social_AjaxURL+'replyimageupload.php';
         var fd = new FormData();
-        var files = $('#rimageupload')[0].files[0];
+        var files = $('#rimageupload'+rid)[0].files[0];
 
         fd.append('file',files);
 
@@ -995,12 +1034,7 @@ var social_AjaxURL1=social_AjaxURL+'replyimageupload.php';
             success: function(data){
                data=data.replace(/\s+/g,"");
                 if(data != 0){
-                    //alert(response);
-                    //jQuery("#rmvid").hide();
-                    //jQuery(".left-uploaded-img").html('<img src="'+MEDIA_URL + response +'" />');
-
-                   // jQuery("#imgid").val(data.result.attach_id);
-                 jQuery('#rimage').val(data);
+                 jQuery('#rimage'+rid).val(data);
                 }else{
                     jQuery('#file').focus();
                     //alert('file not uploaded');
@@ -1022,7 +1056,16 @@ jQuery(document).on("click", ".posthide", function(e){
 		var dataString ='postid='+p_id ;
 
 			e.preventDefault();
-
+Swal.fire({
+  title: 'Are you sure?',
+  text: "want to hide this post!",
+  type: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, do it!'
+}).then((result) => {
+  if (result.value) {
 					$.ajax({
             	    url: social_AjaxURL1,
             	    async: true,
@@ -1053,8 +1096,16 @@ jQuery(document).on("click", ".posthide", function(e){
             	    }
             	});
 
-
-
+  }else{
+	  Swal.fire({
+  type: 'error',
+  title: 'Oops...',
+  text: 'Something went wrong!',
+  
+})
+	  
+  }
+})
 	});
 
 ///////////post Hide/////////////////
@@ -1099,7 +1150,7 @@ jQuery(document).on("click", ".deletepost", function(e){
                        if(data != 0){
 						  // $('#like').html(data);
 						   //window.location.href= MEDIA_URL+'index.php';
-            			 //window.location.reload(true);
+            			 window.location.reload(true);
             		    }
             		    else {
             		   	$('#p_error').html('Please fill Mandatory Fields !');
@@ -1127,7 +1178,7 @@ jQuery(document).on("click", ".deletepost", function(e){
 
 
 	///////////Load post /////////////////
-jQuery(document).on("click", "#editpost", function(e){
+jQuery(document).on("click", ".editpost", function(e){
 
 
 		var e_id = jQuery(this).attr('editpostid');
@@ -1140,7 +1191,7 @@ jQuery(document).on("click", "#editpost", function(e){
 		var dataString ='postid='+e_id ;
 
 			e.preventDefault();
-
+				$("#editpost1"+e_id).html('<img src="img/LoaderIcon.gif" style="height: 30px;"> loding...');	
 					$.ajax({
             	    url: social_AjaxURL1,
             	    async: true,
@@ -1151,15 +1202,12 @@ jQuery(document).on("click", "#editpost", function(e){
 					 //data: profileuploadtn,
 
             	    success: function (data) {
-            		   //data=data.replace(/\s+/g,"");
-					   //alert(data);
-            		   //var spancontainer=$('span#record'+catids);
-            		   //$('#loadimg').html('<img src="../images/load.gif">');
+
                        if(data != 0){
-						   $('#myModal').modal('show');
+						$('#myModal').modal('show');
 						$('#post_body').html(data);
-						//window.location.href= MEDIA_URL+'index.php';
-            			// window.location.reload(true);
+						$("#editpost1"+e_id).html('');	
+						
             		    }
             		    else {
 							Swal.fire({
@@ -1287,8 +1335,8 @@ jQuery(document).on("click", ".addtocart", function(e){
 		//var id1 = $("#id"+id).val();
 		var task = 'task';//$("#task"+id).val();
 		var tono = $("#tono"+id).val();
-		
-		//var img=jQuery("#profileimg").val();
+
+		/* //var img=jQuery("#profileimg").val();
 		 var radioValuesize = $("input[name='inlineRadioOptions']:checked").val();
 		  //var radioValuecolor = $("input[name='input_array_name']:checked").val();
 		   var radioValuecolor = $("#input_array_name").val();
@@ -1297,11 +1345,33 @@ jQuery(document).on("click", ".addtocart", function(e){
 		}
 		if(radioValuecolor==''){
 			radioValuecolor=1;
+		} */
+
+		var radioValuesize = $("input[name='inlineRadioOptions']:checked").val();
+		 var radioValuesize1 =($('input[name=inlineRadioOptions]:checked', '#myFormby').val());
+		  var radioValuecolor = $("#input_array_name").val();
+		if(radioValuesize==''){
+			$('#errormsg').html('Select product size');
+			return false;
+		}else{
+			$('#errormsg').html('');
+		}
+		if(radioValuesize1=='' || radioValuesize1==undefined){
+			$('#errormsg').html('Select product size');
+			return false;
+		}else{
+			$('#errormsg').html('');
+		}
+		if(radioValuecolor==''){
+			$('#errormsg').html('Select product color');
+			return false;
+		}else{
+			$('#errormsg').html('');
 		}
 
 
 		var social_AjaxURL1=social_AjaxURL+'task.php';
-		
+
 		var dataString ='id=' + id + '&task=' + task + '&tono='+ tono + '&psize='+radioValuesize + '&color='+radioValuecolor;
 
 			//e.preventDefault();
@@ -1329,7 +1399,7 @@ jQuery(document).on("click", ".addtocart", function(e){
 						 setTimeout(function(){
 							window.location.href= BASEURL+'checkout.php';
 						   }, 2000);
- 
+
             		    }
             		    else {
 							Swal.fire({
@@ -1629,14 +1699,27 @@ jQuery(document).on("click", ".addtocartnew", function(e){
 			tono=1;
 		}
 		 var radioValuesize = $("input[name='inlineRadioOptions']:checked").val();
+		 var radioValuesize1 =($('input[name=inlineRadioOptions]:checked', '#myFormby').val());
 		  var radioValuecolor = $("#input_array_name").val();
 		if(radioValuesize==''){
-			radioValuesize=1;
+			$('#errormsg').html('Select product size');
+			return false;
+		}else{
+			$('#errormsg').html('');
+		}
+		if(radioValuesize1=='' || radioValuesize1==undefined){
+			$('#errormsg').html('Select product size');
+			return false;
+		}else{
+			$('#errormsg').html('');
 		}
 		if(radioValuecolor==''){
-			radioValuecolor=1;
+			$('#errormsg').html('Select product color');
+			return false;
+		}else{
+			$('#errormsg').html('');
 		}
-           
+
 		//var img=jQuery("#profileimg").val();
 
 
@@ -2014,12 +2097,12 @@ $(document).on('click', '.emoji', function(){
 		})
 	/* 		jQuery("#emojiid").val('<img src="emoji/'+im+'" alt="" style="width:50px;" />');		jQuery("#files").html('<img src="emoji/'+im+'" alt="" style="width:50px; height:50px;" />');		var emojiid=jQuery("#emojiid").val();		//alert(emojiid);		$('<span id='+idd+'></span>').appendTo('#files').html('<img src="emoji/'+im+'" alt="" style="margin:5px;" />').addClass('success'); */});
 
-$(document).on('click', '.emoji1', function(){	
+$(document).on('click', '.emoji1', function(){
 	var uid = jQuery(this).attr('uid');
 	var mp3 = jQuery(this).attr('mp3');
-	//var c_id = jQuery(this).attr('cid');	
+	//var c_id = jQuery(this).attr('cid');
 	var pid = jQuery(this).attr('pid');
-	//var uid=jQuery("#uid"+c_id).val();		
+	//var uid=jQuery("#uid"+c_id).val();
 	var im = jQuery(this).attr('im');
 	var dataString ='pid='+pid+'&uid='+uid+'&cimage='+im+'&mp3='+mp3;
 
@@ -2032,7 +2115,7 @@ $(document).on('click', '.emoji1', function(){
 			//	$('#chat_history_'+to_user_id).html(data);
 				$('#commentdisplay'+pid).html(data);
 				var auto='<audio src="emoji/'+mp3+'" controls autoplay style="width: 95%; opacity: 0;" ></audio>';
-				$('#autop').html(auto);	
+				$('#autop').html(auto);
 				$(".wishlistcartemoji1").hide();
 			}
 		})
@@ -2058,27 +2141,134 @@ jQuery(document).on("click", ".send_chatemoji", function(e){
 }	);
 
 ///////////
-$(document).on('keyup', '.cp', function(){
+$(document).on('keyup','.cp', function(event){
 	var c_id = $(this).parent().find("input.cp").attr("cid");
-	
-	
-    if (event.keyCode == 13) {		
-	$(".commentid[cid='" + c_id + "']").click();
-	//$('.commentid').click();
-      return false;
+	// var c_id = $(this).attr("cid");
+	console.log(c_id)
+	var postcomment=jQuery("#postcomment"+c_id).val();
+		console.log(postcomment)
+		// if(postcomment==''){
+		// 	return false;
+		// }
+
+    if (event.keyCode == 13) {
+			console.log("13 is pressed");
+			// $("#commentid"+c_id).click();
+      // return false;
+			submitComment(c_id);
+
+
+
     }
   });
+	function submitComment(c_id){
+		$("#postcomment"+c_id).blur();
+    $(".cp").blur();
+		var postcomment=jQuery("#postcomment"+c_id).val();
+		if(postcomment==''){
+			postcomment='';
+		}
+		var pid=jQuery("#pid"+c_id).val();
+		var uid=jQuery("#uid"+c_id).val();
+		var cimage=jQuery("#cimage"+c_id).val();
+		var dataString ='pid='+pid+'&uid='+uid+'&postcomment='+postcomment+'&cimage='+cimage;
+		//var form=jQuery("#commentForm");
+		//var rcom=jQuery("#rpostcomment").val();
 
+		var social_AjaxURL1=social_AjaxURL+'ajax_comment.php';
+
+					$.ajax({
+		        	    url: social_AjaxURL1,
+		        	    async: true,
+		        	    cache: false,
+		        	    //data: {catid: catids},
+					type: 'POST',
+					data: dataString,
+
+		        	    success: function (data) {
+
+		        		   //data=data.replace(/\s+/g,"");
+					  // $('.comment-listing').html(data);
+						//$('#commentdisplay'+c_id).html(data);
+						$('#commentdisplay'+c_id).append(data);
+						jQuery("#postcomment"+c_id).next().html('');
+		                   if(data != 0){
+
+		        		    }
+		        		    else {
+		        		   	$('#p_error').html('Please fill Mandatory Fields !');
+		        			  //  alert("Error While this deleting a record");
+
+		        		    }
+		        	    },
+		        	    error : function(XMLHttpRequest, textStatus, errorThrown) {
+		        		    //alert(textStatus);
+		        	    }
+		        	});
+	}
   $(document).on('keyup', '.rp', function(){
 	  var c_id = $(this).parent().find("input.rp").attr("rid");
 	  //alert(c_id);
     if (event.keyCode == 13) {
+			submitComment1(c_id);
 	//$('.replyid').click();
-	$(".replyid[rid='" + c_id + "']").click();
+	/* $("#replyid"+c_id).click(); */
+	//$(".replyid[rid='" + c_id + "']").click();
       return false;
     }
   });
 
+function submitComment1(c_id){
+		$("#rpostcomment"+c_id).blur();
+		$(".rp").blur();
+		var social_AjaxURL1=social_AjaxURL+'ajax_reply.php';
+		/* var c_id = jQuery(this).attr('rid'); */
+		var c_id=c_id;
+		console.log(c_id);
+		//var postcomment=jQuery("#rpostcomment"+c_id).next().html();
+		var postcomment=jQuery("#rpostcomment"+c_id).val();
+		if(postcomment==''){
+			postcomment='';
+		}
+		console.log(postcomment);
+		var pid=jQuery("#pid"+c_id).val();
+		var cid=jQuery("#cid"+c_id).val();
+		var uid=jQuery("#uid"+c_id).val();
+		var rimage=jQuery("#rimage"+c_id).val();
+		var dataString ='pid='+pid+'&uid='+uid+'&rpostcomment='+postcomment+'&rimage='+rimage+'&cid='+cid;
+
+
+
+					$.ajax({
+            	    url: social_AjaxURL1,
+            	    async: true,
+            	    cache: false,
+            	    //data: {catid: catids},
+					type: 'POST',
+					data: dataString,
+
+            	    success: function (data) {
+					$('#replydisplay1'+c_id).append(data);
+						  jQuery("#rpostcomment"+c_id).next().html('');
+                       if(data != 0){
+						  //$('#replydisplay'+c_id).html(data);
+						  
+
+            		    }
+            		    else {
+            		   	$('#p_error').html('Please fill Mandatory Fields !');
+            			  //  alert("Error While this deleting a record");
+
+            		    }
+            	    },
+            	    error : function(XMLHttpRequest, textStatus, errorThrown) {
+            		   // alert(textStatus);
+            	    }
+            	});
+
+
+
+	}
 
 jQuery(document).on("click", ".tagshow", function(e){
 	//var cid = jQuery(this).attr('cid');
@@ -2091,7 +2281,7 @@ jQuery(document).on("click", ".tagshow", function(e){
 }	);
 
 jQuery(document).on("click", ".livelocation", function(e){
-	
+
 	 $(".locationdiv").toggle();
 
 }	);
@@ -2188,19 +2378,17 @@ jQuery(".selectfeel").on('change', function() {
 
 					$.ajax({
             	    url: social_AjaxURL1,
+					//dataType: 'json',
             	    async: true,
             	    cache: false,
             	    //data: {catid: catids},
 					type: 'POST',
 					 data: dataString,
 					success: function(response){
+						//alert(response);
 
-                if(response != 0){
-                 jQuery('#feelingtxtHint').html(response);
-                }else{
-                    jQuery('#file').focus();
-                    //alert('file not uploaded');
-                }
+					jQuery('#feelingtxtHint').html(response);
+
             },
         });
     });
@@ -2223,17 +2411,18 @@ jQuery(".selectfeel").on('change', function() {
         });
 
 	});
-	
-	
-/* 	jQuery(document).on("click", ".send_chatemoji1", function(e){
+
+
+ 	jQuery(document).on("click", ".send_chatemoji1", function(e){
+		alert('ds');
 	var cid = jQuery(this).attr('cid');
 	$(".wishlistcartemoji1[cid='" + cid + "']").css("display", "block");
 	//$(".wishlistcartemoji1").css("display", "block");
-	$(".wishlistcartemoji1[cid='" + c_id + "']").show();
+	$(".wishlistcartemoji1[cid='" + cid + "']").show();
 	//$(".wishlistcartemoji1").show();
-	
 
-}	); */	
+
+}	);
 
 jQuery(document).on("click", "#close1", function(e){
 	//var cid = jQuery(this).attr('cid');
@@ -2242,33 +2431,33 @@ jQuery(document).on("click", "#close1", function(e){
 	var cid = jQuery(this).attr('cid');
 	$(".wishlistcartemoji1[cid='" + cid + "']").css("display", "none");
 	$(".wishlistcartemoji1[cid='" + cid + "']").hide();
-	
+
 
 });
 
 ///////////Product Feedback/////////////////
-jQuery(document).on("click", ".productfeedback", function(e){  
+jQuery(document).on("click", ".productfeedback", function(e){
 
-		var form=jQuery("#feedback");		
+		var form=jQuery("#feedback");
 		 var title=jQuery('#title').val();
 		 var pid=jQuery('#pid').val();
 		 var review=jQuery('#review').val();
 		 var page1=jQuery('#page1').val();
 		 var page=jQuery('#page').val();
-		 
+
 		 var oldpid=jQuery('#oldpid').val();
-		 
+
 		 if(title==''){
 			 alert("* You have to enter title!");
 			 return false;
-			 
+
 		 }
 		  if(review==''){
 			 alert("* You have to enter review!");
 			 return false;
-			 
+
 		 }
-		 
+
 		 $('input[type="checkbox"]').click(function(){
             if($(this).prop("checked") == true){
 
@@ -2282,25 +2471,25 @@ jQuery(document).on("click", ".productfeedback", function(e){
                 //alert("Checkbox is unchecked.");
             }
         });
-			
+
 		var social_AjaxURL1=social_AjaxURL+'ajax_feedback.php';
-		
+
 		$("#productfeedback").attr("disabled", true);
-			e.preventDefault();		
+			e.preventDefault();
 					$.ajax({
             	    url: social_AjaxURL1,
             	    async: true,
             	    cache: false,
             	    //data: {catid: catids},
 					type: 'POST',
-					 data:  {		
+					 data:  {
 						"formData" : form.serialize()
 							},
 					 //data: profileuploadtn,
-            	    			
-            	    success: function (data) {						
-						
-            		 
+
+            	    success: function (data) {
+
+
                        if(data != 0){
 						   swal.fire({
 						  type: 'success',
@@ -2308,33 +2497,35 @@ jQuery(document).on("click", ".productfeedback", function(e){
 						  text: 'Thank you for rating Us !',
 						  showConfirmButton: false,
 						  timer: 1500
-						  
+
 						});
 						  setTimeout(function(){
 							//window.location.reload(true);
-						   
+
 						if(page=='product'){
-							window.location = "//orangestate.ng/product-details.php?pid="+oldpid;							
+						window.location = "//iflex.ng/product-details.php?pid="+oldpid;
+						}else if(page=='hotel'){
+window.location = "//iflex.ng/hotel-details.php?hid="+oldpid;
 						}else{
-							window.location = "//orangestate.ng/tour-destination-details.php?tourid="+pid;
-							
+							window.location = "//iflex.ng/tour-destination-details.php?tourid="+pid;
+
 						}
 						}, 7000);
-						
-            		    } 
-            		    
+
+            		    }
+
             	    },
             	    error : function(XMLHttpRequest, textStatus, errorThrown) {
             		    alert(textStatus);
             	    }
             	});
-            	
-        
-    	
+
+
+
 	});
-	
-	
-	
+
+
+
 	///////////post like/////////////////
 jQuery(document).on("click", ".comfollow", function(e){
 
@@ -2424,7 +2615,7 @@ jQuery(document).on("click", ".wbtndel", function(e){
 					  setTimeout(function(){
 							window.location.reload(true);
 						   }, 1000);
-                     
+
             	    },
             	    error : function(XMLHttpRequest, textStatus, errorThrown) {
             		    alert(textStatus);
@@ -2448,33 +2639,33 @@ $(".MyList li").click(function(){
     var clicklink = $(this).attr("data-tab");
     $(".product-feed-tab").hide();
     $("#"+clicklink).show();
-    
-});
-	
-///////////Product Feedback/////////////////
-jQuery(document).on("click", ".comfeedback", function(e){ 
 
-		var form=jQuery("#feedback");		
-		
-			
+});
+
+///////////Product Feedback/////////////////
+jQuery(document).on("click", ".comfeedback", function(e){
+
+		var form=jQuery("#feedback");
+
+
 		var social_AjaxURL1=social_AjaxURL+'ajax_com_feedback.php';
-		
-		
+
+
 					$.ajax({
             	    url: social_AjaxURL1,
             	    async: true,
             	    cache: false,
             	    //data: {catid: catids},
 					type: 'POST',
-					 data:  {		
+					 data:  {
 						"formData" : form.serialize()
 							},
 					 //data: profileuploadtn,
-            	    			
-            	    success: function (data) {						
+
+            	    success: function (data) {
 						$("#review-open-box").removeClass("open");
 						$(".wrapper").removeClass("overlay");
-            		 
+
                        if(data != 0){
 						   swal.fire({
 						  type: 'success',
@@ -2482,51 +2673,51 @@ jQuery(document).on("click", ".comfeedback", function(e){
 						  text: 'Thank you for rating Us !',
 						  showConfirmButton: false,
 						  timer: 1500
-						  
+
 						});
 						  setTimeout(function(){
 							window.location.reload(true);
-						 
+
 						}, 5000);
-						
-            		    } 
-            		    
+
+            		    }
+
             	    },
             	    error : function(XMLHttpRequest, textStatus, errorThrown) {
             		    alert(textStatus);
             	    }
             	});
-            	
-        
-    	
+
+
+
 	});
-	
+
 
 
 ///////////Product Feedback/////////////////
-jQuery(document).on("click", ".servicesave", function(e){ 
+jQuery(document).on("click", ".servicesave", function(e){
 
-		var form=jQuery("#servicesaveform");		
-		
-			
+		var form=jQuery("#servicesaveform");
+
+
 		var social_AjaxURL1=social_AjaxURL+'ajax_com_service.php';
-		
-		
+
+
 					$.ajax({
             	    url: social_AjaxURL1,
             	    async: true,
             	    cache: false,
             	    //data: {catid: catids},
 					type: 'POST',
-					 data:  {		
+					 data:  {
 						"formData" : form.serialize()
 							},
 					 //data: profileuploadtn,
-            	    			
-            	    success: function (data) {						
+
+            	    success: function (data) {
 						$("#services-open-box").removeClass("open");
 						$(".wrapper").removeClass("overlay");
-            		 
+
                        if(data != 0){
 						   swal.fire({
 						  type: 'success',
@@ -2534,34 +2725,34 @@ jQuery(document).on("click", ".servicesave", function(e){
 						  text: 'Thank you, Service Added!',
 						  showConfirmButton: false,
 						  timer: 1500
-						  
+
 						});
 						  setTimeout(function(){
 							window.location.reload(true);
-						 
+
 						}, 5000);
-						
-            		    } 
-            		    
+
+            		    }
+
             	    },
             	    error : function(XMLHttpRequest, textStatus, errorThrown) {
             		    alert(textStatus);
             	    }
             	});
-            	
-        
-    	
+
+
+
 	});
-	
+
 	////////////////////////////////////////////////
 jQuery("#file56").on('change', function() {
-  
+
 //$("#profilesubmit").click(function(){
 	var BASEURL=social_AjaxURL+'upload/';
 	var social_AjaxURL1=social_AjaxURL+'service_image.php';
         var fd = new FormData();
         var files = $('#file56')[0].files[0];
-       
+
         fd.append('file',files);
 
         $.ajax({
@@ -2571,14 +2762,14 @@ jQuery("#file56").on('change', function() {
             contentType: false,
             processData: false,
             success: function(response){
-               
+
                 if(response != 0){
                     //alert(response);
                     jQuery("#serviceimage").val(response);
                     jQuery(".serv").html('<img src="'+BASEURL + response +'" />');
-                    
+
                    // jQuery("#serviceimage").val(data.result.attach_id);
-                 //jQuery('#imgid').val(response); 
+                 //jQuery('#imgid').val(response);
                 }else{
                     jQuery('#file56').focus();
                     //alert('file not uploaded');
@@ -2586,5 +2777,255 @@ jQuery("#file56").on('change', function() {
             },
         });
     });
-	
-////////////////////////////////////////////////		
+
+////////////////////////////////////////////////
+
+
+	/////////////unfollow user//////////////////
+	  $(".sendreequest").on('click', function(event){
+
+		var f_id = jQuery(this).attr('fid');
+
+		var social_AjaxURL1=social_AjaxURL+'ajax_frequest.php';
+		var dataString ='followid=' + f_id ;
+
+		Swal.fire({
+  title: 'Are you sure?',
+  text: "want to send friend request!",
+  type: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, send it!'
+}).then((result) => {
+  if (result.value) {
+	  $('#sendreequest'+f_id).html('');
+	  $('#sendreequest'+f_id).html('Request Sent');
+    	$.ajax({
+            	    url: social_AjaxURL1,
+            	    async: true,
+            	    cache: false,
+            	    //data: {catid: catids},
+					type: 'POST',
+					 data: dataString,
+					 //data: profileuploadtn,
+
+            	    success: function (data) {
+
+            		   //data=data.replace(/\s+/g,"");
+					   //alert(data);
+            		   //var spancontainer=$('span#record'+catids);
+
+						//$('#sendreequest'+f_id).hide();
+                       if(data != 0){
+						   Swal.fire({
+						  //position: 'top-end',
+						  type: 'success',
+						  title: 'Successful sent',
+						  showConfirmButton: false,
+						  timer: 1500
+						})
+						  // $('#postshow').html(data);
+						   //window.location.href= MEDIA_URL+'index.php';
+            			 //window.location.reload(true);
+            		    }
+            		    else {
+							Swal.fire({
+							  type: 'error',
+							  title: 'Oops...',
+							  text: 'Something went wrong!',
+							   showConfirmButton: false,
+						  timer: 1500
+
+							})
+            		   	$('#p_error').html('Please fill Mandatory Fields !');
+            			  //  alert("Error While this deleting a record");
+
+            		    }
+            	    },
+            	    error : function(XMLHttpRequest, textStatus, errorThrown) {
+            		    alert(textStatus);
+            	    }
+            	});
+
+  }else{
+	  Swal.fire({
+  type: 'error',
+  title: 'Oops...',
+  text: 'Something went wrong!',
+
+})
+
+  }
+})
+
+
+
+	});
+
+	///////////friend req/////////////////
+ $(".freqfollownew").on('click', function(event){
+
+		var f_id = jQuery(this).attr('fid');
+		var social_AjaxURL1=social_AjaxURL+'ajax_follow.php';
+		var dataString ='followid=' + f_id + '&conf=conf';
+
+    	$.ajax({
+            	    url: social_AjaxURL1,
+            	    async: true,
+            	    cache: false,
+            	    //data: {catid: catids},
+					type: 'POST',
+					 data: dataString,
+					 //data: profileuploadtn,
+
+            	    success: function (data) {
+
+            		   //data=data.replace(/\s+/g,"");
+					   //alert(data);
+            		   //var spancontainer=$('span#record'+catids);
+            		   $('#freqfollownew'+f_id).html('');
+					   $('#freqfollownew'+f_id).html('Accepted');
+                      /*  if(data != 0){
+						   Swal.fire({
+						  type: 'success',
+						  title: '',
+						  text: data
+
+						}); */
+						  // $('#postshow').html(data);
+						   //window.location.href= MEDIA_URL+'index.php';
+            			 //window.location.reload(true);
+
+            	    },
+            	    error : function(XMLHttpRequest, textStatus, errorThrown) {
+            		    alert(textStatus);
+            	    }
+            	});
+
+	});
+
+
+/////////////unfollow user//////////////////
+	  $(".delfreqfollownew").on('click', function(event){
+
+		var f_id = jQuery(this).attr('fid');
+
+		var social_AjaxURL1=social_AjaxURL+'ajax_delfrequest.php';
+		var dataString ='followid=' + f_id ;
+
+		Swal.fire({
+  title: 'Are you sure?',
+  text: "want to continue!",
+  type: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, Reject it!'
+}).then((result) => {
+  if (result.value) {
+    	$.ajax({
+            	    url: social_AjaxURL1,
+            	    async: true,
+            	    cache: false,
+            	    //data: {catid: catids},
+					type: 'POST',
+					 data: dataString,
+					 //data: profileuploadtn,
+
+            	    success: function (data) {
+
+            		   //data=data.replace(/\s+/g,"");
+					   //alert(data);
+            		   //var spancontainer=$('span#record'+catids);
+            		   $('#delfreqfollownew'+f_id).html('');
+						$('#delfreqfollownew'+f_id).html('Rejected');
+                       if(data != 0){
+						   Swal.fire({
+						  //position: 'top-end',
+						  type: 'success',
+						  title: 'Successful Rejected!',
+						  showConfirmButton: false,
+						  timer: 1500
+						})
+						  // $('#postshow').html(data);
+						   //window.location.href= MEDIA_URL+'index.php';
+            			 window.location.reload(true);
+            		    }
+            		    else {
+							Swal.fire({
+							  type: 'error',
+							  title: 'Oops...',
+							  text: 'Something went wrong!',
+							   showConfirmButton: false,
+						  timer: 1500
+
+							})
+            		   	$('#p_error').html('Please fill Mandatory Fields !');
+            			  //  alert("Error While this deleting a record");
+
+            		    }
+            	    },
+            	    error : function(XMLHttpRequest, textStatus, errorThrown) {
+            		    alert(textStatus);
+            	    }
+            	});
+
+  }else{
+	  Swal.fire({
+  type: 'error',
+  title: 'Oops...',
+  text: 'Something went wrong!',
+
+})
+
+  }
+})
+
+
+
+	});
+
+
+jQuery(document).on("change","#country",function(){
+
+var str=$(this).val();
+	var social_AjaxURL='//iflex.ng/ajstate1.php';
+        var dataString ="cid=" + str ;
+        $.ajax({
+            url: social_AjaxURL,
+            async: true,
+            cache: false,
+			type: 'POST',
+			data: dataString,
+            success: function(response){
+
+                if(response != 0){
+                   $('#showstate').html(response);
+                }else{
+
+                }
+            },
+        });
+});
+
+jQuery(document).on("change","#state",function(){
+var str=$(this).val();
+	var social_AjaxURL='//iflex.ng/ajcity.php';
+        var dataString ="sid=" + str ;
+        $.ajax({
+            url: social_AjaxURL,
+            async: true,
+            cache: false,
+			type: 'POST',
+			data: dataString,
+            success: function(response){
+				
+                if(response != 0){
+                   $('#showcity').html(response);
+                }else{
+
+                }
+            },
+        });
+});

@@ -1,0 +1,4 @@
+<?php
+	$typeslider = Mage::helper('nwdrevslider')->getSettingCfgslider();
+	echo $this->getLayout()->createBlock('nwdrevslider/revslider')->setAlias($typeslider)->toHtml();
+?>

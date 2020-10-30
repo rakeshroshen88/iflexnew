@@ -21,9 +21,9 @@ $st=mktime(0,0,0,$date[1],$date[2],$date[0]);
 							<div class="company_profile_info">
 								<div class="company-up-info">
 								 <?php if($row['imgid']=='' and empty($row['imgid'])){ ?>
-                                            <img src="images/resources/cmp-icon.png" id="rmvid" alt="" style="width: 150px; height:150px;">
+                                            <img src="img/noimg.jpg" id="rmvid" alt="" >
                                             <?php }else{?>
-                                             <img src="upload/<?=$row['imgid']?>" id="rmvid" alt="" style="width: 130px;     height: 130px;">
+                                             <img src="upload/<?=$row['imgid']?>" id="rmvid" alt="" >
                                            <?php }?>
 									
 									<h3><?=$row['page_name']?></h3>

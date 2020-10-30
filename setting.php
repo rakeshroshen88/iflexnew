@@ -5,7 +5,7 @@
 				<div class="account-tabs-setting">
 					<div class="row">
 						<div class="col-lg-3">
-							<div class="acc-leftbar">
+							<div class="acc-leftbar full-width">
 								<div class="nav nav-tabs" id="nav-tab" role="tablist">
 								    <a class="nav-item nav-link active" id="nav-acc-tab" data-toggle="tab" href="#nav-acc" role="tab" aria-controls="nav-acc" aria-selected="true"><i class="la la-cogs"></i>Account Setting</a>
 								    <a class="nav-item nav-link" id="nav-status-tab" data-toggle="tab" href="#nav-status" role="tab" aria-controls="nav-status" aria-selected="false"><i class="fa fa-line-chart"></i>Status</a>
@@ -19,8 +19,8 @@
 								  </div>
 							</div><!--acc-leftbar end-->
 						</div>
-						<div class="col-lg-9">
-							<div class="tab-content" id="nav-tabContent">
+						<div class="col-lg-9 ">
+							<div class="tab-content " id="nav-tabContent">
 								<div class="tab-pane fade show active" id="nav-acc" role="tabpanel" aria-labelledby="nav-acc-tab">
 									<div class="acc-setting">
 										<h3>Account Setting</h3>
@@ -338,16 +338,17 @@
 							  		</div><!--acc-setting end-->
 							  	</div>
 							  	<div class="tab-pane fade" id="security-login" role="tabpanel" aria-labelledby="security">
-							  		<div class="privacy security">
+							  		<div class="privacy security full-width">
 			                     <div class="row">
 			                     	<div class="col-12">
-			                     		<h3>Security and Login</h3>
+										
+			                     		<h3 class="scrty">Security and Login</h3>
 			                     		<hr>
 			                     		<h3>Two - Step Verification</h3>
 			                     		<p>Help protect your account by enabling extra layers of security.</p>
 			                     		<hr>
-			                     		<h3>Security question</h3><i class="la la-edit"></i>
-			                     		<div class="custom-control custom-checkbox">
+			                     		<h3>Security question</h3><i class="la la-edit  pr-2 pt-2"></i>
+			                     		<div class="custom-control custom-checkbox  pl-5 pt-2">
 											<input type="checkbox" class="custom-control-input" id="customCheck1">
 											<label class="custom-control-label" for="customCheck1">Conform your identity with a question only you know the answer to</label>
 										</div>
@@ -358,9 +359,9 @@
 			                     		<h3>Current Question</h3>
 			                     		<p>Q: Your favorite actor?</p>
 			                     		<br>
-			                     		<h3>New Question</h3>
+			                     		<h3 class="pt-2">New Question</h3>
 			                     		<form>
-                                        <div class="form-group">
+                                        <div class="form-group pl-3 pt-2">
                                           <select class="form-control" id="exampleFormControlSelect1" style="-webkit-appearance: menulist-button;">
                                             <option>Please Select New Question</option>
                                             <option>Select Second Queston</option>
@@ -370,7 +371,7 @@
 			                     		<h3>Answer</h3>
 			                     		<form>
  
-                                       <div class="form-group">
+                                       <div class="form-group pl-3 pt-2">
                                          <input type="text" class="form-control" id="exampleInputPassword1" placeholder=" Answer here">
                                        </div>
                                      </form>                                    
@@ -398,7 +399,7 @@
 								</div> 
 							  	</div>
 							  	<div class="tab-pane fade" id="blockking" role="tabpanel" aria-labelledby="nav-blockking-tab">
-							  		<div class="helpforum">
+							  		<div class="helpforum full-width">
 			                     <div class="row">
 			                     	<div class="col-12 security">
 			                     		<h3>Blocking</h3>
@@ -547,7 +548,7 @@
                                                             </form>
                                                        	</div>
                                                        	<div class="col-md-3 col-sm-12">
-                                                       		<p style="float: right;">Everyone</p>
+                                                       		<p style="float: right;padding: 0px 12px;">Everyone</p>
                                                        	</div>
                                                        </div>
                                                    </div>
@@ -579,7 +580,7 @@
                                                             </form>
                                                        	</div>
                                                        	<div class="col-md-3 col-sm-12">
-                                                       		<p style="float: right;">Everyone</p>
+                                                       		<p style="float: right;padding: 0px 12px;">Everyone</p>
                                                        	</div>
                                                        </div>
                                                    </div>
@@ -611,7 +612,7 @@
                                                             </form>
                                                        	</div>
                                                        	<div class="col-md-3 col-sm-12">
-                                                       		<p style="float: right;">Everyone</p>
+                                                       		<p style="float: right;padding: 0px 12px;">Everyone</p>
                                                        	</div>
                                                        </div>
                                                    </div>
@@ -663,7 +664,7 @@
                                                             </form>
                                                        	</div>
                                                        	<div class="col-md-3 col-sm-12">
-                                                       		<p style="float: right;">Yes</p>
+                                                       		<p style="float: right;padding: 0px 12px;">Yes</p>
                                                        	</div>
                                                        </div>
                                                    </div>

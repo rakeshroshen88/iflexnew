@@ -1,0 +1,809 @@
+<?php
+	$storeId = Mage::app()->getStore()->getStoreId();
+	$setting 	= Mage::helper('themesetting')->getSettingCfgSection($storeId);
+	$typeslider = trim(Mage::helper('nwdrevslider')->getSettingCfgslider());
+	$homeS 		= $setting['homepage'];  
+	$section1 	= $homeS['section_one'];
+	if($section1 == 'custom_static_block_id'){
+		$section1 = $homeS['section_one_custom_block'];
+	}
+	$section2 	= $homeS['section_two'];
+	if($section2 == 'custom_static_block_id'){
+		$section2 = $homeS['section_two_custom_block'];
+	}
+	$section3 	= $homeS['section_three'];
+	if($section3 == 'custom_static_block_id'){
+		$section3 = $homeS['section_three_custom_block'];
+	}
+	$section4 	= $homeS['section_four'];
+	if($section4 == 'custom_static_block_id'){
+		$section4 = $homeS['section_four_custom_block'];
+	}
+	$section5 	= $homeS['section_five'];
+	if($section5 == 'custom_static_block_id'){
+		$section5 = $homeS['section_five_custom_block'];
+	}
+	$section6 	= $homeS['section_six'];
+	if($section6 == 'custom_static_block_id'){
+		$section6 = $homeS['section_six_custom_block'];
+	}
+	$section7 	= $homeS['section_seven'];
+	if($section7 == 'custom_static_block_id'){
+		$section7 = $homeS['section_seven_custom_block'];
+	}
+	$section8 	= $homeS['section_eight'];
+	if($section8 == 'custom_static_block_id'){
+		$section8 = $homeS['section_eight_custom_block'];
+	}
+	$section9 	= $homeS['section_nine'];
+	if($section9 == 'custom_static_block_id'){
+		$section9 = $homeS['section_nine_custom_block'];
+	}
+	$section10 	= $homeS['section_ten'];
+	if($section10 == 'custom_static_block_id'){
+		$section10 = $homeS['section_ten_custom_block'];
+	}
+	$section11 	= $homeS['section_eleven'];
+	if($section11 == 'custom_static_block_id'){
+		$section11 = $homeS['section_eleven_custom_block'];
+	}
+	$section12 	= $homeS['section_twelve'];
+	if($section12 == 'custom_static_block_id'){
+		$section12 = $homeS['section_twelve_custom_block'];
+	}
+	$section13	= $homeS['section_thirteen'];
+	if($section13 == 'custom_static_block_id'){
+		$section13 = $homeS['section_thirteen_custom_block'];
+	}
+	$section14 	= $homeS['section_fourteen'];
+	if($section14 == 'custom_static_block_id'){
+		$section14 = $homeS['section_fourteen_custom_block'];
+	}
+	$section15 	= $homeS['section_fifteen'];
+	if($section15 == 'custom_static_block_id'){
+		$section15 = $homeS['section_fifteen_custom_block'];
+	} 
+	$categories 				= Mage::helper('categoriesbanner')->getCfg($storeId);
+	$categories_layout 			= $categories['config']['category_layouts'];
+	$all_cate_layout 			= $homeS['all_categories_layout'];
+	$policy_layout 				= $homeS['policy_layout'];
+	$promotion_product_layout 	= $homeS['promotion_product_layout'];
+	$new_product_layout 		= $homeS['new_product_layout'];
+	$recent_post_layout 		= $homeS['recent_post_layout'];
+	$step_for_sale_layout 		= $homeS['step_for_sale_layout'];
+	 $capabilities_layout 		= $homeS['capabilities_layout']; 
+	$service_layout 			= $homeS['service_layout'];
+	$recent_work_layout 		= $homeS['recent_work_layout'];
+	$testimonial_layout 		= $homeS['testimonial_layout'];
+	$tab_products_layout		= $homeS['tab_products_layout'];
+	$popular_products_layout	= $homeS['popular_products_layout'];
+
+	$websitecode = '_'.Mage::app()->getWebsite()->getCode();
+
+	$show_cate_left_slide		= $homeS['show_cate_left_slider'];
+	$all_cate_block				= 'block_home_block_all_category_'.$all_cate_layout;
+?>
+<!--setting slider show - Default: 3D printing-->
+<?php if(isset($show_cate_left_slide) && $show_cate_left_slide == 1): ?>
+	<section class="all-cate-slider">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-9 col-md-8 col-xs-12 slider-col" style="float: right;">
+					<?php echo $this->getLayout()->createBlock('nwdrevslider/revslider')->setAlias($typeslider)->toHtml(); ?>
+				</div>
+				<div class="col-lg-3 col-md-4 col-xs-12 all-cate-col">
+					<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId($all_cate_block)->toHtml(); ?>
+				</div>
+			</div>
+		</div>
+	</section> 
+	 
+<?php endif; ?> 
+<?php if($section1 != ''):
+	$section_layout	= '';
+	switch ($section1) {
+		case 'block_home_module_categories_':
+			$section_layout	= $section1.$categories_layout;
+			break;
+		case 'block_home_block_policy_':
+			$section_layout	= $section1.$policy_layout;
+			break;
+		case 'block_home_module_promotion_product_':
+			$section_layout	= $section1.$promotion_product_layout;
+			break;
+		case 'block_home_module_new_product_':
+			$section_layout	= $section1.$new_product_layout;
+			break;
+		case 'block_home_module_recent_post_':
+			$section_layout	= $section1.$recent_post_layout;
+			break;
+		case 'block_home_block_step_for_sale_':
+			$section_layout	= $section1.$step_for_sale_layout;
+			break;
+		case 'block_home_block_capabilities_':
+			$section_layout	= $section1.$capabilities_layout;
+			break;
+		case 'block_home_block_services_':
+			$section_layout	= $section1.$service_layout;
+			break;
+		case 'block_home_block_recent_work_':
+			$section_layout	= $section1.$recent_work_layout;
+			break;
+		case 'block_home_module_testimonial_':
+			$section_layout	= $section1.$testimonial_layout;
+			break;
+		case 'block_home_module_tab_product_':
+			$section_layout	= $section1.$tab_products_layout;
+			break;
+		case 'block_home_module_popular_product_':
+			$section_layout	= $section1.$popular_products_layout;
+			break;
+		default:
+			$section_layout	= $section1;
+			break;
+	}
+	if ($section_layout != '') {
+		echo $this->getLayout()->createBlock('cms/block')->setBlockId($section_layout)->toHtml();
+	}
+endif; ?>
+<?php if($section2 != ''): 
+    $section_layout	= '';
+	switch ($section2) {
+		case 'block_home_module_categories_':
+			$section_layout	= $section2.$categories_layout;
+			break;
+		case 'block_home_block_policy_':
+			$section_layout	= $section2.$policy_layout;
+			break;
+		case 'block_home_module_promotion_product_':
+			$section_layout	= $section2.$promotion_product_layout;
+			break;
+		case 'block_home_module_new_product_':
+			$section_layout	= $section2.$new_product_layout;
+			break;
+		case 'block_home_module_recent_post_':
+			$section_layout	= $section2.$recent_post_layout;
+			break;
+		case 'block_home_block_step_for_sale_':
+			$section_layout	= $section2.$step_for_sale_layout;
+			break;
+		case 'block_home_block_capabilities_':
+			$section_layout	= $section2.$capabilities_layout;
+			break;
+		case 'block_home_block_services_':
+			$section_layout	= $section2.$service_layout;
+			break;
+		case 'block_home_block_recent_work_':
+			$section_layout	= $section2.$recent_work_layout;
+			break;
+		case 'block_home_module_testimonial_':
+			$section_layout	= $section2.$testimonial_layout;
+			break;
+		case 'block_home_module_tab_product_':
+			$section_layout	= $section2.$tab_products_layout;
+			break;
+		case 'block_home_module_popular_product_':
+			$section_layout	= $section2.$popular_products_layout;
+			break;
+		default:
+			$section_layout	= $section2;
+			break;
+	}
+	if ($section_layout != '') {
+		echo $this->getLayout()->createBlock('cms/block')->setBlockId($section_layout)->toHtml();
+	}
+endif; ?> 
+<?php if($section3 != ''): 
+    $section_layout	= '';
+	switch ($section3) {
+		case 'block_home_module_categories_':
+			$section_layout	= $section3.$categories_layout;
+			break;
+		case 'block_home_block_policy_':
+			$section_layout	= $section3.$policy_layout;
+			break;
+		case 'block_home_module_promotion_product_':
+			$section_layout	= $section3.$promotion_product_layout;
+			break;
+		case 'block_home_module_new_product_':
+			$section_layout	= $section3.$new_product_layout;
+			break;
+		case 'block_home_module_recent_post_':
+			$section_layout	= $section3.$recent_post_layout;
+			break;
+		case 'block_home_block_step_for_sale_':
+			$section_layout	= $section3.$step_for_sale_layout;
+			break;
+		case 'block_home_block_capabilities_':
+			$section_layout	= $section3.$capabilities_layout;
+			break;
+		case 'block_home_block_services_':
+			$section_layout	= $section3.$service_layout;
+			break;
+		case 'block_home_block_recent_work_':
+			$section_layout	= $section3.$recent_work_layout;
+			break;
+		case 'block_home_module_testimonial_':
+			$section_layout	= $section3.$testimonial_layout;
+			break;
+		case 'block_home_module_tab_product_':
+			$section_layout	= $section3.$tab_products_layout;
+			break;
+		case 'block_home_module_popular_product_':
+			$section_layout	= $section3.$popular_products_layout;
+			break;
+		default:
+			$section_layout	= $section3;
+			break;
+	}
+	if ($section_layout != '') {
+		echo $this->getLayout()->createBlock('cms/block')->setBlockId($section_layout)->toHtml();
+	}
+endif; ?> 
+<?php if($section4 != ''): 
+    $section_layout	= '';
+	switch ($section4) {
+		case 'block_home_module_categories_':
+			$section_layout	= $section4.$categories_layout;
+			break;
+		case 'block_home_block_policy_':
+			$section_layout	= $section4.$policy_layout;
+			break;
+		case 'block_home_module_promotion_product_':
+			$section_layout	= $section4.$promotion_product_layout;
+			break;
+		case 'block_home_module_new_product_':
+			$section_layout	= $section4.$new_product_layout;
+			break;
+		case 'block_home_module_recent_post_':
+			$section_layout	= $section4.$recent_post_layout;
+			break;
+		case 'block_home_block_step_for_sale_':
+			$section_layout	= $section4.$step_for_sale_layout;
+			break;
+		case 'block_home_block_capabilities_':
+			$section_layout	= $section4.$capabilities_layout;
+			break;
+		 case 'block_home_block_services_':
+			$section_layout	= $section4.$service_layout;
+			break; 
+		case 'block_home_block_recent_work_':
+			$section_layout	= $section4.$recent_work_layout;
+			break;
+		case 'block_home_module_testimonial_':
+			$section_layout	= $section4.$testimonial_layout;
+			break;
+		case 'block_home_module_tab_product_':
+			$section_layout	= $section4.$tab_products_layout;
+			break;
+		case 'block_home_module_popular_product_':
+			$section_layout	= $section4.$popular_products_layout;
+			break;
+		default:
+			$section_layout	= $section4;
+			break;
+	}
+	if ($section_layout != '') {
+		echo $this->getLayout()->createBlock('cms/block')->setBlockId($section_layout)->toHtml();
+	}
+endif; ?> 
+<?php if($section5 != ''): 
+    $section_layout	= '';
+	switch ($section5) {
+		case 'block_home_module_categories_':
+			$section_layout	= $section5.$categories_layout;
+			break;
+		case 'block_home_block_policy_':
+			$section_layout	= $section5.$policy_layout;
+			break;
+		case 'block_home_module_promotion_product_':
+			$section_layout	= $section5.$promotion_product_layout;
+			break;
+		case 'block_home_module_new_product_':
+			$section_layout	= $section5.$new_product_layout;
+			break;
+		case 'block_home_module_recent_post_':
+			$section_layout	= $section5.$recent_post_layout;
+			break;
+		case 'block_home_block_step_for_sale_':
+			$section_layout	= $section5.$step_for_sale_layout;
+			break;
+		case 'block_home_block_capabilities_':
+			$section_layout	= $section5.$capabilities_layout;
+			break;
+		case 'block_home_block_services_':
+			$section_layout	= $section5.$service_layout;
+			break;
+		case 'block_home_block_recent_work_':
+			$section_layout	= $section5.$recent_work_layout;
+			break;
+		case 'block_home_module_testimonial_':
+			$section_layout	= $section5.$testimonial_layout;
+			break;
+		case 'block_home_module_tab_product_':
+			$section_layout	= $section5.$tab_products_layout;
+			break;
+		case 'block_home_module_popular_product_':
+			$section_layout	= $section5.$popular_products_layout;
+			break;
+		default:
+			$section_layout	= $section5;
+			break;
+	}
+	if ($section_layout != '') {
+		echo $this->getLayout()->createBlock('cms/block')->setBlockId($section_layout)->toHtml();
+	}
+endif; ?>
+<?php if($section6 != ''): 
+    $section_layout	= '';
+	switch ($section6) {
+		case 'block_home_module_categories_':
+			$section_layout	= $section6.$categories_layout;
+			break;
+		case 'block_home_block_policy_':
+			$section_layout	= $section6.$policy_layout;
+			break;
+		case 'block_home_module_promotion_product_':
+			$section_layout	= $section6.$promotion_product_layout;
+			break;
+		case 'block_home_module_new_product_':
+			$section_layout	= $section6.$new_product_layout;
+			break;
+		case 'block_home_module_recent_post_':
+			$section_layout	= $section6.$recent_post_layout;
+			break;
+		case 'block_home_block_step_for_sale_':
+			$section_layout	= $section6.$step_for_sale_layout;
+			break;
+		case 'block_home_block_capabilities_':
+			$section_layout	= $section6.$capabilities_layout;
+			break;
+		case 'block_home_block_services_':
+			$section_layout	= $section6.$service_layout;
+			break;
+		case 'block_home_block_recent_work_':
+			$section_layout	= $section6.$recent_work_layout;
+			break;
+		case 'block_home_module_testimonial_':
+			$section_layout	= $section6.$testimonial_layout;
+			break;
+		case 'block_home_module_tab_product_':
+			$section_layout	= $section6.$tab_products_layout;
+			break;
+		case 'block_home_module_popular_product_':
+			$section_layout	= $section6.$popular_products_layout;
+			break;
+		default:
+			$section_layout	= $section6;
+			break;
+	}
+	if ($section_layout != '') {
+		echo $this->getLayout()->createBlock('cms/block')->setBlockId($section_layout)->toHtml();
+	}
+endif; ?> 
+<?php if($section7 != ''): 
+    $section_layout	= '';
+	switch ($section7) {
+		case 'block_home_module_categories_':
+			$section_layout	= $section7.$categories_layout;
+			break;
+		case 'block_home_block_policy_':
+			$section_layout	= $section7.$policy_layout;
+			break;
+		case 'block_home_module_promotion_product_':
+			$section_layout	= $section7.$promotion_product_layout;
+			break;
+		case 'block_home_module_new_product_':
+			$section_layout	= $section7.$new_product_layout;
+			break;
+		case 'block_home_module_recent_post_':
+			$section_layout	= $section7.$recent_post_layout;
+			break;
+		case 'block_home_block_step_for_sale_':
+			$section_layout	= $section7.$step_for_sale_layout;
+			break;
+		case 'block_home_block_capabilities_':
+			$section_layout	= $section7.$capabilities_layout;
+			break;
+		case 'block_home_block_services_':
+			$section_layout	= $section7.$service_layout;
+			break;
+		case 'block_home_block_recent_work_':
+			$section_layout	= $section7.$recent_work_layout;
+			break;
+		case 'block_home_module_testimonial_':
+			$section_layout	= $section7.$testimonial_layout;
+			break;
+		case 'block_home_module_tab_product_':
+			$section_layout	= $section7.$tab_products_layout;
+			break;
+		case 'block_home_module_popular_product_':
+			$section_layout	= $section7.$popular_products_layout;
+			break;
+		default:
+			$section_layout	= $section7;
+			break;
+	}
+	if ($section_layout != '') {
+		echo $this->getLayout()->createBlock('cms/block')->setBlockId($section_layout)->toHtml();
+	}
+endif; ?> 
+<?php if($section8 != ''): 
+    $section_layout	= '';
+	switch ($section8) {
+		case 'block_home_module_categories_':
+			$section_layout	= $section8.$categories_layout;
+			break;
+		case 'block_home_block_policy_':
+			$section_layout	= $section8.$policy_layout;
+			break;
+		case 'block_home_module_promotion_product_':
+			$section_layout	= $section8.$promotion_product_layout;
+			break;
+		case 'block_home_module_new_product_':
+			$section_layout	= $section8.$new_product_layout;
+			break;
+		case 'block_home_module_recent_post_':
+			$section_layout	= $section8.$recent_post_layout;
+			break;
+		case 'block_home_block_step_for_sale_':
+			$section_layout	= $section8.$step_for_sale_layout;
+			break;
+		case 'block_home_block_capabilities_':
+			$section_layout	= $section8.$capabilities_layout;
+			break;
+		case 'block_home_block_services_':
+			$section_layout	= $section8.$service_layout;
+			break;
+		case 'block_home_block_recent_work_':
+			$section_layout	= $section8.$recent_work_layout;
+			break;
+		case 'block_home_module_testimonial_':
+			$section_layout	= $section8.$testimonial_layout;
+			break;
+		case 'block_home_module_tab_product_':
+			$section_layout	= $section8.$tab_products_layout;
+			break;
+		case 'block_home_module_popular_product_':
+			$section_layout	= $section8.$popular_products_layout;
+			break;
+		default:
+			$section_layout	= $section8;
+			break;
+	}
+	if ($section_layout != '') {
+		echo $this->getLayout()->createBlock('cms/block')->setBlockId($section_layout)->toHtml();
+	}
+endif; ?> 
+<?php if($section9 != ''): 
+    $section_layout	= '';
+	switch ($section9) {
+		case 'block_home_module_categories_':
+			$section_layout	= $section9.$categories_layout;
+			break;
+		case 'block_home_block_policy_':
+			$section_layout	= $section9.$policy_layout;
+			break;
+		case 'block_home_module_promotion_product_':
+			$section_layout	= $section9.$promotion_product_layout;
+			break;
+		case 'block_home_module_new_product_':
+			$section_layout	= $section9.$new_product_layout;
+			break;
+		case 'block_home_module_recent_post_':
+			$section_layout	= $section9.$recent_post_layout;
+			break;
+		case 'block_home_block_step_for_sale_':
+			$section_layout	= $section9.$step_for_sale_layout;
+			break;
+		case 'block_home_block_capabilities_':
+			$section_layout	= $section9.$capabilities_layout;
+			break;
+		case 'block_home_block_services_':
+			$section_layout	= $section9.$service_layout;
+			break;
+		case 'block_home_block_recent_work_':
+			$section_layout	= $section9.$recent_work_layout;
+			break;
+		case 'block_home_module_testimonial_':
+			$section_layout	= $section9.$testimonial_layout;
+			break;
+		case 'block_home_module_tab_product_':
+			$section_layout	= $section9.$tab_products_layout;
+			break;
+		case 'block_home_module_popular_product_':
+			$section_layout	= $section9.$popular_products_layout;
+			break;
+		default:
+			$section_layout	= $section9;
+			break;
+	}
+	if ($section_layout != '') {
+		echo $this->getLayout()->createBlock('cms/block')->setBlockId($section_layout)->toHtml();
+	}
+endif; ?> 
+<?php if($section10 != ''): 
+    $section_layout	= '';
+	switch ($section10) {
+		case 'block_home_module_categories_':
+			$section_layout	= $section10.$categories_layout;
+			break;
+		case 'block_home_block_policy_':
+			$section_layout	= $section10.$policy_layout;
+			break;
+		case 'block_home_module_promotion_product_':
+			$section_layout	= $section10.$promotion_product_layout;
+			break;
+		case 'block_home_module_new_product_':
+			$section_layout	= $section10.$new_product_layout;
+			break;
+		case 'block_home_module_recent_post_':
+			$section_layout	= $section10.$recent_post_layout;
+			break;
+		case 'block_home_block_step_for_sale_':
+			$section_layout	= $section10.$step_for_sale_layout;
+			break;
+		case 'block_home_block_capabilities_':
+			$section_layout	= $section10.$capabilities_layout;
+			break;
+		case 'block_home_block_services_':
+			$section_layout	= $section10.$service_layout;
+			break;
+		case 'block_home_block_recent_work_':
+			$section_layout	= $section10.$recent_work_layout;
+			break;
+		case 'block_home_module_testimonial_':
+			$section_layout	= $section10.$testimonial_layout;
+			break;
+		case 'block_home_module_tab_product_':
+			$section_layout	= $section10.$tab_products_layout;
+			break;
+		case 'block_home_module_popular_product_':
+			$section_layout	= $section10.$popular_products_layout;
+			break;
+		default:
+			$section_layout	= $section10;
+			break;
+	}
+	if ($section_layout != '') {
+		echo $this->getLayout()->createBlock('cms/block')->setBlockId($section_layout)->toHtml();
+	}
+endif; ?> 
+<?php if($section11 != ''): 
+    $section_layout	= '';
+	switch ($section11) {
+		case 'block_home_module_categories_':
+			$section_layout	= $section11.$categories_layout;
+			break;
+		case 'block_home_block_policy_':
+			$section_layout	= $section11.$policy_layout;
+			break;
+		case 'block_home_module_promotion_product_':
+			$section_layout	= $section11.$promotion_product_layout;
+			break;
+		case 'block_home_module_new_product_':
+			$section_layout	= $section11.$new_product_layout;
+			break;
+		case 'block_home_module_recent_post_':
+			$section_layout	= $section11.$recent_post_layout;
+			break;
+		case 'block_home_block_step_for_sale_':
+			$section_layout	= $section11.$step_for_sale_layout;
+			break;
+		case 'block_home_block_capabilities_':
+			$section_layout	= $section11.$capabilities_layout;
+			break;
+		case 'block_home_block_services_':
+			$section_layout	= $section11.$service_layout;
+			break;
+		case 'block_home_block_recent_work_':
+			$section_layout	= $section11.$recent_work_layout;
+			break;
+		case 'block_home_module_testimonial_':
+			$section_layout	= $section11.$testimonial_layout;
+			break;
+		case 'block_home_module_tab_product_':
+			$section_layout	= $section11.$tab_products_layout;
+			break;
+		case 'block_home_module_popular_product_':
+			$section_layout	= $section11.$popular_products_layout;
+			break;
+		default:
+			$section_layout	= $section11;
+			break;
+	}
+	if ($section_layout != '') {
+		echo $this->getLayout()->createBlock('cms/block')->setBlockId($section_layout)->toHtml();
+	}
+endif; ?> 
+<?php if($section12 != ''): 
+    $section_layout	= '';
+	switch ($section12) {
+		case 'block_home_module_categories_':
+			$section_layout	= $section12.$categories_layout;
+			break;
+		case 'block_home_block_policy_':
+			$section_layout	= $section12.$policy_layout;
+			break;
+		case 'block_home_module_promotion_product_':
+			$section_layout	= $section12.$promotion_product_layout;
+			break;
+		case 'block_home_module_new_product_':
+			$section_layout	= $section12.$new_product_layout;
+			break;
+		case 'block_home_module_recent_post_':
+			$section_layout	= $section12.$recent_post_layout;
+			break;
+		case 'block_home_block_step_for_sale_':
+			$section_layout	= $section12.$step_for_sale_layout;
+			break;
+		case 'block_home_block_capabilities_':
+			$section_layout	= $section12.$capabilities_layout;
+			break;
+		case 'block_home_block_services_':
+			$section_layout	= $section12.$service_layout;
+			break;
+		case 'block_home_block_recent_work_':
+			$section_layout	= $section12.$recent_work_layout;
+			break;
+		case 'block_home_module_tab_product_':
+			$section_layout	= $section12.$tab_products_layout;
+			break;
+		case 'block_home_module_testimonial_':
+			$section_layout	= $section12.$testimonial_layout;
+			break;
+		case 'block_home_module_tab_product_':
+			$section_layout	= $section12.$tab_products_layout;
+			break;
+		case 'block_home_module_popular_product_':
+			$section_layout	= $section12.$popular_products_layout;
+			break;
+		default:
+			$section_layout	= $section12;
+			break;
+	}
+	if ($section_layout != '') {
+		echo $this->getLayout()->createBlock('cms/block')->setBlockId($section_layout)->toHtml();
+	}
+endif; ?> 
+<?php if($section13 != ''): 
+    $section_layout	= '';
+	switch ($section13) {
+		case 'block_home_module_categories_':
+			$section_layout	= $section13.$categories_layout;
+			break;
+		case 'block_home_block_policy_':
+			$section_layout	= $section13.$policy_layout;
+			break;
+		case 'block_home_module_promotion_product_':
+			$section_layout	= $section13.$promotion_product_layout;
+			break;
+		case 'block_home_module_new_product_':
+			$section_layout	= $section13.$new_product_layout;
+			break;
+		case 'block_home_module_recent_post_':
+			$section_layout	= $section13.$recent_post_layout;
+			break;
+		case 'block_home_block_step_for_sale_':
+			$section_layout	= $section13.$step_for_sale_layout;
+			break;
+		case 'block_home_block_capabilities_':
+			$section_layout	= $section13.$capabilities_layout;
+			break;
+		case 'block_home_block_services_':
+			$section_layout	= $section13.$service_layout;
+			break;
+		case 'block_home_block_recent_work_':
+			$section_layout	= $section13.$recent_work_layout;
+			break;
+		case 'block_home_module_testimonial_':
+			$section_layout	= $section13.$testimonial_layout;
+			break;
+		case 'block_home_module_tab_product_':
+			$section_layout	= $section13.$tab_products_layout;
+			break;
+		case 'block_home_module_popular_product_':
+			$section_layout	= $section13.$popular_products_layout;
+			break;
+		default:
+			$section_layout	= $section13;
+			break;
+	}
+	if ($section_layout != '') {
+		echo $this->getLayout()->createBlock('cms/block')->setBlockId($section_layout)->toHtml();
+	}
+endif; ?> 
+<?php if($section14 != ''): 
+    $section_layout	= '';
+	switch ($section14) {
+		case 'block_home_module_categories_':
+			$section_layout	= $section14.$categories_layout;
+			break;
+		case 'block_home_block_policy_':
+			$section_layout	= $section14.$policy_layout;
+			break;
+		case 'block_home_module_promotion_product_':
+			$section_layout	= $section14.$promotion_product_layout;
+			break;
+		case 'block_home_module_new_product_':
+			$section_layout	= $section14.$new_product_layout;
+			break;
+		case 'block_home_module_recent_post_':
+			$section_layout	= $section14.$recent_post_layout;
+			break;
+		case 'block_home_block_step_for_sale_':
+			$section_layout	= $section14.$step_for_sale_layout;
+			break;
+		case 'block_home_block_capabilities_':
+			$section_layout	= $section14.$capabilities_layout;
+			break;
+		case 'block_home_block_services_':
+			$section_layout	= $section14.$service_layout;
+			break;
+		case 'block_home_block_recent_work_':
+			$section_layout	= $section14.$recent_work_layout;
+			break;
+		case 'block_home_module_testimonial_':
+			$section_layout	= $section14.$testimonial_layout;
+			break;
+		case 'block_home_module_tab_product_':
+			$section_layout	= $section14.$tab_products_layout;
+			break;
+		case 'block_home_module_popular_product_':
+			$section_layout	= $section14.$popular_products_layout;
+			break;
+		default:
+			$section_layout	= $section14;
+			break;
+	}
+	if ($section_layout != '') {
+		echo $this->getLayout()->createBlock('cms/block')->setBlockId($section_layout)->toHtml();
+	}
+endif; ?> 
+<?php if($section15 != ''): 
+    $section_layout	= '';
+	switch ($section15) {
+		case 'block_home_module_categories_':
+			$section_layout	= $section15.$categories_layout;
+			break;
+		case 'block_home_block_policy_':
+			$section_layout	= $section15.$policy_layout;
+			break;
+		case 'block_home_module_promotion_product_':
+			$section_layout	= $section15.$promotion_product_layout;
+			break;
+		case 'block_home_module_new_product_':
+			$section_layout	= $section15.$new_product_layout;
+			break;
+		case 'block_home_module_recent_post_':
+			$section_layout	= $section15.$recent_post_layout;
+			break;
+		case 'block_home_block_step_for_sale_':
+			$section_layout	= $section15.$step_for_sale_layout;
+			break;
+		case 'block_home_block_capabilities_':
+			$section_layout	= $section15.$capabilities_layout;
+			break;
+		case 'block_home_block_services_':
+			$section_layout	= $section15.$service_layout;
+			break;
+		case 'block_home_block_recent_work_':
+			$section_layout	= $section15.$recent_work_layout;
+			break;
+		case 'block_home_module_testimonial_':
+			$section_layout	= $section15.$testimonial_layout;
+			break;
+		case 'block_home_module_tab_product_':
+			$section_layout	= $section15.$tab_products_layout;
+			break;
+		case 'block_home_module_popular_product_':
+			$section_layout	= $section15.$popular_products_layout;
+			break;
+		default:
+			$section_layout	= $section15;
+			break;
+	}
+	if ($section_layout != '') {
+		echo $this->getLayout()->createBlock('cms/block')->setBlockId($section_layout)->toHtml();
+	}
+endif; ?> 
